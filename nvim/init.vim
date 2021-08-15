@@ -1,7 +1,7 @@
 set number 
 set mouse=a 
 set numberwidth=2
-set clipboard=unnamed
+"set clipboard=unnamed
 syntax enable
 set showcmd
 set ruler
