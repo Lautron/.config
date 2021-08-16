@@ -1,3 +1,7 @@
+# set git credentials
+git config --global user.email "laurigbach@gmail.com"
+git config --global user.name "Lautaro Bachmann"
+
 # create .xmonad if it does not exist
 [ -e ~/.xmonad ] || mkdir ~/.xmonad
 # create hard link for xmonad.hs
