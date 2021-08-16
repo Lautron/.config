@@ -100,7 +100,8 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 myStartupHook :: X ()
 myStartupHook = do
     spawnOnce "lxsession &"
-    spawnOnce "picom &"
+    spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
+    spawnOnce "picom -b --config ~/.config/dwm/picom.conf &"
     spawnOnce "nm-applet &"
     spawnOnce "volumeicon &"
     spawnOnce "trayer --edge top --align right --widthtype pixel --width 70 --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 21 &"
