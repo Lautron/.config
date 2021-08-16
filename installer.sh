@@ -1,3 +1,4 @@
+#!/bin/bash
 # set git credentials
 git config --global user.email "laurigbach@gmail.com"
 git config --global user.name "Lautaro Bachmann"
