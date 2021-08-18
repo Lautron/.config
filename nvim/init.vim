@@ -59,6 +59,7 @@ autocmd BufWritePost,FileWritePost *.scss :!sassc % %:r.css
 autocmd BufWritePost,FileWritePost *.mom :silent :!pdfmom -e % > %:r.pdf
 autocmd BufWritePost,FileWritePost *.ms :silent :!groff -e -ms % -T pdf > %:r.pdf
 autocmd BufRead,BufNewFile *.pmd setfiletype pandocmd
+autocmd BufRead,BufNewFile *.vimclip setfiletype vimclip
 autocmd BufWritePost,FileWritePost *.pmd :silent :!pandoc -f markdown -t latex % -o %:r.pdf
 autocmd BufWritePost,FileWritePost *.tex :silent :!pdflatex %
 hi clear Conceal
