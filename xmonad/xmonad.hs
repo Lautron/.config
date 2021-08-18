@@ -143,10 +143,15 @@ spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
                    , gs_font         = myFont
                    }
 
-myAppGrid = [ ("Chromium", "chromium")
-                 , ("Xournalpp", "xournalpp")
-                 , ("Xmind", "xmind-pro")
-                 ]
+algodatos1 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=816'"
+algebra = "https://classroom.google.com/u/1/c/MzcyMjQ5NTEyODQw'"
+anmat2 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=801'"
+
+myAppGrid = [ 
+	      ("AlgoDatos1", "chromium '" ++ algodatos1)
+	    , ("algebra", "chromium '" ++ algebra)
+	    , ("anmat2", "chromium '" ++ anmat2)
+          ]
 
 myScratchPads :: [NamedScratchpad]
 myScratchPads = [ NS "spotify" spawnSpotify findSpotify manageSpotify
@@ -308,6 +313,7 @@ myManageHook = composeAll
      , className =? "splash"          --> doFloat
      , className =? "toolbar"         --> doFloat
      , className =? "Yad"             --> doCenterFloat
+     , title =? "vimclip"             --> doCenterFloat
      , isFullscreen -->  doFullFloat
      ] <+> namedScratchpadManageHook myScratchPads
 
@@ -315,8 +321,8 @@ myManageHook = composeAll
 myKeys :: [(String, X ())]
 myKeys =
     -- KB_GROUP Xmonad
-        [ ("M-C-r", spawn "xmonad --recompile")  -- Recompiles xmonad
-        , ("M-S-r", spawn "xmonad --restart")    -- Restarts xmonad
+        [ ("M-S-r", spawn "xmonad --recompile && xmonad --restart")  -- Recompiles xmonad
+        , ("M-C-r", spawn "xmonad --restart")    -- Restarts xmonad
         , ("M-S-q", io exitSuccess)              -- Quits xmonad
         , ("M-S-/", spawn "~/.xmonad/xmonad_keys.sh")
 
@@ -347,9 +353,9 @@ myKeys =
         , ("C-M1-l", incScreenSpacing 4)         -- Increase screen spacing
 
     -- KB_GROUP Grid Select (CTR-g followed by a key)
-        , ("M-g g", spawnSelected' myAppGrid)                 -- grid select favorite apps
-        , ("M-g t", goToSelected $ mygridConfig myColorizer)  -- goto selected window
-        , ("M-g b", bringSelected $ mygridConfig myColorizer) -- bring selected window
+        , ("M-g", spawnSelected' myAppGrid)                 -- grid select favorite apps
+       -- , ("M-g t", goToSelected $ mygridConfig myColorizer)  -- goto selected window
+       -- , ("M-g b", bringSelected $ mygridConfig myColorizer) -- bring selected window
 
     -- KB_GROUP Windows navigation
         , ("M-m", windows W.focusMaster)  -- Move focus to the master window
@@ -399,6 +405,7 @@ myKeys =
 
 	-- Custom Hotkeys
 	, ("M-f", spawn (myTerminal ++ " -e ranger"))
+	, ("M-i", spawn (myTerminal ++ " -t vimclip -e vimclip"))
         ]
     -- The following lines are needed for named scratchpads.
           where nonNSP          = WSIs (return (\ws -> W.tag ws /= "NSP"))
