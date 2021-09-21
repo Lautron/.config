@@ -7,6 +7,7 @@ function fish_user_key_bindings
 end
 
 set -x EDITOR "nvim"
+set -x BROWSER "chromium"
 set -x SUDO_ASKPASS "$HOME/.config/scripts/dmenupass sudo -A dmenu"
 set -x PATH "/home/lautarob/.config/scripts" $PATH
 #pyenv
