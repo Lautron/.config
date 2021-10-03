@@ -1,65 +1,65 @@
-global !p
-def math():
-	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
-
-def comment(): 
-	return vim.eval('vimtex#syntax#in_comment()') == '1'
-
-def env(name):
-	[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
-	return x != '0' and y != '0'
-
-# A overkill(dirty) table with automatic alignment feature
-def create_table(snip):
-	# retrieving single line from current string and treat it like tabstops count
-	placeholders_string = snip.buffer[snip.line].strip()
-	rows_amount = int(placeholders_string[0])
-	columns_amount = int(placeholders_string[1])
-
-	prefix_str = "from vimsnippets import display_width;"
-
-	# erase current line
-	snip.buffer[snip.line] = ""
-
-	# create anonymous snippet with expected content and number of tabstops
-	anon_snippet_title = "| "
-	anon_snippet_delimiter = "|"
-	for col in range(1, columns_amount+1):
-		sync_rows = [x*columns_amount+col for x in range(rows_amount+1)]
-		sync_str = ",".join(["t[{0}]".format(x) for x in sync_rows])
-		max_width_str = "max(list(map(display_width, [" + sync_str + "])))"
-		cur_width_str = "display_width(t[" + str(col) + "])"
-		rv_val = "(" + max_width_str + "-" + cur_width_str + ")*' '"
-		anon_snippet_title += "${" + str(col)  + ":head" + str(col)\
-			+ "}`!p " + prefix_str + "snip.rv=" + rv_val + "` | "
-		anon_snippet_delimiter += ":`!p " + prefix_str + "snip.rv = "\
-			+ max_width_str + "*'-'" + "`-|"
-
-	anon_snippet_title += "\n"
-
-	anon_snippet_delimiter += "\n"
-	anon_snippet_body = ""
-	for row in range(1, rows_amount+1):
-		body_row = "| "
-		for col in range(1, columns_amount+1):
-			sync_rows = [x*columns_amount+col for x in range(rows_amount+1)]
-			sync_str = ",".join(["t[{0}]".format(x) for x in sync_rows])
-			max_width_str = "max(list(map(display_width, [" + sync_str + "])))"
-			cur_width_str = "display_width(t[" + str(row*columns_amount+col) + "])"
-			rv_val = "(" + max_width_str + "-" + cur_width_str + ")*' '"
-			placeholder = "R{0}C{1}".format(row, col)
-			body_row += "${" + str(row*columns_amount+col)  + ":" + placeholder\
-				+ "}`!p " + prefix_str + "snip.rv=" + rv_val + "` | "
-
-		body_row += "\n"
-		anon_snippet_body += body_row
-
-	anon_snippet_table = anon_snippet_title + anon_snippet_delimiter + anon_snippet_body
-
-	# expand anonymous snippet
-	snip.expand_anon(anon_snippet_table)
-endglobal
-priority -50
+#global !p
+#def math():
+#	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+#
+#def comment(): 
+#	return vim.eval('vimtex#syntax#in_comment()') == '1'
+#
+#def env(name):
+#	[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+#	return x != '0' and y != '0'
+#
+## A overkill(dirty) table with automatic alignment feature
+#def create_table(snip):
+#	# retrieving single line from current string and treat it like tabstops count
+#	placeholders_string = snip.buffer[snip.line].strip()
+#	rows_amount = int(placeholders_string[0])
+#	columns_amount = int(placeholders_string[1])
+#
+#	prefix_str = "from vimsnippets import display_width;"
+#
+#	# erase current line
+#	snip.buffer[snip.line] = ""
+#
+#	# create anonymous snippet with expected content and number of tabstops
+#	anon_snippet_title = "| "
+#	anon_snippet_delimiter = "|"
+#	for col in range(1, columns_amount+1):
+#		sync_rows = [x*columns_amount+col for x in range(rows_amount+1)]
+#		sync_str = ",".join(["t[{0}]".format(x) for x in sync_rows])
+#		max_width_str = "max(list(map(display_width, [" + sync_str + "])))"
+#		cur_width_str = "display_width(t[" + str(col) + "])"
+#		rv_val = "(" + max_width_str + "-" + cur_width_str + ")*' '"
+#		anon_snippet_title += "${" + str(col)  + ":head" + str(col)\
+#			+ "}`!p " + prefix_str + "snip.rv=" + rv_val + "` | "
+#		anon_snippet_delimiter += ":`!p " + prefix_str + "snip.rv = "\
+#			+ max_width_str + "*'-'" + "`-|"
+#
+#	anon_snippet_title += "\n"
+#
+#	anon_snippet_delimiter += "\n"
+#	anon_snippet_body = ""
+#	for row in range(1, rows_amount+1):
+#		body_row = "| "
+#		for col in range(1, columns_amount+1):
+#			sync_rows = [x*columns_amount+col for x in range(rows_amount+1)]
+#			sync_str = ",".join(["t[{0}]".format(x) for x in sync_rows])
+#			max_width_str = "max(list(map(display_width, [" + sync_str + "])))"
+#			cur_width_str = "display_width(t[" + str(row*columns_amount+col) + "])"
+#			rv_val = "(" + max_width_str + "-" + cur_width_str + ")*' '"
+#			placeholder = "R{0}C{1}".format(row, col)
+#			body_row += "${" + str(row*columns_amount+col)  + ":" + placeholder\
+#				+ "}`!p " + prefix_str + "snip.rv=" + rv_val + "` | "
+#
+#		body_row += "\n"
+#		anon_snippet_body += body_row
+#
+#	anon_snippet_table = anon_snippet_title + anon_snippet_delimiter + anon_snippet_body
+#
+#	# expand anonymous snippet
+#	snip.expand_anon(anon_snippet_table)
+#endglobal
+#priority -50
 
 ###########################
 # Sections and Paragraphs #
@@ -206,11 +206,11 @@ $1)
 
 endsnippet
 
-snippet equiV "equivalent" iA
+snippet eQ "equivalent" iA
 \equiv 
 endsnippet
 
-snippet indX "index" iA
+snippet inD "index" iA
 ~!!~
 endsnippet
 
@@ -219,7 +219,7 @@ snippet neQ "not equal" iA
 endsnippet
 
 snippet ranG "range" iA
-0 \leq $1 < \#xs $0
+${2:0} \leq $1 < ${3:\#xs} $4
 endsnippet
 
 snippet cardi "cardinal" iA
@@ -278,6 +278,59 @@ snippet squiG "squiggly arrow" iA
 \rightsquigarrow 
 endsnippet
 
+snippet oP "oplus" iA
+\oplus
+endsnippet
+
+snippet imP "implies" iA
+\implies
+endsnippet
+
+snippet peG "pegado" iA
+\triangleright
+endsnippet
+
+snippet SiG "Uppercase Sigma" iA
+\Sigma
+endsnippet
+
+snippet PI "Uppercase Pi" iA
+\Pi
+endsnippet
+
+snippet RR "real" iA
+\mathbb{R}
+endsnippet
+
+snippet NN "natural" iA
+\mathbb{N}
+endsnippet
+
+snippet II "I" iA
+\mathbb{I}
+endsnippet
+
+snippet uiN "undefined integral" iA
+\int $1~dx $0
+endsnippet
+
+snippet diN "integral" wA
+\int_{${1:-\infty}}^{${2:\infty}}$3~${4:dx} $0
+endsnippet
+
+snippet uP "up arrow" iA
+\uparrow
+endsnippet
+
+snippet ++ "concatenation operator" iA
+\concat 
+endsnippet
+
+snippet concatDef "concat command definition" iA
+\newcommand{\concat}{%
+  \mathbin{{+}\mspace{-8mu}{+}}%
+}
+endsnippet
 ###########################
 ##### LaTeX snippets #####
 ###########################
@@ -307,6 +360,14 @@ endsnippet
 snippet limsup "limsup" w
 \limsup_{${1:n} \to ${2:\infty}} 
 endsnippet
+
+snippet sqrt "\sqrt{}"
+\sqrt{${1:${VISUAL}}} $0
+endsnippet
+snippet set "set" wA
+\\{$1\\} $0
+endsnippet
+
 #snippet beg "begin{} / end{}" bA
 #\\begin{$1}
 #	$0
@@ -369,10 +430,6 @@ endsnippet
 #endsnippet
 #
 #
-context "math()"
-snippet // "Fraction" iA
-\\frac{${VISUAL}}{$1}$0
-endsnippet
 
 snippet / "Fraction" i
 \\frac{$1}{$2}$0
@@ -497,9 +554,9 @@ endsnippet
 #\overline{$1}$0
 #endsnippet
 #
-#snippet sum "sum" w
-#\sum_{n=${1:1}}^{${2:\infty}} ${3:a_n z^n}
-#endsnippet
+snippet sum "sum" w
+\sum_{n=${1:1}}^{${2:\infty}} ${3:a_n}
+endsnippet
 #
 #snippet taylor "taylor" w
 #\sum_{${1:k}=${2:0}}^{${3:\infty}} ${4:c_$1} (x-a)^$1 $0
@@ -515,9 +572,6 @@ endsnippet
 #endsnippet
 #
 #context "math()"
-#snippet sqrt "\sqrt{}"
-#\sqrt{${1:${VISUAL}}} $0
-#endsnippet
 #
 #context "math()"
 #snippet sr "^2" iA
@@ -673,9 +727,6 @@ endsnippet
 #
 #priority 300
 #context "math()"
-#snippet dint "integral" wA
-#\int_{${1:-\infty}}^{${2:\infty}} ${3:${VISUAL}} $0
-#endsnippet
 #
 #priority 200
 #context "math()"
@@ -730,9 +781,6 @@ endsnippet
 #endsnippet
 #
 #context "math()"
-#snippet set "set" wA
-#\\{$1\\} $0
-#endsnippet
 #
 #snippet || "mid" iA
 # \mid 
@@ -777,9 +825,6 @@ endsnippet
 #\O
 #endsnippet
 #
-#snippet RR "real" iA
-#\mathbb{R}
-#endsnippet
 #
 #snippet QQ "Q" iA
 #\mathbb{Q}
