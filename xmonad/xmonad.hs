@@ -22,6 +22,7 @@ import Data.Maybe (fromJust)
 import Data.Monoid
 import Data.Maybe (isJust)
 import Data.Tree
+import Data.Ratio
 import qualified Data.Map as M
 
     -- Hooks
@@ -100,6 +101,7 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 myStartupHook :: X ()
 myStartupHook = do
     spawnOnce "lxsession &"
+    spawnOnce "dunst -conf ~/.config/dunst/dunstrc"
     spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
     spawnOnce "picom -b --config ~/.config/dwm/picom.conf &"
     spawnOnce "nm-applet &"
@@ -307,22 +309,34 @@ myManageHook = composeAll
      , className =? "download"        --> doFloat
      , className =? "error"           --> doFloat
      , className =? "Gimp"            --> doFloat
-     , className =? "Spotify"         --> doFloat
+     , className =? "Spotify"         --> doCenterFloat
      , className =? "notification"    --> doFloat
      , className =? "pinentry-gtk-2"  --> doFloat
      , className =? "splash"          --> doFloat
      , className =? "toolbar"         --> doFloat
      , className =? "Yad"             --> doCenterFloat
-     , title =? "vimclip"             --> doCenterFloat
+     , title =? "rate.sx"             --> centerCustomFloat 0.7 0.7 
+     , title =? "wttr.in"             --> centerCustomFloat 0.85 0.9 
+     , title =? "vimclip"             --> vimclipFloat 0.05 0.5 0.2
      , isFullscreen -->  doFullFloat
      ] <+> namedScratchpadManageHook myScratchPads
+     where 
+       centerCustomFloat w h = customFloating $ W.RationalRect l t w h
+	where
+	  l = (1 - w)/2
+	  t = (1 - h)/2
+
+       vimclipFloat y w h = customFloating $ W.RationalRect l y w h
+	where
+	  l = (1 - w)/2
+
 
 -- START_KEYS
 myKeys :: [(String, X ())]
 myKeys =
     -- KB_GROUP Xmonad
-        [ ("M-S-r", spawn "xmonad --recompile && xmonad --restart")  -- Recompiles xmonad
-        , ("M-C-r", spawn "xmonad --restart")    -- Restarts xmonad
+        [ ("M-C-r", spawn "xmonad --recompile")  -- Recompiles xmonad
+        , ("M-S-r", spawn "xmonad --restart")    -- Restarts xmonad
         , ("M-S-q", io exitSuccess)              -- Quits xmonad
         , ("M-S-/", spawn "~/.xmonad/xmonad_keys.sh")
 
@@ -404,9 +418,12 @@ myKeys =
         , ("<Print>", spawn "flameshot gui")
 
 	-- Custom Hotkeys
-	, ("M-f", spawn (myTerminal ++ " -e ranger"))
+	, ("M-f", spawn (myTerminal ++ " -e fish -C ranger"))
 	, ("M-i", spawn (myTerminal ++ " -t vimclip -e vimclip"))
-        ]
+	, ("M-c r", spawn (myTerminal ++ " --hold -t rate.sx -e curl rate.sx"))        
+	, ("M-c w", spawn (myTerminal ++ " --hold -t wttr.in -e curl wttr.in"))        
+	, ("M-x l", spawn "xmind_shortcut.sh")
+	]
     -- The following lines are needed for named scratchpads.
           where nonNSP          = WSIs (return (\ws -> W.tag ws /= "NSP"))
                 nonEmptyNonNSP  = WSIs (return (\ws -> isJust (W.stack ws) && W.tag ws /= "NSP"))
@@ -424,7 +441,7 @@ main = do
                                -- This works perfect on SINGLE monitor systems. On multi-monitor systems,
                                -- it adds a border around the window if screen does not have focus. So, my solution
                                -- is to use a keybinding to toggle fullscreen noborders instead.  (M-<Space>)
-                               -- <+> fullscreenEventHook
+                              <+> fullscreenEventHook
         , modMask            = myModMask
         , terminal           = myTerminal
         , startupHook        = myStartupHook
