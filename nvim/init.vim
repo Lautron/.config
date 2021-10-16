@@ -45,13 +45,36 @@ Plug 'honza/vim-snippets'
 Plug 'mechatroner/rainbow_csv'
 
 call plug#end()
+let s:hidden_all = 1
+set noshowmode
+set laststatus=0
+set noshowcmd
+function! ToggleHiddenAll()
+    if s:hidden_all  == 0
+        let s:hidden_all = 1
+        set noshowmode
+        set laststatus=0
+        set noshowcmd
+    else
+        let s:hidden_all = 0
+        set showmode
+        set laststatus=2
+        set showcmd
+    endif
+endfunction
+
+nnoremap <S-h> :call ToggleHiddenAll()<CR>
 let mapleader = " "
 let NERDTreeQuitOnOpen=1
 nmap <Leader>nt :NERDTreeFind<CR>
 nmap <Leader>rp :w <bar> :! python %<CR>
+nmap <Leader>rc :w <bar> :! gcc -Wall -Wextra -std=c99 -g % -o %< && ./%<<CR>
+nmap <Leader>cc :w <bar> :! gcc -Wall -Wextra -std=c99 -g % -o %< <CR>
 nmap <Leader>cl :w <bar> :!pandoc -f markdown -t latex % -o %:r.pdf<CR>
 nmap <Leader>y "+y<CR>
 nmap <Leader>p "+p<CR>
+"nmap <Leader>as ?sigma<CR>yy}kpf_l
+"nmap <Leader>al ?ell<CR>f{lyw}i$\ell_{}<Esc>PA\quad $\<Esc>2h
 
 :nmap <Leader>cs :!sassc % %:r.css<CR>
 autocmd BufWritePost,FileWritePost *.scss :!sassc % %:r.css
