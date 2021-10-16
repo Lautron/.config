@@ -311,7 +311,7 @@ syn match texStatement '``' containedin=ALL conceal cchar=“
 syn match texStatement '\'\'' containedin=ALL conceal cchar=”
 syn match texStatement '\\item\>' containedin=ALL conceal cchar=•
 syn match texStatement '\\ldots' containedin=ALL conceal cchar=…
-syn match texStatement '\\quad' containedin=ALL conceal cchar=  
+syn match texStatement '\\quad' containedin=ALL conceal cchar=   
 syn match texStatement '\\qquad' containedin=ALL conceal cchar=    
 "syn match texStatement '\\\[' containedin=ALL conceal cchar=⟦
 "syn match texStatement '\\\]' containedin=ALL conceal cchar=⟧
@@ -529,3 +529,10 @@ syn match texMathSymbol '\\cdot' containedin=ALL conceal cchar=⋅
 syn match texMathSymbol '\\uparrow' containedin=ALL conceal cchar=↑
 syn match texMathSymbol '\\ne ' containedin=ALL conceal cchar=≠
 syn match texMathSymbol '\\concat' containedin=ALL conceal cchar=⧺
+syn match texMathSymbol '\\in ' containedin=ALL conceal cchar=∈
+syn match texMathSymbol '\\infty' containedin=ALL conceal cchar=∞
+syn match texMathSymbol '\\prec' containedin=ALL conceal cchar=≺
+syn match texMathSymbol '\\Brackets' containedin=ALL conceal cchar= 
+syn match texMathSymbol '\\ell' containedin=ALL conceal cchar=ℓ
+syn match texMathSymbol '\\sigma' containedin=ALL conceal cchar=σ
+syn match texMathSymbol '\\mapsto' containedin=ALL conceal cchar=↦
