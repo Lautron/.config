@@ -73,13 +73,14 @@ nmap <Leader>nt :NERDTreeFind<CR>
 nmap <Leader>rp :w <bar> :! python %<CR>
 nmap <Leader>rc :w <bar> :! gcc -Wall -Wextra -std=c99 -g % -o %< && ./%<<CR>
 nmap <Leader>cc :w <bar> :! gcc -Wall -Wextra -std=c99 -g % -o %< <CR>
-nmap <Leader>r+ :w <bar> :! g++ -Wall -Wextra -std=c++11 -o %< % && ./%< <CR>
+nmap <Leader>r+ :w <bar> :! g++ -std=c++11 -o %< % && ./%< <CR>
 nmap <Leader>c+ :w <bar> :! g++ -std=c++11 -g -O2 -Wconversion -Wshadow -Wall -Wextra -D_GLIBCXX_DEBUG -o %< % <CR>
 nmap <Leader>cl :w <bar> :!pandoc -f markdown -t latex % -o %:r.pdf<CR>
 nmap <Leader>p "+p<CR>
 nmap <Leader>op :!zathura '%<'.pdf&;disown<cr>:redraw!<cr>
 nmap <Leader>ot :!alacritty &;disown<cr>:redraw!<cr>
 nmap <Leader>tyu {<bar>yi<bar>}<bar>p
+nmap <Leader>tys kyi<bar>jpF}hA<bar><Esc>
 "nmap <Leader>as ?sigma<CR>yy}kpf_l
 "nmap <Leader>al ?ell<CR>f{lyw}i$\ell_{}<Esc>PA\quad $\<Esc>2h
 
