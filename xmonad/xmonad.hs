@@ -106,6 +106,7 @@ myStartupHook = do
     spawnOnce "picom -b --config ~/.config/dwm/picom.conf &"
     spawnOnce "nm-applet &"
     spawnOnce "volumeicon &"
+    spawnOnce "config_tablet_buttons.sh &"
     spawnOnce "trayer --edge top --align right --widthtype pixel --width 70 --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 21 &"
 
     --spawnOnce "xargs xwallpaper --stretch < ~/.xwallpaper"  -- set last saved with xwallpaper
@@ -422,7 +423,11 @@ myKeys =
 	, ("M-i", spawn (myTerminal ++ " -t vimclip -e vimclip"))
 	, ("M-c r", spawn (myTerminal ++ " --hold -t rate.sx -e curl rate.sx"))        
 	, ("M-c w", spawn (myTerminal ++ " --hold -t wttr.in -e curl wttr.in"))        
-	, ("M-x l", spawn "xmind_shortcut.sh")
+	, ("M1-x l", spawn "xmind_shortcut.sh")
+	, ("M1-h", spawn "xdotool keyup h key --clearmodifiers Left")
+	, ("M1-j", spawn "xdotool keyup j key --clearmodifiers Down")
+	, ("M1-k", spawn "xdotool keyup k key --clearmodifiers Up")
+	, ("M1-l", spawn "xdotool keyup l key --clearmodifiers Right")
 	]
     -- The following lines are needed for named scratchpads.
           where nonNSP          = WSIs (return (\ws -> W.tag ws /= "NSP"))
