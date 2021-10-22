@@ -83,6 +83,8 @@ nmap <Leader>tyu {<bar>yi<bar>}<bar>p
 nmap <Leader>tys kyi<bar>jpF}hA<bar><Esc>
 "nmap <Leader>as ?sigma<CR>yy}kpf_l
 "nmap <Leader>al ?ell<CR>f{lyw}i$\ell_{}<Esc>PA\quad $\<Esc>2h
+let @l=':s/  /\\quad /geI$\ell_{1}\quad A$\j0'
+"To paste macro do ctrl+r ctrl+r <register>
 
 :nmap <Leader>cs :!sassc % %:r.css<CR>
 autocmd BufWritePost,FileWritePost *.scss :!sassc % %:r.css
