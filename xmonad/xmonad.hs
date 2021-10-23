@@ -159,16 +159,18 @@ myAppGrid = [
 myScratchPads :: [NamedScratchpad]
 myScratchPads = [ NS "spotify" spawnSpotify findSpotify manageSpotify
                 , NS "calculator" spawnCalc findCalc manageCalc
+                , NS "bullet" spawnBullet findBullet manageBullet
                 ]
   where
     spawnSpotify = "spotify"
     findSpotify  = className =? "Spotify"
-    manageSpotify = customFloating $ W.RationalRect l t w h
-               where
-                 h = 0.9
-                 w = 0.9
-                 t = 0.95 -h
-                 l = 0.95 -w 
+    manageSpotify = doFullFloat
+    --customFloating $ W.RationalRect l t w h
+              -- where
+              --   h = 0.9
+              --   w = 0.9
+              --   t = 0.95 -h
+              --   l = 0.95 -w 
     spawnCalc  = "qalculate-gtk"
     findCalc   = className =? "Qalculate-gtk"
     manageCalc = customFloating $ W.RationalRect l t w h
@@ -177,6 +179,16 @@ myScratchPads = [ NS "spotify" spawnSpotify findSpotify manageSpotify
                  w = 0.4
                  t = 0.75 -h
                  l = 0.70 -w
+
+    spawnBullet  = "xournalpp ~/Documents/Menos_usados/Journaling/bullet_journal_2021.xopp"
+    findBullet   = title =? "bullet_journal_2021.xopp - Xournal++"
+    manageBullet = doFullFloat
+    --customFloating $ W.RationalRect l t w h
+    --           where
+    --             h = 0.95
+    --             w = 0.98
+    --             t = 1 -h
+    --             l = 1 -w 
 
 --Makes setting the spacingRaw simpler to write. The spacingRaw module adds a configurable amount of space around windows.
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
@@ -405,6 +417,7 @@ myKeys =
     -- Toggle them to hide and it sends them back to hidden workspace (NSP).
         , ("M-s s", namedScratchpadAction myScratchPads "spotify")
         , ("M-s c", namedScratchpadAction myScratchPads "calculator")
+        , ("M-s b", namedScratchpadAction myScratchPads "bullet")
 
 
     -- KB_GROUP Multimedia Keys
