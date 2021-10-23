@@ -73,7 +73,7 @@ nmap <Leader>nt :NERDTreeFind<CR>
 nmap <Leader>rp :w <bar> :! python %<CR>
 nmap <Leader>rc :w <bar> :! gcc -Wall -Wextra -std=c99 -g % -o %< && ./%<<CR>
 nmap <Leader>cc :w <bar> :! gcc -Wall -Wextra -std=c99 -g % -o %< <CR>
-nmap <Leader>r+ :w <bar> :! g++ -std=c++11 -o %< % && ./%< <CR>
+nmap <Leader>r+ :w <bar> :! g++ -std=c++11 -o %< %<CR>
 nmap <Leader>c+ :w <bar> :! g++ -std=c++11 -g -O2 -Wconversion -Wshadow -Wall -Wextra -D_GLIBCXX_DEBUG -o %< % <CR>
 nmap <Leader>cl :w <bar> :!pandoc -f markdown -t latex % -o %:r.pdf<CR>
 nmap <Leader>p "+p<CR>
