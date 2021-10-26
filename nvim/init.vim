@@ -14,6 +14,7 @@ set conceallevel=2
 set nrformats+=alpha
 :filetype on
 
+source ~/.config/nvim/coc-config.vim
 "Install vim plug if not installed 
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
@@ -46,6 +47,8 @@ Plug 'honza/vim-snippets'
 Plug 'mechatroner/rainbow_csv'
 Plug 'dhruvasagar/vim-table-mode'
   let g:table_mode_corner='|'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 let s:hidden_all = 1
