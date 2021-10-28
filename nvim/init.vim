@@ -49,6 +49,7 @@ Plug 'dhruvasagar/vim-table-mode'
   let g:table_mode_corner='|'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'vim-autoformat/vim-autoformat'
 
 call plug#end()
 let s:hidden_all = 1
@@ -98,5 +99,6 @@ autocmd BufRead,BufNewFile *.vimclip setfiletype vimclip
 "Make a debug mode for pandoc
 autocmd BufWritePost,FileWritePost *.pmd :silent :!pandoc -f markdown -t latex % -o %:r.pdf
 autocmd BufWritePost,FileWritePost *.tex :silent :!pdflatex %
+au BufWrite * :Autoformat
 hi clear Conceal
 colorscheme onedark
