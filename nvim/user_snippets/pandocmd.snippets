@@ -158,9 +158,8 @@ snippet / "Fraction" i
 \\frac{$1}{$2}$0
 endsnippet
 
-#snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "symbol frac" wrA
 priority 100
-snippet '(\s|^)(.*)/' "symbol frac" wrA
+snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "symbol frac" wrA
 \\frac{`!p snip.rv = match.group(2)`}{$1}$0
 endsnippet
 
@@ -558,5 +557,8 @@ $$\\{${2:Q}\\}$$
 $0
 endsnippet
 
+snippet geN "Generalization" iA
+($1_1,\ldots,$1_n)$0
+endsnippet
 
 ## vim:ft=snippets
