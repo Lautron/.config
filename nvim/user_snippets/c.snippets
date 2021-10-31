@@ -122,6 +122,12 @@ struct ${1:`!p snip.rv = (snip.basename or "name") + "_t"`} {
 };
 endsnippet
 
+snippet typest "typedef struct"
+typedef struct {
+  ${2:/* data */}
+} ${1:`!p snip.rv = (snip.basename or "name") + "_t"`};
+endsnippet
+
 snippet fun "function" b
 ${1:void} ${2:function_name}($3) {
 	${VISUAL}$0
@@ -189,6 +195,15 @@ endsnippet
 snippet template "template"
 #include<stdio.h>
 
+$1
+
+int main(void){
+  $0;
+  return 0;
+}
+endsnippet
+
+snippet vario "variable I/O"
 int pedirEntero(char *nombre){
   int x;
   printf("Ingrese un valor\n%s = ", nombre);
@@ -199,20 +214,49 @@ int pedirEntero(char *nombre){
 void imprimeEntero(char *nombre, int x) {
   printf("\n%s --> %d", nombre, x);
 }
+endsnippet
 
-int main(void){
-  $0;
-  return 0;
+snippet arrio "array I/O"
+void pedirArreglo(int a[], int n_max)
+{
+  printf("Ingrese %d argumentos (separando con espacios)\n", n_max);
+  int i = 0;
+  while (i < n_max) {
+    scanf("%d", &a[i]);
+    i++;
+  }
+}
+
+void imprimeArreglo(int a[], int n_max)
+{
+  int i = 0;
+  while (i < n_max) {
+    printf("%d ", a[i]);
+    i++;
+  }
+  printf("\n");
 }
 endsnippet
 
-snippet ped "pedir entero"
+snippet pedv "pedir entero"
 int $1 = pedirEntero("$1");
 $0
 endsnippet
 
-snippet imp "imprime entero"
+snippet impv "imprime entero"
 imprimeEntero("$1", $1);
+$0
+endsnippet
+
+# Note: if placeholder appears more than once just use $n at the second appearance
+snippet peda "pedir arreglo"
+int ${1:a}[$2];
+pedirArreglo($1, $2);
+$0
+endsnippet
+
+snippet impa "imprime arreglo"
+imprimeArreglo(${1:a}, $2);
 $0
 endsnippet
 
@@ -223,3 +267,4 @@ while (${1:true}){
 endsnippet
 
 # vim:ft=snippets:
+
