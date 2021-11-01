@@ -122,7 +122,7 @@ struct ${1:`!p snip.rv = (snip.basename or "name") + "_t"`} {
 };
 endsnippet
 
-snippet typest "typedef struct"
+snippet tst "typedef struct"
 typedef struct {
   ${2:/* data */}
 } ${1:`!p snip.rv = (snip.basename or "name") + "_t"`};
@@ -238,12 +238,12 @@ void imprimeArreglo(int a[], int n_max)
 }
 endsnippet
 
-snippet pedv "pedir entero"
+snippet pede "pedir entero"
 int $1 = pedirEntero("$1");
 $0
 endsnippet
 
-snippet impv "imprime entero"
+snippet impe "imprime entero"
 imprimeEntero("$1", $1);
 $0
 endsnippet
@@ -266,5 +266,14 @@ while (${1:true}){
 }
 endsnippet
 
+snippet ( "parethesis" Ai
+($1)$0
+endsnippet
+
+snippet { "brackets" Ai
+{
+ $1
+}$0
+endsnippet
 # vim:ft=snippets:
 
