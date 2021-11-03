@@ -139,7 +139,7 @@ snippet beg "begin{} / end{}" bA
 endsnippet
 
 priority 100
-snippet ... "ldots" iA
+snippet ... "ldots" wA
 \ldots
 endsnippet
 
@@ -187,15 +187,15 @@ snip.rv = eval('latex(' + match.group(1).replace('\\', '').replace('^', '**').re
 `
 endsnippet
 
-snippet pmat "pmat" iA
+snippet pmat "pmat" wA
 \begin{pmatrix} $1 \end{pmatrix} $0
 endsnippet
 
-snippet bmat "bmat" iA
+snippet bmat "bmat" wA
 \begin{bmatrix} $1 \end{bmatrix} $0
 endsnippet
 
-snippet () "left( right)" iA
+snippet () "left( right)" wA
 \left( ${1:${VISUAL}} \right) $0
 endsnippet
 
@@ -223,7 +223,7 @@ snippet lr[ "left[ right]" i
 \left[ ${1:${VISUAL}} \right] $0
 endsnippet
 
-snippet lra "leftangle rightangle" iA
+snippet lra "leftangle rightangle" wA
 \left<${1:${VISUAL}} \right>$0
 endsnippet
 
@@ -239,7 +239,7 @@ snippet part "d/dx" w
 \frac{\partial ${1:V}}{\partial ${2:x}} $0
 endsnippet
 
-snippet td "to the ... power" iA
+snippet td "to the ... power" wA
 ^{$1}$0
 endsnippet
 
@@ -247,22 +247,22 @@ snippet __ "subscript" iA
 _{$1}$0
 endsnippet
 
-snippet ooo "\infty" iA
+snippet ooo "\infty" wA
 \infty
 endsnippet
 
-snippet <= "leq" iA
+snippet <= "leq" wA
 \le 
 endsnippet
 
-snippet >= "geq" iA
+snippet >= "geq" wA
 \ge 
 endsnippet
 
-snippet lll "l" iA
+snippet lll "l" wA
 \ell
 endsnippet
-snippet xx "cross" iA
+snippet xx "cross" wA
 \times 
 endsnippet
 
@@ -278,11 +278,11 @@ snippet '(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec|pi|zeta|int)' "ln" rw
 endsnippet
 
 priority 100
-snippet "([a-zA-Z])bar" "bar" riA
+snippet "([a-zA-Z])bar" "bar" rwA
 \bar{`!p snip.rv=match.group(1)`}
 endsnippet
 
-snippet inn "in " iA
+snippet inn "in " wA
 \in 
 endsnippet
 
@@ -290,60 +290,22 @@ snippet cc "subset" Ai
 \subset 
 endsnippet
 
+snippet c= "subset" Ai
+\subseteq 
+endsnippet
+
 priority 90
-snippet -> "to" iA
+snippet -> "to" wA
 \to 
 endsnippet
 
-snippet norm "norm" iA
+snippet norm "norm" w
 \|$1\|$0
 endsnippet
 
 ###########################
 ##### Custom snippets #####
 ###########################
-
-snippet qeq "Quad equal Quad"
-\quad = \quad 
-endsnippet
-
-snippet venn "Venn diagrams"
-
-$1) 
-
-\begin{center}
-    \includegraphics[width=100px]{$1}
-\end{center}
-
-$2
-endsnippet
-
-snippet comp<< "Comprension de conjunto"
-\\{x \in U|$1 < x < $2 \\}
-endsnippet
-
-snippet comp<= "Comprension de conjunto"
-\\{x \in U|$1 \leq x \leq $2 \\}
-endsnippet
-
-snippet qqb "Quad quad box"
-\quad \quad \boxed{$1}
-endsnippet
-
-
-snippet venncap "Venn diagram with caption"
-
-$1) 
-
-\begin{center}
-\begin{tabular}{c}
-\includegraphics[width= 100px]{$1} \\\\
- $$2$ \\\\
- \end{tabular}
-\end{center}
-
-
-endsnippet
 
 snippet eQ "equivalent" iA
 \equiv 
@@ -438,6 +400,7 @@ snippet PI "Uppercase Pi" iA
 \Pi
 endsnippet
 
+priority 50
 snippet RR "real" iA
 \mathbb{R}
 endsnippet
@@ -532,10 +495,6 @@ snippet conM "quad" iA
 ${1:\mathbb{K}}^{${2:n}\times ${3:n}} $0
 endsnippet
 
-snippet txT "text" iA
-\text{ $1 } $0
-endsnippet
-
 snippet lrA "Leftrightarrow" iA
 \Leftrightarrow 
 endsnippet
@@ -558,7 +517,49 @@ $0
 endsnippet
 
 snippet geN "Generalization" iA
-($1_1,\ldots,$1_n)$0
+$1_1,\ldots,$1_n$0
 endsnippet
 
+snippet mc "mathcal" wA
+\mathcal{$1} $0
+endsnippet
+
+snippet "dom([a-zA-Z])" "Dominio" riA
+Dom(`!p snip.rv=match.group(1)`) $0
+endsnippet
+
+priority 100
+snippet "(\w)RR" "R^n" riA
+\mathbb{R}^`!p snip.rv=match.group(1)` $0
+endsnippet
+
+snippet funcdef "function definition" iA
+${1:f}:${2:\mathbb{R}^n}\to
+endsnippet
+
+snippet subset "subset" iA
+\subset
+endsnippet
+
+snippet in "in" wA
+\in
+endsnippet
+
+snippet "txt([a-zA-Z]+)" "text" r
+\text{ `!p snip.rv=match.group(1)`$2 } $1
+endsnippet
+
+snippet test "test"
+capo{${VISUAL}}
+endsnippet
+
+## Interesting snippet example ##
+#------------------- SNIP -------------------
+#snippet r "return" "re.match('^\s+if err ', snip.buffer[snip.line-1])" be
+#return err
+#endsnippet
+#------------------- SNAP -------------------
+#
+#That snippet will expand to 'return err' only if the previous line is starting
+#from 'if err' prefix.
 ## vim:ft=snippets
