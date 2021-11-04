@@ -138,8 +138,8 @@ syn match texMathSymbol '\\vee\>' containedin=ALL conceal cchar=∨
 syn match texMathSymbol '\\wedge\>' containedin=ALL conceal cchar=∧
 syn match texMathSymbol '\\neg\>' containedin=ALL conceal cchar=¬
 syn match texMathSymbol '\\implies\>' containedin=ALL conceal cchar=⇒
-syn match texMathSymbol '\\geq\>' containedin=ALL conceal cchar=⩾
-syn match texMathSymbol '\\leq\>' containedin=ALL conceal cchar=⩽
+syn match texMathSymbol '\\ge\>' containedin=ALL conceal cchar=⩾
+syn match texMathSymbol '\\le\>' containedin=ALL conceal cchar=⩽
 
 " \mathbb characters
 syn match texMathSymbol '\\mathbb{\s*A\s*}' containedin=ALL conceal cchar=𝔸
