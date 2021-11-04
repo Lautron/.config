@@ -417,4 +417,23 @@ void add_weighted(vector<vi>& vertArr, int u, int v, int w)
 }
 endsnippet
 
+snippet getline "get line from input"
+string s;
+getline(cin, s);
+endsnippet
+
+snippet whilecin "while cin"
+while (cin >> ${1:x}){
+  $1
+}
+endsnippet
+
+snippet fileinput "file input"
+freopen("input.txt", "r", stdin);
+freopen("output.txt", "w", stdout);
+endsnippet
+
+snippet llass "long long assignment"
+ll ${1:x} = $2LL;
+endsnippet
 
