@@ -237,7 +237,7 @@ snippet >= "geq" wA
 \ge 
 endsnippet
 
-snippet lll "l" wA
+snippet lll "l" iA
 \ell
 endsnippet
 
@@ -246,12 +246,12 @@ snippet xx "cross" wA
 endsnippet
 
 priority 100
-snippet '(?<!\\)(sin|cos|arccot|cot|csc|ln|log|exp|star|perp)' "ln" rwA
+snippet '(?<!\\)(sin|cos|arccot|cot|csc|ln|log|exp|star|perp)' "ln" rw
 \\`!p snip.rv = match.group(1)`
 endsnippet
 
 priority 200
-snippet '(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec|pi|zeta|int)' "ln" rwA
+snippet '(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec|zeta|int)' "ln" rw
 \\`!p snip.rv = match.group(1)`
 endsnippet
 
@@ -281,7 +281,7 @@ endsnippet
 ##### Custom snippets #####
 ###########################
 
-snippet equiv "equivalent" wA
+snippet eqq "equivalent" wA
 \equiv 
 endsnippet
 
@@ -326,8 +326,9 @@ snippet orr "or" wA
 \vee 
 endsnippet
 
-snippet props "props" wA
-$$\equiv \\{ \text{$0} \\}$$
+snippet props "props" iA
+\equiv \\{ \text{$1} \\}
+$0
 endsnippet
 
 snippet negg "negation" wA
@@ -402,7 +403,7 @@ snippet concatDef "concat command definition" b
 endsnippet
 
 snippet => "Right arrow" wA
-\Rightarrow  
+\Rightarrow 
 endsnippet
 
 snippet taylor "taylor" wA
@@ -430,7 +431,7 @@ snippet "(\w+)mt" "maps to" rwA
 `!p snip.rv=match.group(1)` \mapsto $1
 endsnippet
 
-snippet conjmat "conjunto matriz" wA
+snippet conm "conjunto matriz" wA
 ${1:\mathbb{K}}^{${2:n}\times ${3:n}} $0
 endsnippet
 
@@ -444,19 +445,19 @@ snippet rH "Row header" bA
 |     -      |    $\sigma_{0}$   | $$1$                      | Estado inicial |
 endsnippet
 
-snippet terna "Inline Terna de Hoare" wA
+snippet terh "Inline Terna de Hoare" wA
 \\{${1:P}\\}~${3:S}~\\{${2:Q}\\} $0
 endsnippet
 
-snippet Terna "Terna de Hoare" wA
-$$\\{${1:P}\\}$$
-$$$3$$
-$$\\{${2:Q}\\}$$
+snippet terH "Terna de Hoare" wA
+\\{${1:P}\\}
+$3
+\\{${2:Q}\\}
 $0
 endsnippet
 
-snippet gen "Generalization" wA
-$1_1,\ldots,$1_n$0
+snippet gen "Generalization" w
+$1_1,\ldots,$1_${3:n}$2
 endsnippet
 
 snippet mc "mathcal" wA
@@ -488,6 +489,32 @@ endsnippet
 snippet c= "subset" Ai
 \subseteq 
 endsnippet
+
+snippet "([^ ]+)<-([^ ])" "left arrow" rA
+`!p snip.rv=match.group(1)` \leftarrow `!p snip.rv=match.group(2)`
+endsnippet
+
+snippet wp "weakest precondition" w
+wp.($1).($2)
+endsnippet
+
+snippet wpif "wp(if...fi)" bA
+(${1:B1} \vee ${2:B2})
+\wedge ($1 \Rightarrow wp.(${4:S0}).${3:${VISUAL}})
+\wedge ($2 \Rightarrow wp.(${5:S1}).$3)
+endsnippet
+
+snippet if "if..fi" w
+if~${1:expression}\rightarrow
+  $2
+fi
+endsnippet
+
+snippet else "[] ->" wA
+[]~${1:expression}\rightarrow
+  $2
+endsnippet
+
 ## Interesting snippet example ##
 #------------------- SNIP -------------------
 #snippet r "return" "re.match('^\s+if err ', snip.buffer[snip.line-1])" be
