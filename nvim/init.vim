@@ -79,12 +79,13 @@ nmap <Leader>rc :w <bar> :! gcc -Wall -Wextra -std=c99 -g % -o %< && ./%<<CR>
 nmap <Leader>cc :w <bar> :! gcc -Wall -Wextra -std=c99 -g % -o %< <CR>
 nmap <Leader>r+ :w <bar> :! g++ -g -O2 -std=gnu++17 -static -o %< % <CR>
 nmap <Leader>c+ :w <bar> :! g++ -std=c++11 -g -O2 -Wconversion -Wshadow -Wall -Wextra -D_GLIBCXX_DEBUG -o %< % <CR>
-nmap <Leader>cl :w <bar> :!pandoc -f markdown -t latex % -o %:r.pdf<CR>
+nmap <Leader>cl :w <bar> :!pandoc -f markdown -t latex "%" -o "%:r.pdf"<CR>
 nmap <Leader>p "+p<CR>
 nmap <Leader>op :!zathura '%<'.pdf&;disown<cr>:redraw!<cr>
 nmap <Leader>ot :!alacritty &;disown<cr>:redraw!<cr>
 nmap <Leader>tyu {<bar>yi<bar>}<bar>p
 nmap <Leader>tys kyi<bar>jpF}hA<bar><Esc>
+nmap <Leader>yuq ?wp\.2f.lvt$y/equivop
 source ~/.config/nvim/vimspector.vim
 "nmap <Leader>as ?sigma<CR>yy}kpf_l
 "nmap <Leader>al ?ell<CR>f{lyw}i$\ell_{}<Esc>PA\quad $\<Esc>2h
@@ -98,7 +99,7 @@ autocmd BufWritePost,FileWritePost *.ms :silent :!groff -e -ms % -T pdf > %:r.pd
 autocmd BufRead,BufNewFile *.pmd setfiletype pandocmd
 autocmd BufRead,BufNewFile *.vimclip setfiletype vimclip
 "Make a debug mode for pandoc
-autocmd BufWritePost,FileWritePost *.pmd :silent :!pandoc -f markdown -t latex % -o %:r.pdf
+autocmd BufWritePost,FileWritePost *.pmd :silent :!pandoc -f markdown -t latex "%" -o "%:r.pdf"
 autocmd BufWritePost,FileWritePost *.tex :silent :!pdflatex %
 au BufWrite *.c,*.cpp :Autoformat
 hi clear Conceal
