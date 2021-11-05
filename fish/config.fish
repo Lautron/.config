@@ -60,6 +60,7 @@ function dbright
     xrandr --output HDMI-0 --brightness $argv
 end
 
+alias fug='nvim +Git +only'
 # Activate python venv
 alias venv='source venv/bin/activate.fish'
 
