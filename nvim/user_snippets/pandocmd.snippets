@@ -123,7 +123,7 @@ endsnippet
 
 snippet beg "begin{} / end{}" bA
 \\begin{$1}
-	$0
+${2:${VISUAL}}
 \\end{$1}
 endsnippet
 
@@ -264,7 +264,7 @@ snippet inn "in " wA
 \in 
 endsnippet
 
-snippet cc "subset" Ai
+snippet cc "subset" wA
 \subset 
 endsnippet
 
@@ -456,8 +456,8 @@ $3
 $0
 endsnippet
 
-snippet gen "Generalization" w
-$1_1,\ldots,$1_${3:n}$2
+snippet "gen(\w+)" "Generalization" wr
+${1:`!p snip.rv=match.group(1)`}_1,\ldots,$1_${2:n}
 endsnippet
 
 snippet mc "mathcal" wA
@@ -473,8 +473,8 @@ snippet "(\w)RR" "R^n" rwA
 \mathbb{R}^`!p snip.rv=match.group(1)` $0
 endsnippet
 
-snippet funcdef "function definition" wA
-${1:f}:${2:\mathbb{R}^n}\to
+snippet fndef "function definition" wA
+${1:f}:${2:\mathbb{R}^n}\to ${3:\mathbb{R}}
 endsnippet
 
 snippet "txt([a-zA-Z]+)" "text" r
@@ -482,7 +482,7 @@ snippet "txt([a-zA-Z]+)" "text" r
 endsnippet
 
 priority 50
-snippet "([^ ]+)sqrt" "square root" rwA
+snippet "([^ {]+)sqrt" "square root" rwA
 \sqrt{`!p snip.rv=match.group(1)`} $0
 endsnippet
 
@@ -513,6 +513,36 @@ endsnippet
 snippet else "[] ->" wA
 []~${1:expression}\rightarrow
   $2
+endsnippet
+
+snippet grad "gradient" w
+\nabla ${3:f}(${1:\bar{a}})$2
+endsnippet
+
+snippet fndom "function definition based on Dom(f)" wA
+${1:f}:${2:Dom(f) \subseteq \mathbb{R}^n}\to ${3:\mathbb{R}}
+endsnippet
+
+snippet bola "bola" w
+B(${1:\bar{a}}, ${2:r})
+endsnippet
+
+snippet dim "Dimension" wA
+dim~
+endsnippet
+
+snippet verdo "verification do" wA
+P \Rightarrow ${4:I} 
+\wedge $4 \wedge \neg (${1:B}) \Rightarrow ${3:Q}
+\wedge \\{$4 \wedge $1\\} ${2:S} \\{$4\\} 
+\wedge $4 \wedge $1 \Rightarrow t \ge 0
+\wedge \\{$4 \wedge $1 \wedge t = T\\} $2 \\{t < T\\} 
+endsnippet
+
+snippet alignb "align block" wA
+\begin{align*}
+`!p snip.rv = "\n".join([f'& {line.strip()}\\\\' for line in snip.v.text.split('\n') if line])`
+\end{align*}
 endsnippet
 
 ## Interesting snippet example ##
