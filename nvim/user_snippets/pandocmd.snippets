@@ -217,7 +217,7 @@ snippet part "d/dx" w
 \frac{\partial ${1:V}}{\partial ${2:x}} $0
 endsnippet
 
-snippet td "to the ... power" iA
+snippet td "to the ... power" i
 ^{$1}$0
 endsnippet
 
@@ -229,11 +229,11 @@ snippet ooo "\infty" wA
 \infty
 endsnippet
 
-snippet <= "leq" wA
+snippet <= "leq" iA
 \le 
 endsnippet
 
-snippet >= "geq" wA
+snippet >= "geq" iA
 \ge 
 endsnippet
 
@@ -460,7 +460,7 @@ snippet "gen(\w+)" "Generalization" wr
 ${1:`!p snip.rv=match.group(1)`}_1,\ldots,$1_${2:n}
 endsnippet
 
-snippet mc "mathcal" wA
+snippet mc "mathcal" w
 \mathcal{$1} $0
 endsnippet
 
@@ -505,14 +505,14 @@ snippet wpif "wp(if...fi)" bA
 endsnippet
 
 snippet if "if..fi" w
-if~${1:expression}\rightarrow
-  $2
+if~${1:expression}\rightarrow $2
+$3
 fi
 endsnippet
 
 snippet else "[] ->" wA
-[]~${1:expression}\rightarrow
-  $2
+[]~${1:expression}\rightarrow $2
+$3
 endsnippet
 
 snippet grad "gradient" w
@@ -539,10 +539,24 @@ P \Rightarrow ${4:I}
 \wedge \\{$4 \wedge $1 \wedge t = T\\} $2 \\{t < T\\} 
 endsnippet
 
-snippet alignb "align block" wA
+snippet alib "align block" bA
 \begin{align*}
-`!p snip.rv = "\n".join([f'& {line.strip()}\\\\' for line in snip.v.text.split('\n') if line])`
+`!p snip.rv = "\n".join(['& ' + line.rstrip().replace("  ", "\\quad ") + '\\\\' for line in snip.v.text.split('\n') if line])`
 \end{align*}
+endsnippet
+
+snippet alig "align block" bA
+`!p snip.rv = "\n".join(['& ' + line.rstrip().replace("  ", "\\quad ") + '\\\\' for line in snip.v.text.split('\n') if line])`
+endsnippet
+
+snippet dobint "integral doble" wA
+\int\int_${1:D} ${2:f(x,y)}~dA
+endsnippet
+
+snippet dood "do..od" wA
+do~${1:B} \rightarrow
+  $2
+od
 endsnippet
 
 ## Interesting snippet example ##
