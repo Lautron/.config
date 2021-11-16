@@ -559,6 +559,31 @@ do~${1:B} \rightarrow
 od
 endsnippet
 
+snippet loopf "First part of Derivation" bA
+## Encontrar Invariante ##
+$$I:${1:${VISUAL}}$$
+## Inicializacion ##
+\{${2:P}\}
+S_0
+\{$1\}
+## Finalizacion ##
+$1 \wedge \neg B
+\Rightarrow ${3:Q}
+endsnippet
+snippet loops "Second part of derivation" bA
+## Cota candidata ##
+## Cuerpo del bucle ##
+\{${1:${VISUAL}} \wedge ${2:B}\}
+S_1
+\{$1\}
+## Demostrar que la cota es positiva ##
+$1 \wedge $2 \Rightarrow t \Rightarrow 0
+## Demostrar que la cota disminuye ##
+\{$1 \wedge $2 \wedge t = T\}
+S_1
+\{t < T\}
+endsnippet
+
 ## Interesting snippet example ##
 #------------------- SNIP -------------------
 #snippet r "return" "re.match('^\s+if err ', snip.buffer[snip.line-1])" be
