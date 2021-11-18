@@ -123,9 +123,9 @@ delcommand HtmlHiLink
 
 " more reasonably sized symbols that were already defined
 syn match texMathSymbol '\\implies\>' containedin=ALL conceal cchar=⇒
-syn match texMathSymbol '\\Leftarrow\>' containedin=ALL conceal cchar=⇐
+"syn match texMathSymbol '\\Leftarrow\>' containedin=ALL conceal cchar=⇐
 syn match texMathSymbol '\\rightarrow' containedin=ALL conceal cchar=→
-syn match texMathSymbol '\\leftarrow\>' containedin=ALL conceal cchar=←
+syn match texMathSymbol '\\leftarrow' containedin=ALL conceal cchar=←
 syn match texMathSymbol '\\emptyset\>' containedin=ALL conceal cchar=Ø
 syn match texMathSymbol '\\varphi\>' containedin=ALL conceal cchar=φ
 syn match texMathSymbol '\\phi\>' containedin=ALL conceal cchar=Φ
@@ -536,3 +536,4 @@ syn match texMathSymbol '\\Brackets' containedin=ALL conceal cchar=
 syn match texMathSymbol '\\ell' containedin=ALL conceal cchar=ℓ
 syn match texMathSymbol '\\sigma' containedin=ALL conceal cchar=σ
 syn match texMathSymbol '\\mapsto' containedin=ALL conceal cchar=↦
+syn match texMathSymbol '\\neq' containedin=ALL conceal cchar=≠
