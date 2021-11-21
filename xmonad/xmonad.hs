@@ -77,7 +77,7 @@ myTerminal :: String
 myTerminal = "alacritty"    -- Sets default terminal
 
 myBrowser :: String
-myBrowser = "chromium"  -- Sets qutebrowser as browser
+myBrowser = "brave"  -- Sets qutebrowser as browser
 
 myEmacs :: String
 myEmacs = "emacsclient -c -a 'emacs' "  -- Makes emacs keybindings easier to type
@@ -151,9 +151,9 @@ algebra = "https://classroom.google.com/u/1/c/MzcyMjQ5NTEyODQw'"
 anmat2 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=801'"
 
 myAppGrid = [ 
-	      ("AlgoDatos1", "chromium '" ++ algodatos1)
-	    , ("algebra", "chromium '" ++ algebra)
-	    , ("anmat2", "chromium '" ++ anmat2)
+	      ("AlgoDatos1", myBrowser ++ " '" ++ algodatos1)
+	    , ("algebra", myBrowser ++ " '" ++ algebra)
+	    , ("anmat2", myBrowser ++ " '" ++ anmat2)
           ]
 
 myScratchPads :: [NamedScratchpad]
