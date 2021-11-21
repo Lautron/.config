@@ -60,6 +60,11 @@ function dbright
     xrandr --output HDMI-0 --brightness $argv
 end
 
+# Function for alarm clock
+function timer
+    termdown $argv && play -v 0.5 ~/.config/alarm/alarm.mp3
+end
+
 alias fug='nvim +Git +only'
 # Activate python venv
 alias venv='source venv/bin/activate.fish'
