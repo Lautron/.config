@@ -7,7 +7,7 @@ function fish_user_key_bindings
 end
 
 set -x EDITOR "nvim"
-set -x BROWSER "chromium"
+set -x BROWSER "brave"
 set -x SUDO_ASKPASS "$HOME/.config/scripts/dmenupass sudo -A dmenu"
 set -x PATH "/home/lautarob/.config/scripts" $PATH
 #pyenv
@@ -57,7 +57,7 @@ function cdc
 end
 # Function to change screen brightness
 function dbright
-    xrandr --output HDMI-0 --brightness $argv
+    redshift -P -O 3000 -b $argv
 end
 
 # Function for alarm clock
