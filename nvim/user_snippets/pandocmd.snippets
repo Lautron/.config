@@ -137,11 +137,11 @@ snippet / "Fraction" i
 endsnippet
 
 priority 100
-snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "symbol frac" wrA
-\\frac{`!p snip.rv = match.group(2)`}{$1}$0
+snippet "([^ {]+)/" "symbol frac" wrA
+\\frac{`!p snip.rv = match.group(1)`}{$1}$0
 endsnippet
 
-snippet '([A-Za-z])(\d)' "auto subscript" wrA
+snippet '([A-Za-z])(\d)' "auto subscript" wr
 `!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
 endsnippet
 
@@ -540,9 +540,9 @@ P \Rightarrow ${4:I}
 endsnippet
 
 snippet alib "align block" bA
-\begin{align*}
+\begin{${1:align*}}
 `!p snip.rv = "\n".join(['& ' + line.rstrip().replace("  ", "\\quad ") + '\\\\' for line in snip.v.text.split('\n') if line])`
-\end{align*}
+\end{$1}
 endsnippet
 
 snippet alig "align block" bA
@@ -584,6 +584,15 @@ S_1
 \{t < T\}
 endsnippet
 
+snippet !! "index" iA
+~!!~
+endsnippet
+
+snippet gatb "gather block" bA
+\begin{${1:gather*}}
+`!p snip.rv = "\n".join([line.rstrip().replace("  ", "\\quad ") + '\\\\' for line in snip.v.text.split('\n') if line])`
+\end{$1}
+endsnippet
 ## Interesting snippet example ##
 #------------------- SNIP -------------------
 #snippet r "return" "re.match('^\s+if err ', snip.buffer[snip.line-1])" be
