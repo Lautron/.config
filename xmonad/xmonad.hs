@@ -11,6 +11,7 @@ import XMonad.Actions.CycleWS (Direction1D(..), moveTo, shiftTo, WSType(..), nex
 import XMonad.Actions.GridSelect
 import XMonad.Actions.MouseResize
 import XMonad.Actions.Promote
+import XMonad.Actions.SpawnOn
 import XMonad.Actions.RotSlaves (rotSlavesDown, rotAllDown)
 import XMonad.Actions.WindowGo (runOrRaise)
 import XMonad.Actions.WithAll (sinkAll, killAll)
@@ -98,22 +99,23 @@ myFocusColor  = "#46d9ff"   -- Border color of focused windows
 windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 
+myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
+
 myStartupHook :: X ()
 myStartupHook = do
     spawnOnce "lxsession &"
-    spawnOnce "dunst -conf ~/.config/dunst/dunstrc"
+    spawnOnce "dunst -conf ~/.config/dunst/dunstrc &"
     spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
     spawnOnce "picom -b --config ~/.config/dwm/picom.conf &"
     spawnOnce "nm-applet &"
     spawnOnce "volumeicon &"
+    spawnOnce "redshift -P -O 5000 &"
     spawnOnce "config_tablet_buttons.sh &"
     spawnOnce "trayer --edge top --align right --widthtype pixel --width 70 --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 21 &"
 
-    --spawnOnce "xargs xwallpaper --stretch < ~/.xwallpaper"  -- set last saved with xwallpaper
-    -- spawnOnce "find ~/wallpapers/ -type f | shuf -n 1 | xargs xwallpaper --stretch"  -- set random xwallpaper
-    -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
-    spawnOnce "feh --randomize --bg-fill ~/.config/wallpapers"  -- feh set random wallpaper
-    -- spawnOnce "nitrogen --restore &"   -- if you prefer nitrogen to feh
+    spawnOnce "feh --randomize --bg-fill ~/.config/wallpapers &"  -- feh set random wallpaper
+    spawnOnOnce (myWorkspaces !! 0) "brave &"
+    spawnOnOnce (myWorkspaces !! 1) "spotify"
     setWMName "LG3D"
 
 myColorizer :: Window -> Bool -> X (String, String)
@@ -303,8 +305,6 @@ myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts float
                                  ||| threeRow
                                  ||| tallAccordion
 
-myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
---myWorkspaces = [" dev ", " www ", " sys ", " doc ", " vbox ", " chat ", " mus ", " vid ", " gfx "]
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
 
 clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
@@ -316,7 +316,8 @@ myManageHook = composeAll
      -- using 'doShift ( myWorkspaces !! 7)' sends program to workspace 8!
      -- I'm doing it this way because otherwise I would have to write out the full
      -- name of my workspaces and the names would be very long if using clickable workspaces.
-     [ className =? "confirm"         --> doFloat
+     [ manageSpawn
+     , className =? "confirm"         --> doFloat
      , className =? "file_progress"   --> doFloat
      , className =? "dialog"          --> doFloat
      , className =? "download"        --> doFloat
@@ -435,7 +436,7 @@ myKeys =
 	, ("M-f", spawn (myTerminal ++ " -e fish -C ranger"))
 	, ("M-i", spawn (myTerminal ++ " -t vimclip -e vimclip"))
 	, ("M-c r", spawn (myTerminal ++ " --hold -t rate.sx -e curl rate.sx"))        
-	, ("M-c w", spawn (myTerminal ++ " --hold -t wttr.in -e curl wttr.in"))        
+	, ("M-c w", spawn (myTerminal ++ " --hold -t wttr.in -e curl wttr.in/Cordoba+capital"))        
 	, ("M1-x l", spawn "xmind_shortcut.sh")
 	, ("M1-h", spawn "xdotool keyup h key --clearmodifiers Left")
 	, ("M1-j", spawn "xdotool keyup j key --clearmodifiers Down")
