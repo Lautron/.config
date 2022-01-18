@@ -184,8 +184,8 @@ myScratchPads = [ NS "spotify" spawnSpotify findSpotify manageSpotify
                  t = 0.75 -h
                  l = 0.70 -w
 
-    spawnBullet  = "xournalpp ~/Documents/Menos_usados/Journaling/bullet_journal_2021.xopp"
-    findBullet   = title =? "bullet_journal_2021.xopp - Xournal++"
+    spawnBullet  = "xournalpp ~/Documents/Menos_usados/Journaling/bullet_journal_2022.xopp"
+    findBullet   = title =? "bullet_journal_2022.xopp - Xournal++"
     manageBullet = doFullFloat
     --customFloating $ W.RationalRect l t w h
     --           where
