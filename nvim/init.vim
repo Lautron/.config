@@ -51,6 +51,8 @@ Plug 'vim-autoformat/vim-autoformat'
 Plug 'puremourning/vimspector'
 Plug 'szw/vim-maximizer'
 
+Plug 'sirtaj/vim-openscad'
+
 call plug#end()
 let s:hidden_all = 1
 set noshowmode
@@ -61,12 +63,13 @@ function! ToggleHiddenAll()
     let s:hidden_all = 1
     set noshowmode
     set laststatus=0
-    set noshowcmd
+    "set noshowcmd
   else
     let s:hidden_all = 0
-    set showmode
+    "set showmode
     set laststatus=2
-    set showcmd
+    set statusline=%f
+    "set showcmd
   endif
 endfunction
 
