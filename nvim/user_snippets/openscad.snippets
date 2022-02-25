@@ -1,0 +1,28 @@
+# Vim snippets for OpenSCAD
+snippet module "module name( parameters ) { actions }"
+module ${1:name}(${2:parameters}){
+  ${3:actions};
+}
+endsnippet
+
+snippet if "if( condidion ) { actions }"
+if (${1:condition}){
+  ${3:actions};
+}
+endsnippet
+
+snippet trans "translate([ coordinates ])" Ab
+translate([${1:x}, ${2:y}, ${3:z}])
+endsnippet
+
+snippet rot "rotate([ coordinates ])" Ab
+rotate([${1:x}, ${2:y}, ${3:z}])
+endsnippet
+
+snippet cube "cube([x, y, z], center)" Ab
+cube([${1:x}, ${2:y}, ${3:z}]);
+endsnippet
+
+snippet cyl "cylinder(height, radius)" Ab
+cylinder(${1:height}, ${2:radius});
+endsnippet
