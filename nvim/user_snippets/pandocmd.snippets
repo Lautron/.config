@@ -1,28 +1,48 @@
+global !p
+import glob, time
+def handle_xournalpp(snip):
+  directory = f"./{snip.basename}_imgs/"
+  os.makedirs(directory, exist_ok=True)
+  files = glob.glob(f"{directory}*.png")
+  if files: 
+    latest = max(files, key=os.path.getctime)
+    regx = re.search("fig(\d+)", latest)
+    num = int(regx.group(1)) + 1
+  else:
+    num = 1
+  commands = [
+    f'xournalpp "{directory}fig{num}.xopp"',
+    f'xournalpp --export-no-background -i "{directory}fig{num}.png" "{directory}fig{num}.xopp"',
+    f'convert -trim "{directory}fig{num}.png" "{directory}fig{num}.png"'
+    ]
+  os.system(" && ".join(commands))
+  return f"{directory}fig{num}.png"
+endglobal
 ###########################
 # Sections and Paragraphs #
 ###########################
 snippet sec "Section" b
-# ${1:Section Name} #
+# ${1:Section Name}
 $0
 endsnippet
 
 snippet ssec "Sub Section" b
-## ${1:Section Name} ##
+## ${1:Section Name}
 $0
 endsnippet
 
 snippet sssec "SubSub Section" b
-### ${1:Section Name} ###
+### ${1:Section Name}
 $0
 endsnippet
 
 snippet par "Paragraph" b
-#### ${1:Paragraph Name} ####
+#### ${1:Paragraph Name}
 $0
 endsnippet
 
 snippet spar "Paragraph" b
-##### ${1:Paragraph Name} #####
+##### ${1:Paragraph Name}
 $0
 endsnippet
 
@@ -137,7 +157,7 @@ snippet / "Fraction" i
 endsnippet
 
 priority 100
-snippet "([^ {]+)/" "symbol frac" wrA
+snippet "([^ {]+)/" "symbol frac" wr
 \\frac{`!p snip.rv = match.group(1)`}{$1}$0
 endsnippet
 
@@ -339,8 +359,12 @@ snippet undd "underline" wA
 \underline{${1:${VISUAL}}}
 endsnippet
 
-snippet bf "bold math" wA
+snippet mbf "bold math" wA
 \mathbf{${1:${VISUAL}}}
+endsnippet
+
+snippet bf "bold text" wA
+\textbf{${1:${VISUAL}}}
 endsnippet
 
 snippet squigg "squiggly arrow" wA
@@ -510,7 +534,7 @@ $3
 fi
 endsnippet
 
-snippet else "[] ->" wA
+snippet else "[] ->" w
 []~${1:expression}\rightarrow $2
 $3
 endsnippet
@@ -554,9 +578,9 @@ snippet dobint "integral doble" wA
 endsnippet
 
 snippet dood "do..od" wA
-do~${1:B} \rightarrow
+\textbf{do} $${1:B} \rightarrow$
   $2
-od
+\textbf{od}
 endsnippet
 
 snippet loopf "First part of Derivation" bA
@@ -593,6 +617,36 @@ snippet gatb "gather block" bA
 `!p snip.rv = "\n".join([line.rstrip().replace("  ", "\\quad ") + '\\\\' for line in snip.v.text.split('\n') if line])`
 \end{$1}
 endsnippet
+
+snippet proc "proc template" b
+\textbf{proc} ${1:name}(\textbf{${2:I/O}} ${3:var}: \textbf{${4:type}})
+  $5
+\textbf{end proc}
+endsnippet
+
+snippet var "var declaration" b
+\textbf{var} ${1:name}: \textbf{${2:type}}
+endsnippet
+
+snippet tabb "tabular env" bA
+\
+\begin{tabular}{ l l l }
+`!p snip.rv = "\n".join(['& ' + line.rstrip().replace("  ", "\\quad ") + '\\\\' for line in snip.v.text.split('\n') if line])`
+\end{tabular}
+endsnippet
+
+snippet _ "snake case" w
+\_
+endsnippet
+
+snippet xour "xournal++ integration" 
+![](`!p if not snip.c: snip.rv = handle_xournalpp(snip)`){ width=${1:250}px }
+endsnippet
+#snippet xour "xournal++ integration" 
+#![](`!p if not snip.c:
+#  file = os.popen(f"~/.config/nvim/user_snippets/xournalpp.sh {snip.basename}_imgs")
+#  snip.rv = file.read()[2:].strip()`){ width=${1:250}px }
+#endsnippet
 ## Interesting snippet example ##
 #------------------- SNIP -------------------
 #snippet r "return" "re.match('^\s+if err ', snip.buffer[snip.line-1])" be
