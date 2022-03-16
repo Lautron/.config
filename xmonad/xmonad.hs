@@ -110,7 +110,7 @@ myStartupHook = do
     spawnOnce "picom -b --config ~/.config/dwm/picom.conf &"
     spawnOnce "nm-applet &"
     spawnOnce "volumeicon &"
-    spawnOnce "redshift -P -O 5000 &"
+    spawnOnce "redshift -P -O 7000 &"
     spawnOnce "config_tablet_buttons.sh &"
     --spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 21 &"
     --spawn "sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34 --height 22 --iconspacing 2"
@@ -150,14 +150,14 @@ spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
                    , gs_font         = myFont
                    }
 
-algodatos1 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=816'"
-algebra = "https://classroom.google.com/u/1/c/MzcyMjQ5NTEyODQw'"
-anmat2 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=801'"
+ayed2 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=926"
+anNum = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=885"
+orgComp = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=909"
 
 myAppGrid = [ 
-	      ("AlgoDatos1", myBrowser ++ " '" ++ algodatos1)
-	    , ("algebra", myBrowser ++ " '" ++ algebra)
-	    , ("anmat2", myBrowser ++ " '" ++ anmat2)
+	      ("AYED2", myBrowser ++ " '" ++ ayed2)
+	    , ("AnNum", myBrowser ++ " '" ++ anNum)
+	    , ("OrgComp", myBrowser ++ " '" ++ orgComp)
           ]
 
 myScratchPads :: [NamedScratchpad]
