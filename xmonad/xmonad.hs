@@ -150,9 +150,9 @@ spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
                    , gs_font         = myFont
                    }
 
-ayed2 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=926"
-anNum = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=885"
-orgComp = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=909"
+ayed2 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=926'"
+anNum = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=885'"
+orgComp = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=909'"
 
 myAppGrid = [ 
 	      ("AYED2", myBrowser ++ " '" ++ ayed2)
