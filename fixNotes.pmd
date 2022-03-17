@@ -1,0 +1,12 @@
+# Change laptop behaviour when lid is closed
+```bash
+sudo nvim /etc/systemd/logind.conf
+```
+change `HandleLidSwitch` and `HandleLidSwitchExternalPower` to one of the following:
+
+- lock
+- ignore
+- poweroff
+- hibernate
+- suspend
+
