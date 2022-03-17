@@ -276,7 +276,7 @@ snippet '(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec|zeta|int)' "ln" rw
 endsnippet
 
 priority 100
-snippet "([a-zA-Z])bar" "bar" rwA
+snippet "([a-zA-Z])bar" "bar" rw
 \bar{`!p snip.rv=match.group(1)`}
 endsnippet
 
@@ -619,7 +619,7 @@ snippet gatb "gather block" bA
 endsnippet
 
 snippet proc "proc template" b
-\textbf{proc} ${1:name}(\textbf{${2:I/O}} ${3:var}: \textbf{${4:type}})
+\textbf{proc} ${1:name}(\textbf{${2:I/O}} ${3:var}: ${4:type})
   $5
 \textbf{end proc}
 endsnippet
@@ -629,7 +629,6 @@ snippet var "var declaration" b
 endsnippet
 
 snippet tabb "tabular env" bA
-\
 \begin{tabular}{ l l l }
 `!p snip.rv = "\n".join(['& ' + line.rstrip().replace("  ", "\\quad ") + '\\\\' for line in snip.v.text.split('\n') if line])`
 \end{tabular}
@@ -642,6 +641,37 @@ endsnippet
 snippet xour "xournal++ integration" 
 ![](`!p if not snip.c: snip.rv = handle_xournalpp(snip)`){ width=${1:250}px }
 endsnippet
+
+snippet fun "fun template" b
+\textbf{fun} ${1:name}(${2:var}: ${3:type} \textbf{ret} ${4:r} : ${5:type}
+  $6
+\textbf{end fun}
+endsnippet
+
+snippet fort "for to"
+\textbf{for} ${1:i} := ${2:N} \textbf{to} ${3:M} \textbf{do}
+  $4
+\textbf{od}
+endsnippet
+
+snippet ford "for downtoto"
+\textbf{for} ${1:i} := ${2:N} \textbf{downto} ${3:M} \textbf{do}
+  $4
+\textbf{od}
+endsnippet
+
+snippet arr "array declaration"
+array[${1:N}..${2:M}] of ${3:int}
+endsnippet
+
+snippet ifel "if else"
+\textbf{if} ${1:B} \textbf{then}
+  ${2:S1}
+\textbf{else}
+  ${3:skip}
+\textbf{fi}
+endsnippet
+
 #snippet xour "xournal++ integration" 
 #![](`!p if not snip.c:
 #  file = os.popen(f"~/.config/nvim/user_snippets/xournalpp.sh {snip.basename}_imgs")

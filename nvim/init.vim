@@ -84,7 +84,7 @@ nmap <Leader>r+ :w <bar> :! g++ -g -O2 -std=gnu++17 -static -o %< % <CR>
 nmap <Leader>c+ :w <bar> :! g++ -std=c++11 -g -O2 -Wconversion -Wshadow -Wall -Wextra -D_GLIBCXX_DEBUG -o %< % <CR>
 nmap <Leader>cl :w <bar> :!pandoc -f markdown -t latex "%" -o "%:r.pdf"<CR>
 nmap <Leader>p "+p<CR>
-nmap <Leader>op :!pandoc -f markdown -t latex "%" -o "%:r.pdf"<cr>:!zathura '%<'.pdf&;disown<cr>:redraw!<cr>
+nmap <Leader>op :!zathura '%<'.pdf&;disown<cr>:redraw!<cr>
 nmap <Leader>ot :!alacritty &;disown<cr>:redraw!<cr>
 nmap <Leader>tyu {<bar>yi<bar>}<bar>p
 nmap <Leader>tys kyi<bar>jpF}hA<bar><Esc>
