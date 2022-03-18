@@ -117,7 +117,7 @@ myStartupHook = do
 
     spawnOnce "feh --randomize --bg-fill ~/.config/wallpapers &"  -- feh set random wallpaper
     spawnOnOnce (myWorkspaces !! 0) "brave &"
-    spawnOnOnce (myWorkspaces !! 1) "spotify"
+    --spawnOnOnce (myWorkspaces !! 1) "spotify"
     setWMName "LG3D"
 
 myColorizer :: Window -> Bool -> X (String, String)
