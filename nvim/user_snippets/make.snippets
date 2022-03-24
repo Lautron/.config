@@ -1,0 +1,14 @@
+
+snippet ctemp "Template" b
+CC=gcc 
+CFLAGS= -Wall -Werror -Wextra -pedantic -std=c99 # Flags a utilizar
+DEPS = ${1:archivo.h} # Archivos .h
+OBJ = ${2:archivo.o} # Archivos .o, uno por cada archivo .c
+TARGET = ${3:main} # nombre del ejecutable
+
+%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+main: $(OBJ)
+	$(CC) -o $@ $^ $(CFLAGS)
+endsnippet
