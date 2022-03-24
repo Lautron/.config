@@ -79,7 +79,8 @@ let NERDTreeQuitOnOpen=1
 nmap <Leader>nt :NERDTreeFind<CR>
 nmap <Leader>rp :w <bar> :!source ./venv/bin/activate.fish & python %
 nmap <Leader>rc :w <bar> :! ./%<
-nmap <Leader>cc :w <bar> :! gcc -Wall -Wextra -std=c99 -g % -o %< <CR>
+nmap <Leader>rm :w <bar> :! make<CR>
+nmap <Leader>cc :w <bar> :! gcc -Wall -Werror -Wextra -pedantic -std=c99 -g % -o %< <CR>
 nmap <Leader>r+ :w <bar> :! g++ -g -O2 -std=gnu++17 -static -o %< % <CR>
 nmap <Leader>c+ :w <bar> :! g++ -std=c++11 -g -O2 -Wconversion -Wshadow -Wall -Wextra -D_GLIBCXX_DEBUG -o %< % <CR>
 nmap <Leader>cl :w <bar> :!pandoc -f markdown -t latex "%" -o "%:r.pdf"<CR>
