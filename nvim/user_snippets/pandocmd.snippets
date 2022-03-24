@@ -276,7 +276,7 @@ snippet '(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec|zeta|int)' "ln" rw
 endsnippet
 
 priority 100
-snippet "([a-zA-Z])bar" "bar" rw
+snippet "([^ {]+)bar" "bar" rw
 \bar{`!p snip.rv=match.group(1)`}
 endsnippet
 
@@ -528,11 +528,11 @@ snippet wpif "wp(if...fi)" bA
 \wedge ($2 \Rightarrow wp.(${5:S1}).$3)
 endsnippet
 
-snippet if "if..fi" w
-if~${1:expression}\rightarrow $2
-$3
-fi
-endsnippet
+#snippet if "if..fi" w
+#if~${1:expression}\rightarrow $2
+#$3
+#fi
+#endsnippet
 
 snippet else "[] ->" w
 []~${1:expression}\rightarrow $2
@@ -643,7 +643,7 @@ snippet xour "xournal++ integration"
 endsnippet
 
 snippet fun "fun template" b
-\textbf{fun} ${1:name}(${2:var}: ${3:type} \textbf{ret} ${4:r} : ${5:type}
+\textbf{fun} ${1:name}(${2:var}: ${3:type}) \textbf{ret} ${4:r} : ${5:type}
   $6
 \textbf{end fun}
 endsnippet
@@ -680,6 +680,11 @@ snippet succ "succession" i
 \\{${1:x}_n\\}
 endsnippet
 
+snippet while "while do"
+\textbf{while} ${1:B} \textbf{do} 
+  ${2:S}
+\textbf{od}
+endsnippet
 #snippet xour "xournal++ integration" 
 #![](`!p if not snip.c:
 #  file = os.popen(f"~/.config/nvim/user_snippets/xournalpp.sh {snip.basename}_imgs")
