@@ -266,7 +266,7 @@ while (${1:true}){
 }
 endsnippet
 
-snippet { "brackets" Ai
+snippet { "brackets" i
 {
  $1
 }$0
@@ -275,6 +275,12 @@ endsnippet
 
 snippet inc "include"
 #include <$0
+endsnippet
+
+snippet struct "structure"
+typedef struct ${1:name}{
+  $2
+} $1;
 endsnippet
 
 
