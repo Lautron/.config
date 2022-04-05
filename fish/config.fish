@@ -60,6 +60,10 @@ function dbright
     redshift -P -O 3000 -b $argv
 end
 
+function lolban
+    toilet -f pagga $argv | lolcat
+end
+
 # Function for alarm clock
 function timer
     termdown $argv && play -v 0.5 ~/.config/alarm/alarm.mp3
