@@ -664,7 +664,13 @@ snippet arr "array declaration"
 array[${1:N}..${2:M}] of ${3:int}
 endsnippet
 
-snippet ifel "if else"
+snippet ift "if else"
+\textbf{if} ${1:B} \textbf{then}
+  ${2:S1}
+\textbf{fi}
+endsnippet
+
+snippet ifelse "if else"
 \textbf{if} ${1:B} \textbf{then}
   ${2:S1}
 \textbf{else}
@@ -687,11 +693,11 @@ snippet while "while do"
 endsnippet
 
 snippet del "delta" w
-\delta 
+\delta
 endsnippet
 
 snippet Del "Delta" w
-\Delta 
+\Delta
 endsnippet
 #snippet xour "xournal++ integration" 
 #![](`!p if not snip.c:
