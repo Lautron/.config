@@ -226,7 +226,7 @@ snippet lra "leftangle rightangle" wA
 endsnippet
 
 snippet sum "sum" w
-\sum_{n=${1:1}}^{${2:\infty}} ${3:a_n}
+\sum_{${1:n=1}}^{${2:\infty}} ${3:a_n}
 endsnippet
 
 snippet prod "product" w
@@ -426,7 +426,7 @@ snippet concatDef "concat command definition" b
 }
 endsnippet
 
-snippet => "Right arrow" wA
+snippet => "Right arrow" iA
 \Rightarrow 
 endsnippet
 
@@ -481,7 +481,7 @@ $0
 endsnippet
 
 snippet "gen(\w+)" "Generalization" wr
-${1:`!p snip.rv=match.group(1)`}_1,\ldots,$1_${2:n}
+${1:`!p snip.rv=match.group(1)`}_${2:1},\ldots,$1_${3:n}
 endsnippet
 
 snippet mc "mathcal" w
@@ -698,6 +698,14 @@ endsnippet
 
 snippet Del "Delta" w
 \Delta
+endsnippet
+
+snippet "enum(\w+)" "Generalization" wr
+`!p snip.rv=match.group(1)` = ${1:0},\ldots, ${2:n}
+endsnippet
+
+snippet alp "alpha" w
+\alpha
 endsnippet
 #snippet xour "xournal++ integration" 
 #![](`!p if not snip.c:
