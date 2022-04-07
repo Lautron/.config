@@ -1,9 +1,21 @@
 
+global !p
+def get_files(pattern):
+  import glob
+  return glob.glob(pattern)
+def get_o():
+  o_files = get_files("*.o")
+  o_from_c = [filename.replace(".c", ".o") for filename in get_files("*.c")]
+  files = set(o_from_c + o_files)
+
+  return " ".join(list(files))
+endglobal
+
 snippet ctemp "Template" b
 CC=gcc 
 CFLAGS= -Wall -Werror -Wextra -pedantic -std=c99 # Flags a utilizar
-DEPS = ${1:archivo.h} # Archivos .h
-OBJ = ${2:archivo.o} # Archivos .o, uno por cada archivo .c
+DEPS = ${1:`!p snip.rv = " ".join(get_files("*.h"))`} # Archivos .h
+OBJ = ${2:`!p snip.rv = get_o()`} # Archivos .o, uno por cada archivo .c
 TARGET = ${3:main} # nombre del ejecutable
 
 %.o: %.c $(DEPS)
