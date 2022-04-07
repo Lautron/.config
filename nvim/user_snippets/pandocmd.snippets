@@ -17,6 +17,15 @@ def handle_xournalpp(snip):
     ]
   os.system(" && ".join(commands))
   return f"{directory}fig{num}.png"
+
+def build_table(text):
+  rows = text.split("\n")
+  col_num = rows[0].count('|') - 1
+  format_row = lambda row: row.strip('| ').replace('|', ' & ') + "\\\\" if '-' not in row else '\\hline'
+  content = "\n".join([format_row(row) for row in rows if row])
+  beggining = "\\begin{tabular}{ |"  + "c|"*col_num + " }"
+  ending = "\\end{tabular}"
+  return f"{beggining}\n{content}\n{ending}"
 endglobal
 ###########################
 # Sections and Paragraphs #
@@ -706,6 +715,14 @@ endsnippet
 
 snippet alp "alpha" w
 \alpha
+endsnippet
+
+snippet table "make latex table" bA
+`!p snip.rv = build_table(snip.v.text)`
+endsnippet
+
+snippet undb "underbrace" iA
+\underbrace{${1:${VISUAL}}}_{$2}
 endsnippet
 #snippet xour "xournal++ integration" 
 #![](`!p if not snip.c:
