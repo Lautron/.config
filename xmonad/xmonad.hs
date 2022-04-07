@@ -435,7 +435,8 @@ myKeys =
         , ("<Print>", spawn "flameshot gui")
 
 	-- Custom Hotkeys
-	, ("M-f", spawn (myTerminal ++ " -e fish -C ranger"))
+	--, ("M-f", spawn (myTerminal ++ " -e fish -C ranger"))
+	, ("M-f", spawn (myTerminal ++ " -e fish -C 'ranger --cmd=fzf_select'"))
 	, ("M-i", spawn (myTerminal ++ " -t vimclip -e vimclip"))
 	, ("M-c r", spawn (myTerminal ++ " --hold -t rate.sx -e curl rate.sx"))        
 	, ("M-c w", spawn (myTerminal ++ " --hold -t wttr.in -e curl wttr.in/Cordoba+capital"))        
