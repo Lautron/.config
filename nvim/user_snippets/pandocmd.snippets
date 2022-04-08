@@ -157,12 +157,12 @@ ${2:${VISUAL}}
 endsnippet
 
 priority 100
-snippet .. "ldots" wA
+snippet .. "ldots" iA
 \ldots
 endsnippet
 
 snippet frac "Fraction" i
-\\frac{$1}{$2}$0
+\\frac{${1:${VISUAL}}}{$2}$0
 endsnippet
 
 priority 100
@@ -723,6 +723,14 @@ endsnippet
 
 snippet undb "underbrace" iA
 \underbrace{${1:${VISUAL}}}_{$2}
+endsnippet
+
+snippet cI "closed interval" wA
+[${1:a}, ${2:b}]
+endsnippet
+
+snippet oI "open interval" wA
+(${1:a}, ${2:b})
 endsnippet
 #snippet xour "xournal++ integration" 
 #![](`!p if not snip.c:
