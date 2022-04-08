@@ -108,8 +108,8 @@ myStartupHook = do
     spawnOnce "dunst -conf ~/.config/dunst/dunstrc &"
     spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
     spawnOnce "picom -b --config ~/.config/dwm/picom.conf &"
-    spawnOnce "nm-applet &"
-    spawnOnce "volumeicon &"
+    --spawnOnce "nm-applet &"
+    --spawnOnce "volumeicon &"
     spawnOnce "redshift -P -O 7000 &"
     spawnOnce "config_tablet_buttons.sh &"
     --spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 21 &"
@@ -150,14 +150,16 @@ spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
                    , gs_font         = myFont
                    }
 
-ayed2 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=926'"
+ayed2 = "https://wiki.cs.famaf.unc.edu.ar/doku.php?id=algo2:main:2022'"
 anNum = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=885'"
 orgComp = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=909'"
+orgComp21 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=708'"
 
 myAppGrid = [ 
 	      ("AYED2", myBrowser ++ " '" ++ ayed2)
 	    , ("AnNum", myBrowser ++ " '" ++ anNum)
 	    , ("OrgComp", myBrowser ++ " '" ++ orgComp)
+	    , ("OrgComp (2021)", myBrowser ++ " '" ++ orgComp21)
           ]
 
 myScratchPads :: [NamedScratchpad]
