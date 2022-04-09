@@ -77,7 +77,7 @@ nnoremap <S-h> :call ToggleHiddenAll()<CR>
 let mapleader = " "
 let NERDTreeQuitOnOpen=1
 nmap <Leader>nt :NERDTreeFind<CR>
-nmap <Leader>rp :w <bar> :!source ./venv/bin/activate.fish & python %
+nmap <Leader>rp :w <bar> :! python %
 nmap <Leader>rc :w <bar> :! ./%<
 nmap <Leader>rm :w <bar> :! make<CR>
 nmap <Leader>cc :w <bar> :! gcc -Wall -Werror -Wextra -pedantic -std=c99 -g % -o %< <CR>
@@ -90,6 +90,10 @@ nmap <Leader>ot :!alacritty &;disown<cr>:redraw!<cr>
 nmap <Leader>tyu {<bar>yi<bar>}<bar>p
 nmap <Leader>tys kyi<bar>jpF}hA<bar><Esc>
 nmap <Leader>yuq ?wp\.2f.lvt$y/equivop
+"Image disable
+nmap <Leader>id :%s/\(<!-- \)\@<!!\[\(.*\)\?\](.*)\({.*}\)\?/<!-- \0 -->/g<cr>
+"Image enable
+nmap <Leader>ie :%s/<!-- \(!\[\](.*)\({.*}\)\?\) -->/\1/g<cr>
 source ~/.config/nvim/vimspector.vim
 "nmap <Leader>as ?sigma<CR>yy}kpf_l
 "nmap <Leader>al ?ell<CR>f{lyw}i$\ell_{}<Esc>PA\quad $\<Esc>2h
