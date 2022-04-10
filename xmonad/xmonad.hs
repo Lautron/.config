@@ -116,7 +116,7 @@ myStartupHook = do
     --spawn "sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34 --height 22 --iconspacing 2"
 
     spawnOnce "feh --randomize --bg-fill ~/.config/wallpapers &"  -- feh set random wallpaper
-    spawnOnOnce (myWorkspaces !! 0) myBrowser + " &"
+    spawnOnOnce (myWorkspaces !! 0) (myBrowser ++ " &")
     --spawnOnOnce (myWorkspaces !! 1) "spotify"
     setWMName "LG3D"
 
