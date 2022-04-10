@@ -78,7 +78,7 @@ myTerminal :: String
 myTerminal = "alacritty"    -- Sets default terminal
 
 myBrowser :: String
-myBrowser = "brave"  -- Sets qutebrowser as browser
+myBrowser = "qutebrowser"  -- Sets qutebrowser as browser
 
 myEmacs :: String
 myEmacs = "emacsclient -c -a 'emacs' "  -- Makes emacs keybindings easier to type
@@ -116,7 +116,7 @@ myStartupHook = do
     --spawn "sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34 --height 22 --iconspacing 2"
 
     spawnOnce "feh --randomize --bg-fill ~/.config/wallpapers &"  -- feh set random wallpaper
-    spawnOnOnce (myWorkspaces !! 0) "brave &"
+    spawnOnOnce (myWorkspaces !! 0) myBrowser + " &"
     --spawnOnOnce (myWorkspaces !! 1) "spotify"
     setWMName "LG3D"
 
@@ -225,54 +225,54 @@ magnify  = renamed [Replace "magnify"]
            $ limitWindows 12
            $ mySpacing 8
            $ ResizableTall 1 (3/100) (1/2) []
-monocle  = renamed [Replace "monocle"]
-           $ smartBorders
-           $ windowNavigation
-           $ addTabs shrinkText myTabTheme
-           $ subLayout [] (smartBorders Simplest)
-           $ limitWindows 20 Full
+--monocle  = renamed [Replace "monocle"]
+--           $ smartBorders
+--           $ windowNavigation
+--           $ addTabs shrinkText myTabTheme
+--           $ subLayout [] (smartBorders Simplest)
+--           $ limitWindows 20 Full
 floats   = renamed [Replace "floats"]
            $ smartBorders
            $ limitWindows 20 simplestFloat
-grid     = renamed [Replace "grid"]
-           $ smartBorders
-           $ windowNavigation
-           $ addTabs shrinkText myTabTheme
-           $ subLayout [] (smartBorders Simplest)
-           $ limitWindows 12
-           $ mySpacing 8
-           $ mkToggle (single MIRROR)
-           $ Grid (16/10)
-spirals  = renamed [Replace "spirals"]
-           $ smartBorders
-           $ windowNavigation
-           $ addTabs shrinkText myTabTheme
-           $ subLayout [] (smartBorders Simplest)
-           $ mySpacing' 8
-           $ spiral (6/7)
-threeCol = renamed [Replace "threeCol"]
-           $ smartBorders
-           $ windowNavigation
-           $ addTabs shrinkText myTabTheme
-           $ subLayout [] (smartBorders Simplest)
-           $ limitWindows 7
-           $ ThreeCol 1 (3/100) (1/2)
-threeRow = renamed [Replace "threeRow"]
-           $ smartBorders
-           $ windowNavigation
-           $ addTabs shrinkText myTabTheme
-           $ subLayout [] (smartBorders Simplest)
-           $ limitWindows 7
+--grid     = renamed [Replace "grid"]
+--           $ smartBorders
+--           $ windowNavigation
+--           $ addTabs shrinkText myTabTheme
+--           $ subLayout [] (smartBorders Simplest)
+--           $ limitWindows 12
+--           $ mySpacing 8
+--           $ mkToggle (single MIRROR)
+--           $ Grid (16/10)
+--spirals  = renamed [Replace "spirals"]
+--           $ smartBorders
+--           $ windowNavigation
+--           $ addTabs shrinkText myTabTheme
+--           $ subLayout [] (smartBorders Simplest)
+--           $ mySpacing' 8
+--           $ spiral (6/7)
+--threeCol = renamed [Replace "threeCol"]
+--           $ smartBorders
+--           $ windowNavigation
+--           $ addTabs shrinkText myTabTheme
+--           $ subLayout [] (smartBorders Simplest)
+--           $ limitWindows 7
+--           $ ThreeCol 1 (3/100) (1/2)
+--threeRow = renamed [Replace "threeRow"]
+--           $ smartBorders
+--           $ windowNavigation
+--           $ addTabs shrinkText myTabTheme
+--           $ subLayout [] (smartBorders Simplest)
+--           $ limitWindows 7
            -- Mirror takes a layout and rotates it by 90 degrees.
            -- So we are applying Mirror to the ThreeCol layout.
-           $ Mirror
-           $ ThreeCol 1 (3/100) (1/2)
+--           $ Mirror
+--           $ ThreeCol 1 (3/100) (1/2)
 tabs     = renamed [Replace "tabs"]
            -- I cannot add spacing to this layout because it will
            -- add spacing between window and tabs which looks bad.
            $ tabbed shrinkText myTabTheme
-tallAccordion  = renamed [Replace "tallAccordion"]
-           $ Accordion
+--tallAccordion  = renamed [Replace "tallAccordion"]
+--           $ Accordion
 --wideAccordion  = renamed [Replace "wideAccordion"]
 --           $ Mirror Accordion
 
@@ -301,13 +301,13 @@ myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts float
              where
                myDefaultLayout =     withBorder myBorderWidth tall
                                  ||| magnify
-                                 ||| noBorders monocle
+--                                 ||| noBorders monocle
                                  ||| noBorders tabs
-                                 ||| grid
-                                 ||| spirals
-                                 ||| threeCol
-                                 ||| threeRow
-                                 ||| tallAccordion
+--                                 ||| grid
+--                                 ||| spirals
+--                                 ||| threeCol
+--                                 ||| threeRow
+--                                 ||| tallAccordion
 
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
 
@@ -447,6 +447,7 @@ myKeys =
 	, ("M1-j", spawn "xdotool keyup j key --clearmodifiers Down")
 	, ("M1-k", spawn "xdotool keyup k key --clearmodifiers Up")
 	, ("M1-l", spawn "xdotool keyup l key --clearmodifiers Right")
+	, ("M-o", spawn "qutebrowser")
 	]
     -- The following lines are needed for named scratchpads.
           where nonNSP          = WSIs (return (\ws -> W.tag ws /= "NSP"))
