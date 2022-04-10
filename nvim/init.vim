@@ -76,8 +76,15 @@ endfunction
 nnoremap <S-h> :call ToggleHiddenAll()<CR>
 let mapleader = " "
 let NERDTreeQuitOnOpen=1
+function! RunPython(...)
+  ":silent 
+  let ex_command = "! alacritty -e fish -C 'venv &> /dev/null & echo -e \"Running %\\n\" & python % " .. join(a:000, ' ') .. "'"
+  echo ex_command
+  silent  execute ex_command
+endfunction
+command! -nargs=* -complete=file RunPython call RunPython(<f-args>)
 nmap <Leader>nt :NERDTreeFind<CR>
-nmap <Leader>rp :w <bar> :! python %
+nmap <Leader>rp :w <bar> :RunPython
 nmap <Leader>rc :w <bar> :! ./%<
 nmap <Leader>rm :w <bar> :! make<CR>
 nmap <Leader>cc :w <bar> :! gcc -Wall -Werror -Wextra -pedantic -std=c99 -g % -o %< <CR>
