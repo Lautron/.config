@@ -13,5 +13,21 @@
 // ==/UserScript==
 
 (function() {       
-    document.getElementsByTagName('video')[0].pause()
+    console.log("loaded")
+    let pauseCount = 0;
+    function myFunc() {
+      if (pauseCount >= 2) {
+	return
+      }
+      videos = document.getElementsByTagName('video')
+      if (!videos[0].paused || parseCount <= 2) {
+	videos[0].pause()
+	console.log("paused")
+	pauseCount++
+	setTimeout(myFunc, 1000);
+      } else {
+	setTimeout(myFunc, 500);
+      }
+    }
+    myFunc()
 })();
