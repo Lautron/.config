@@ -14,7 +14,6 @@ set conceallevel=2
 set nrformats+=alpha
 :filetype on
 
-source ~/.config/nvim/coc-config.vim
 "Install vim plug if not installed
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
@@ -79,10 +78,28 @@ let NERDTreeQuitOnOpen=1
 function! RunPython(...)
   ":silent 
   let ex_command = "! alacritty -e fish -C 'venv &> /dev/null & echo -e \"Running %\\n\" & python % " .. join(a:000, ' ') .. "'"
-  echo ex_command
   silent  execute ex_command
 endfunction
+function! s:get_visual_selection()
+    " Why is this not a built-in Vim script function?!
+    let [line_start, column_start] = getpos("'<")[1:2]
+    let [line_end, column_end] = getpos("'>")[1:2]
+    let lines = getline(line_start, line_end)
+    if len(lines) == 0
+        return ''
+    endif
+    let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
+    let lines[0] = lines[0][column_start - 1:]
+    return join(lines, "\n")
+endfunction
+
+function! QbOpen(engine)
+  let ex_command = "! qutebrowser :'open -w " .. a:engine .. " " .. s:get_visual_selection() .. "'"
+  execute ex_command
+endfunction
 command! -nargs=* -complete=file RunPython call RunPython(<f-args>)
+command! -range OpenSym call QbOpen('sym')
+command! -range OpenWa call QbOpen('wa')
 nmap <Leader>nt :NERDTreeFind<CR>
 nmap <Leader>rp :w <bar> :RunPython
 nmap <Leader>rc :w <bar> :! ./%<
@@ -97,11 +114,14 @@ nmap <Leader>ot :!alacritty &;disown<cr>:redraw!<cr>
 nmap <Leader>tyu {<bar>yi<bar>}<bar>p
 nmap <Leader>tys kyi<bar>jpF}hA<bar><Esc>
 nmap <Leader>yuq ?wp\.2f.lvt$y/equivop
+vnoremap <Leader>os :OpenSym<CR>
+vnoremap <Leader>ow :OpenWa<CR>
 "Image disable
 nmap <Leader>id :%s/\(<!-- \)\@<!!\[\(.*\)\?\](.*)\({.*}\)\?/<!-- \0 -->/g<cr>
 "Image enable
 nmap <Leader>ie :%s/<!-- \(!\[\](.*)\({.*}\)\?\) -->/\1/g<cr>
 source ~/.config/nvim/vimspector.vim
+"source ~/.config/nvim/coc-config.vim
 "nmap <Leader>as ?sigma<CR>yy}kpf_l
 "nmap <Leader>al ?ell<CR>f{lyw}i$\ell_{}<Esc>PA\quad $\<Esc>2h
 let @l=':s/  /\\quad /geI$\ell_{1}\quad A$\j0'
