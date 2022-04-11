@@ -1,0 +1,4 @@
+pngfile="${1%.*}.png"
+xournalpp --export-no-background -i $pngfile "$1"
+convert -trim $pngfile $pngfile
+
