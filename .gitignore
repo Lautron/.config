@@ -1,5 +1,6 @@
 /*
 !.gitignore
+!qutebrowser
 !dwm
 !fish
 !nvim
