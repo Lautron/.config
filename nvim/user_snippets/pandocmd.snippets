@@ -21,7 +21,7 @@ def handle_xournalpp(snip):
 def build_table(text):
   rows = text.split("\n")
   col_num = rows[0].count('|') - 1
-  format_row = lambda row: row.strip('| ').replace('|', ' & ') + "\\\\" if '-' not in row else '\\hline'
+  format_row = lambda row: row.strip('| ').replace('|', ' & ') + "\\\\" if '---' not in row else '\\hline'
   content = "\n".join([format_row(row) for row in rows if row])
   beggining = "\\begin{tabular}{ |"  + "c|"*col_num + " }"
   ending = "\\end{tabular}"
@@ -157,7 +157,7 @@ ${2:${VISUAL}}
 endsnippet
 
 priority 100
-snippet .. "ldots" iA
+snippet .. "ldots" i
 \ldots
 endsnippet
 
