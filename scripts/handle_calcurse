@@ -1,0 +1,14 @@
+#!/sbin/python
+
+import subprocess as sp
+import re
+
+output = sp.getoutput('calcurse -Q --format-apt "\n%m = %S -> %E\n"')
+last = output.split('\n')[-1]
+regx = re.search(r'(.*) = (\d\d:\d\d) -> (\d\d:\d\d)', last)
+text, start, end = regx.groups()
+alarm = ["play", "-q", "-v", "0.5", "~/.config/alarm/alarm.mp3"]
+notif = ["dunstify", "-t", "0", f'{text}', f'{start} -> {end}'] 
+sp.run(notif)
+sp.run(alarm)
+
