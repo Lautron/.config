@@ -121,7 +121,7 @@ nmap <Leader>id :%s/\(<!-- \)\@<!!\[\(.*\)\?\](.*)\({.*}\)\?/<!-- \0 -->/g<cr>
 "Image enable
 nmap <Leader>ie :%s/<!-- \(!\[\](.*)\({.*}\)\?\) -->/\1/g<cr>
 source ~/.config/nvim/vimspector.vim
-"source ~/.config/nvim/coc-config.vim
+source ~/.config/nvim/coc-config.vim
 "nmap <Leader>as ?sigma<CR>yy}kpf_l
 "nmap <Leader>al ?ell<CR>f{lyw}i$\ell_{}<Esc>PA\quad $\<Esc>2h
 let @l=':s/  /\\quad /geI$\ell_{1}\quad A$\j0'
