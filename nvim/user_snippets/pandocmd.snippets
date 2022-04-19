@@ -1,21 +1,28 @@
 global !p
-import glob, time
+import glob, time, subprocess
+def get_latest_fig_num(directory):
+    files = glob.glob(f"{directory}*.png")
+    if files:
+      latest = max(files, key=os.path.getctime)
+      regx = re.search("fig(\d+)", latest)
+      return int(regx.group(1))
+    else:
+      return 0
+
+def get_new_fig_path(directory):
+  num = get_latest_fig_num(directory) + 1
+  return f"{directory}fig{num}.png"
+
 def handle_xournalpp(snip):
   directory = f"./{snip.basename}_imgs/"
   os.makedirs(directory, exist_ok=True)
-  files = glob.glob(f"{directory}*.png")
-  if files: 
-    latest = max(files, key=os.path.getctime)
-    regx = re.search("fig(\d+)", latest)
-    num = int(regx.group(1)) + 1
-  else:
-    num = 1
-  commands = [
+  num = get_latest_fig_num(directory) + 1
+  commands = " && ".join([
     f'xournalpp "{directory}fig{num}.xopp"',
     f'xournalpp --export-no-background -i "{directory}fig{num}.png" "{directory}fig{num}.xopp"',
     f'convert -trim "{directory}fig{num}.png" "{directory}fig{num}.png"'
-    ]
-  os.system(" && ".join(commands))
+    ])
+  subprocess.Popen(commands, shell=True)
   return f"{directory}fig{num}.png"
 
 def build_table(text):
@@ -637,10 +644,18 @@ snippet var "var declaration" b
 \textbf{var} ${1:name}: \textbf{${2:type}}
 endsnippet
 
+snippet arg "var declaration" b
+${1:name}: \textbf{${2:type}}
+endsnippet
+
 snippet tabb "tabular env" bA
 \begin{tabular}{ l l l }
 `!p snip.rv = "\n".join(['& ' + line.rstrip().replace("  ", "\\quad ") + '\\\\' for line in snip.v.text.split('\n') if line])`
 \end{tabular}
+endsnippet
+
+snippet untab "tabular env" bA
+`!p snip.rv = snip.v.text.replace('& ', '').replace('\\quad', '  ').replace('\\\\', '').replace('\\end{tabular}', '').replace('\\begin{tabular}{ l l l }', '')`
 endsnippet
 
 snippet _ "snake case" w
@@ -725,12 +740,16 @@ snippet undb "underbrace" iA
 \underbrace{${1:${VISUAL}}}_{$2}
 endsnippet
 
-snippet cI "closed interval" wA
+snippet cI "closed interval" iA
 [${1:a}, ${2:b}]
 endsnippet
 
-snippet oI "open interval" wA
+snippet oI "open interval" iA
 (${1:a}, ${2:b})
+endsnippet
+
+snippet newfig "link to new figure" A
+![](`!p if not snip.c: snip.rv = get_new_fig_path(f"./{snip.basename}_imgs/")`){ width=${1:250}px }
 endsnippet
 #snippet xour "xournal++ integration" 
 #![](`!p if not snip.c:
