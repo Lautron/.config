@@ -1,0 +1,4 @@
+dunstify "Start working" & timer 25m "Work"; dunstify "Take a break" & timer 5m "Break"
+dunstify "Start working again" & timer 25m "Work"; dunstify "Take a break" & timer 5m "Break"
+dunstify "Start working again" & timer 25m "Work"; dunstify "Take a break" & timer 5m "Break"
+dunstify "Start working again" & timer 25m "Work"; dunstify "Take a break" & timer 20m "Break"
