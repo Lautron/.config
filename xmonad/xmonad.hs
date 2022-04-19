@@ -112,6 +112,7 @@ myStartupHook = do
     --spawnOnce "volumeicon &"
     spawnOnce "redshift -P -O 7000 &"
     spawnOnce "config_tablet_buttons.sh &"
+    spawnOnce "calcurse --daemon"
     --spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 21 &"
     --spawn "sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34 --height 22 --iconspacing 2"
 
@@ -447,7 +448,8 @@ myKeys =
 	, ("M1-j", spawn "xdotool keyup j key --clearmodifiers Down")
 	, ("M1-k", spawn "xdotool keyup k key --clearmodifiers Up")
 	, ("M1-l", spawn "xdotool keyup l key --clearmodifiers Right")
-	, ("M-o", spawn "qutebrowser")
+	, ("M-o", spawn myBrowser)
+	, ("M1-t", spawn (myBrowser ++ " :'open -w https://track.toggl.com/timer'"))
 	]
     -- The following lines are needed for named scratchpads.
           where nonNSP          = WSIs (return (\ws -> W.tag ws /= "NSP"))
