@@ -362,6 +362,7 @@ syn region texMathText matchgroup=texStatement start='\\\%(\%(inter\)\=text\|mbo
 "endif
 
 syn region texBoldMathText  matchgroup=texStatement start='\\\%(mathbf\|bm\|symbf\|pmb\){' end='}' concealends contains=@texMathZoneGroup containedin=ALL
+syn region texBoldText  matchgroup=texStatement start='\\textbf{' end='}' concealends contains=@texMathZoneGroup containedin=ALL
 syn cluster texMathZoneGroup add=texBoldMathText
 
 syn region texBoldItalStyle matchgroup=texTypeStyle start="\\emph\s*{" end="}" concealends contains=@texItalGroup
@@ -369,6 +370,7 @@ syn region texItalStyle  matchgroup=texTypeStyle start="\\emph\s*{" end="}" conc
 syn region texMatcher matchgroup=texTypeStyle start="\\underline{" end="}" concealends keepend containedin=ALL
 
 hi texBoldMathText cterm=bold gui=bold
+hi texBoldText cterm=bold gui=bold ctermfg=blue 
 hi texUnderStyle cterm=underline gui=underline
 match texUnderStyle /\\\%(underline\|uline\){\zs\(.\([^\\]}\)\@<!\)\+\ze}/
 
