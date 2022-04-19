@@ -12,3 +12,8 @@
 !installer.sh
 !scripts/
 scripts/xmind2latex
+scripts/xmind2anki
+scripts/reddit_notifs
+scripts/md2anki
+  
+scripts/xmind2latex
