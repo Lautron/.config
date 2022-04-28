@@ -1,4 +1,19 @@
-dunstify "Start working" & timer 25m "Work"; dunstify "Take a break" & timer 5m "Break"
-dunstify "Start working again" & timer 25m "Work"; dunstify "Take a break" & timer 5m "Break"
-dunstify "Start working again" & timer 25m "Work"; dunstify "Take a break" & timer 5m "Break"
-dunstify "Start working again" & timer 25m "Work"; dunstify "Take a break" & timer 20m "Break"
+
+function work(){
+  espeak "Time to work" 
+  sleep 300 && espeak "20 minutes left" &
+  sleep 600 && espeak "15 minutes left" &
+  sleep 900 && espeak "10 minutes left" &
+  sleep 1200 && espeak "5 minutes left" &
+  timer 25m "Work"
+}
+work 
+espeak "Take a break" & timer 5m "Break"
+espeak "Life is pain, whatever, just work harder"
+work 
+espeak "Take a break" & timer 5m "Break"
+
+espeak "Work slave, work"
+work 
+espeak "Take a break" & timer 15m "Break"
+
