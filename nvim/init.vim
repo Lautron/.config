@@ -111,6 +111,7 @@ nmap <Leader>cl :w <bar> :!pandoc -f markdown -t latex "%" -o "%:r.pdf"<CR>
 nmap <Leader>p "+p<CR>
 nmap <Leader>op :!zathura '%<'.pdf&;disown<cr>:redraw!<cr>
 nmap <Leader>ot :!alacritty &;disown<cr>:redraw!<cr>
+nmap <Leader>or :!alacritty -e fish -C 'ranger' &;disown<cr>:redraw!<cr>
 nmap <Leader>tyu {<bar>yi<bar>}<bar>p
 nmap <Leader>tys kyi<bar>jpF}hA<bar><Esc>
 nmap <Leader>yuq ?wp\.2f.lvt$y/equivop
