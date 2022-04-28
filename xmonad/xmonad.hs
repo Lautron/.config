@@ -153,12 +153,14 @@ spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
 
 ayed2 = "https://wiki.cs.famaf.unc.edu.ar/doku.php?id=algo2:main:2022'"
 anNum = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=885'"
+anNum21 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=724'"
 orgComp = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=909'"
 orgComp21 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=708'"
 
 myAppGrid = [ 
 	      ("AYED2", myBrowser ++ " '" ++ ayed2)
 	    , ("AnNum", myBrowser ++ " '" ++ anNum)
+	    , ("AnNum (2021)", myBrowser ++ " '" ++ anNum21)
 	    , ("OrgComp", myBrowser ++ " '" ++ orgComp)
 	    , ("OrgComp (2021)", myBrowser ++ " '" ++ orgComp21)
           ]
