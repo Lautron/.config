@@ -1,19 +1,30 @@
+#!/bin/sh
 
 function work(){
-  espeak "Time to work" 
   sleep 300 && espeak "20 minutes left" &
   sleep 600 && espeak "15 minutes left" &
   sleep 900 && espeak "10 minutes left" &
   sleep 1200 && espeak "5 minutes left" &
   timer 25m "Work"
 }
-work 
-espeak "Take a break" & timer 5m "Break"
-espeak "Life is pain, whatever, just work harder"
-work 
-espeak "Take a break" & timer 5m "Break"
 
-espeak "Work slave, work"
-work 
-espeak "Take a break" & timer 15m "Break"
+for ((a=1; a <= $1; a++)); do
+  espeak "Start working"
+  work 
+  espeak "Take a break" & timer 5m "Break 1"
+
+  espeak "Start another task"
+  work 
+  espeak "Take a break" & timer 5m "Break 2"
+
+  espeak "Start another task"
+  work 
+  espeak "Take a break" & timer 5m "Break 3"
+
+  espeak "Make corrections"
+  sleep 300 && espeak "10 minutes left" &
+  sleep 600 && espeak "5 minutes left" &
+  timer 15m "Corrections"
+  espeak "Take a break" & timer 15m "Break 4"
+done
 
