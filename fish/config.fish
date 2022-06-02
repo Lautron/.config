@@ -66,6 +66,7 @@ function lolban
 end
 
 alias fug='nvim +Git +only'
+alias newmake='nvim makefile -c ":normal ictemp"'
 # Activate python venv
 alias venv='source venv/bin/activate.fish'
 
