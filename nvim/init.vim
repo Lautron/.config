@@ -102,8 +102,10 @@ command! -range OpenSym call QbOpen('sym')
 command! -range OpenWa call QbOpen('wa')
 nmap <Leader>nt :NERDTreeFind<CR>
 nmap <Leader>rp :w <bar> :RunPython
-nmap <Leader>rc :w <bar> :! ./%<
-nmap <Leader>rm :w <bar> :! make<CR>
+nmap <Leader>mc :w <bar> :! make clean<CR>
+nmap <Leader>mr :w <bar> :vsplit <bar> term make run<CR>
+nmap <Leader>mv :w <bar> :vsplit <bar> term make val<CR>
+nmap <Leader>mm :w <bar> :! make<CR>
 nmap <Leader>cc :w <bar> :! gcc -Wall -Werror -Wextra -pedantic -std=c99 -g % -o %< <CR>
 nmap <Leader>r+ :w <bar> :! g++ -g -O2 -std=gnu++17 -static -o %< % <CR>
 nmap <Leader>c+ :w <bar> :! g++ -std=c++11 -g -O2 -Wconversion -Wshadow -Wall -Wextra -D_GLIBCXX_DEBUG -o %< % <CR>
