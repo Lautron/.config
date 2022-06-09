@@ -11,20 +11,19 @@ function work(){
 for ((a=1; a <= $1; a++)); do
   espeak "Start working"
   work 
-  espeak "Take a break" & timer 5m "Break 1"
+  espeak "Take a break" & timer 5m "Break $a"
 
-  espeak "Start another task"
-  work 
-  espeak "Take a break" & timer 5m "Break 2"
+  if [[ $((a%2)) -eq 0 ]]; then
+    espeak "Make corrections"
+    sleep 300 && espeak "10 minutes left" &
+    sleep 600 && espeak "5 minutes left" &
+    timer 15m "Corrections"
+    espeak "Take a break" & timer 15m "Break $((a+1))"
+  else
+    espeak "Start another task"
+    work 
+    espeak "Take a break" & timer 5m "Break $((a+1))"
+  fi
 
-  espeak "Start another task"
-  work 
-  espeak "Take a break" & timer 5m "Break 3"
-
-  espeak "Make corrections"
-  sleep 300 && espeak "10 minutes left" &
-  sleep 600 && espeak "5 minutes left" &
-  timer 15m "Corrections"
-  espeak "Take a break" & timer 15m "Break 4"
 done
 
