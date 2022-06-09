@@ -1,28 +1,29 @@
 #!/bin/sh
 
 function work(){
-  sleep 300 && espeak "20 minutes left" &
-  sleep 600 && espeak "15 minutes left" &
-  sleep 900 && espeak "10 minutes left" &
-  sleep 1200 && espeak "5 minutes left" &
-  timer 25m "Work"
+  local total=$1
+  for ((mins=$((total-5)); mins > 0; mins=$((mins-5)))); do
+    sleep "$((mins*60))" && espeak "$((total-mins)) minutes left" &
+  done
+  timer "$1m" "Work"
 }
+
+#project=$(cat ~/.config/scripts/.projects | fzf)
+#toggl start -o $project $2
 
 for ((a=1; a <= $1; a++)); do
   espeak "Start working"
-  work 
-  espeak "Take a break" & timer 5m "Break $a"
+  work 25
+  espeak "Take a break" & timer 5m "Break $((a+(a+1)%2))"
 
   if [[ $((a%2)) -eq 0 ]]; then
     espeak "Make corrections"
-    sleep 300 && espeak "10 minutes left" &
-    sleep 600 && espeak "5 minutes left" &
-    timer 15m "Corrections"
-    espeak "Take a break" & timer 15m "Break $((a+1))"
+    work 15
+    espeak "Take a break" & timer 15m "Break $((a+(a+1)%2+1))"
   else
     espeak "Start another task"
-    work 
-    espeak "Take a break" & timer 5m "Break $((a+1))"
+    work 25
+    espeak "Take a break" & timer 5m "Break $((a+(a+1)%2+1))"
   fi
 
 done
