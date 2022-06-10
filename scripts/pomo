@@ -1,30 +1,32 @@
 #!/bin/sh
 
+project=$(cat ~/.config/scripts/.projects | fzf)
+name=$2
+breaknum=1
+
 function work(){
   local total=$1
   for ((mins=$((total-5)); mins > 0; mins=$((mins-5)))); do
     sleep "$((mins*60))" && espeak "$((total-mins)) minutes left" &
   done
+  toggl start -o $project $name
   timer "$1m" "Work"
+  toggl stop
+  espeak "Take a break"
+  timer "$((30-total))m" "Break $breaknum"
+  breaknum=$((breaknum+1))
 }
 
-#project=$(cat ~/.config/scripts/.projects | fzf)
-#toggl start -o $project $2
-
 for ((a=1; a <= $1; a++)); do
-  espeak "Start working"
+  test $a -eq 1 && espeak "Start working" || espeak "Start another task"
   work 25
-  espeak "Take a break" & timer 5m "Break $((a+(a+1)%2))"
 
-  if [[ $((a%2)) -eq 0 ]]; then
+  if [[ $((breaknum%4)) -eq 0 ]]; then
     espeak "Make corrections"
     work 15
-    espeak "Take a break" & timer 15m "Break $((a+(a+1)%2+1))"
   else
     espeak "Start another task"
     work 25
-    espeak "Take a break" & timer 5m "Break $((a+(a+1)%2+1))"
   fi
-
 done
 
