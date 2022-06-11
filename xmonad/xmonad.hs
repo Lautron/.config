@@ -339,6 +339,7 @@ myManageHook = composeAll
      , title =? "rate.sx"             --> centerCustomFloat 0.7 0.7 
      , title =? "wttr.in"             --> centerCustomFloat 0.85 0.9 
      , title =? "vimclip"             --> vimclipFloat 0.05 0.5 0.2
+     , title =? "ttask"               --> centerCustomFloat 0.7 0.7 
      , isFullscreen -->  doFullFloat
      ] <+> namedScratchpadManageHook myScratchPads
      where 
@@ -451,7 +452,8 @@ myKeys =
 	, ("M1-k", spawn "xdotool keyup k key --clearmodifiers Up")
 	, ("M1-l", spawn "xdotool keyup l key --clearmodifiers Right")
 	, ("M-o", spawn myBrowser)
-	, ("M1-t", spawn (myBrowser ++ " :'open -w https://track.toggl.com/timer'"))
+	--, ("M1-t", spawn (myBrowser ++ " :'open -w https://track.toggl.com/timer'"))
+	, ("M1-t", spawn (myTerminal ++ " -t ttask -e ttask"))
 	]
     -- The following lines are needed for named scratchpads.
           where nonNSP          = WSIs (return (\ws -> W.tag ws /= "NSP"))
