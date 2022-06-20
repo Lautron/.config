@@ -103,22 +103,16 @@ myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
 
 myStartupHook :: X ()
 myStartupHook = do
-    --spawn "killall trayer"
     spawnOnce "lxsession &"
     spawnOnce "dunst -conf ~/.config/dunst/dunstrc &"
     spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
     spawnOnce "picom -b --config ~/.config/dwm/picom.conf &"
-    --spawnOnce "nm-applet &"
-    --spawnOnce "volumeicon &"
     spawnOnce "redshift -P -O 7000 &"
     spawnOnce "config_tablet_buttons.sh &"
     spawnOnce "calcurse --daemon"
-    --spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 21 &"
-    --spawn "sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34 --height 22 --iconspacing 2"
 
     spawnOnce "feh --randomize --bg-fill ~/.config/wallpapers &"  -- feh set random wallpaper
     spawnOnOnce (myWorkspaces !! 0) (myBrowser ++ " &")
-    --spawnOnOnce (myWorkspaces !! 1) "spotify"
     setWMName "LG3D"
 
 myColorizer :: Window -> Bool -> X (String, String)
