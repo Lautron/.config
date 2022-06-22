@@ -109,7 +109,9 @@ myStartupHook = do
     spawnOnce "picom -b --config ~/.config/dwm/picom.conf &"
     spawnOnce "redshift -P -O 7000 &"
     spawnOnce "config_tablet_buttons.sh &"
-    spawnOnce "calcurse --daemon"
+    spawnOnce "calcurse --daemon&"
+    spawnOnce "setxkbmap -option caps:none &"
+    spawnOnce "xmodmap ~/.Xmodmap"
 
     spawnOnce "feh --randomize --bg-fill ~/.config/wallpapers &"  -- feh set random wallpaper
     spawnOnOnce (myWorkspaces !! 0) (myBrowser ++ " &")
@@ -441,10 +443,14 @@ myKeys =
 	, ("M-c r", spawn (myTerminal ++ " --hold -t rate.sx -e curl rate.sx"))        
 	, ("M-c w", spawn (myTerminal ++ " --hold -t wttr.in -e curl wttr.in/Cordoba+capital"))        
 	, ("M1-x l", spawn "xmind_shortcut.sh")
-	, ("M1-h", spawn "xdotool keyup h key --clearmodifiers Left")
-	, ("M1-j", spawn "xdotool keyup j key --clearmodifiers Down")
-	, ("M1-k", spawn "xdotool keyup k key --clearmodifiers Up")
-	, ("M1-l", spawn "xdotool keyup l key --clearmodifiers Right")
+	, ("M3-h", spawn "xdotool keyup h key --clearmodifiers Left")
+	, ("M3-j", spawn "xdotool keyup j key --clearmodifiers Down")
+	, ("M3-k", spawn "xdotool keyup k key --clearmodifiers Up")
+	, ("M3-l", spawn "xdotool keyup l key --clearmodifiers Right")
+	, ("M3-w", spawn "xdotool keyup w key --clearmodifiers ctrl+Right")
+	, ("M3-b", spawn "xdotool keyup b key --clearmodifiers ctrl+Left")
+	, ("M3-S-w", spawn "xdotool keyup W key --clearmodifiers ctrl+shift+Right")
+	, ("M3-S-b", spawn "xdotool keyup B key --clearmodifiers ctrl+shift+Left")
 	, ("M-o", spawn myBrowser)
 	--, ("M1-t", spawn (myBrowser ++ " :'open -w https://track.toggl.com/timer'"))
 	, ("M1-t", spawn (myTerminal ++ " -t ttask -e ttask"))
