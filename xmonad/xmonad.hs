@@ -453,7 +453,7 @@ myKeys =
 	, ("M3-S-b", spawn "xdotool keyup B key --clearmodifiers ctrl+shift+Left")
 	, ("M-o", spawn myBrowser)
 	--, ("M1-t", spawn (myBrowser ++ " :'open -w https://track.toggl.com/timer'"))
-	, ("M1-t", spawn (myTerminal ++ " -t ttask -e ttask"))
+	, ("M1-t", spawn "ttask")
 	]
     -- The following lines are needed for named scratchpads.
           where nonNSP          = WSIs (return (\ws -> W.tag ws /= "NSP"))
