@@ -126,20 +126,15 @@ nmap <Leader>p "+p<CR>
 nmap <Leader>op :!zathura '%<'.pdf&;disown<cr>:redraw!<cr>
 nmap <Leader>ot :!alacritty &;disown<cr>:redraw!<cr>
 nmap <Leader>or :!alacritty -e fish -C 'ranger' &;disown<cr>:redraw!<cr>
-nmap <Leader>tyu {<bar>yi<bar>}<bar>p
-nmap <Leader>tys kyi<bar>jpF}hA<bar><Esc>
-nmap <Leader>yuq ?wp\.2f.lvt$y/equivop
 vnoremap <Leader>os :OpenSym<CR>
 vnoremap <Leader>ow :OpenWa<CR>
 "Image disable
-nmap <Leader>id :%s/\(<!-- \)\@<!!\[\(.*\)\?\](.*)\({.*}\)\?/<!-- \0 -->/g<cr>
+nmap <Leader>id :%s/\(<!-- \)\@<!!\[\(.*\)\?\](.*)\({.*}\)\?/<!-- \0 -->/g<cr> 
 "Image enable
 nmap <Leader>ie :%s/<!-- \(!\[\](.*)\({.*}\)\?\) -->/\1/g<cr>
 source ~/.config/nvim/vimspector.vim
 source ~/.config/nvim/coc-config.vim
-"nmap <Leader>as ?sigma<CR>yy}kpf_l
-"nmap <Leader>al ?ell<CR>f{lyw}i$\ell_{}<Esc>PA\quad $\<Esc>2h
-let @l=':s/  /\\quad /geI$\ell_{1}\quad A$\j0'
+
 "To paste macro do ctrl+r ctrl+r <register>
 
 :nmap <Leader>cs :!sassc % %:r.css<CR>
@@ -148,9 +143,6 @@ autocmd BufWritePost,FileWritePost *.mom :silent :!pdfmom -e % > %:r.pdf
 autocmd BufWritePost,FileWritePost *.ms :silent :!groff -e -ms % -T pdf > %:r.pdf
 autocmd BufRead,BufNewFile *.pmd setfiletype pandocmd
 autocmd BufRead,BufNewFile *.vimclip setfiletype vimclip
-"Make a debug mode for pandoc
-"autocmd BufWritePost,FileWritePost *.pmd :silent :!pandoc -f markdown -t latex "%" -o "%:r.pdf"
-"autocmd BufWritePost,FileWritePost *.tex :silent :!pdflatex %
 au BufWrite *.c,*.cpp :Autoformat
 hi clear Conceal
 colorscheme onedark
