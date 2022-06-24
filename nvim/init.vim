@@ -12,6 +12,14 @@ set relativenumber
 set laststatus=2
 set conceallevel=2
 set nrformats+=alpha
+set cursorline
+set linebreak
+set undofile
+set foldenable "Enable folding
+set foldlevelstart=10 "Open most of the folds by default. If set to 0, all folds will be closed.
+set foldnestmax=1 "Folds can be nested. Setting a max value protects you from too many folds.
+set foldmethod=syntax "Defines the type of folding.
+
 :filetype on
 
 "Install vim plug if not installed
@@ -51,6 +59,9 @@ Plug 'puremourning/vimspector'
 Plug 'szw/vim-maximizer'
 
 Plug 'sirtaj/vim-openscad'
+Plug 'masukomi/vim-markdown-folding'
+
+Plug 'sennavanhoek/a64asm-vim'
 
 call plug#end()
 let s:hidden_all = 1
@@ -100,6 +111,7 @@ endfunction
 command! -nargs=* -complete=file RunPython call RunPython(<f-args>)
 command! -range OpenSym call QbOpen('sym')
 command! -range OpenWa call QbOpen('wa')
+nmap <silent> ,/ :nohlsearch<CR>
 nmap <Leader>nt :NERDTreeFind<CR>
 nmap <Leader>rp :w <bar> :RunPython
 nmap <Leader>mc :w <bar> :! make clean<CR>
