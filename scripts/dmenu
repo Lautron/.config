@@ -1,4 +1,0 @@
-#!/bin/sh
-
-/sbin/dmenu -fn 'xft:SauceCodePro Nerd Font Mono:regular:size=19:antialias=true:hinting=true' -nb '#282c34' -sb '#9e60b0' $@
-

@@ -11,6 +11,8 @@
 !wallpapers
 !installer.sh
 !scripts/
+!runframeb/
+!dmenu/
 scripts/xmind2latex
 scripts/xmind2anki
 scripts/reddit_notifs
