@@ -62,6 +62,7 @@ Plug 'sirtaj/vim-openscad'
 Plug 'masukomi/vim-markdown-folding'
 
 Plug 'sennavanhoek/a64asm-vim'
+Plug 'chrisbra/Colorizer'
 
 call plug#end()
 let s:hidden_all = 1
