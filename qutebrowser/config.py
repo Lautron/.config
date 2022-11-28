@@ -18,7 +18,7 @@ config.load_autoconfig(False)
 # Aliases for commands. The keys of the given dictionary are the
 # aliases, while the values are the commands they map to.
 # Type: Dict
-c.aliases = {'q': 'quit', 'w': 'session-save', 'wq': 'quit --save'}
+c.aliases = {"q": "quit", "w": "session-save", "wq": "quit --save"}
 
 # Which cookies to accept. With QtWebEngine, this setting also controls
 # other features with tracking capabilities similar to those of cookies;
@@ -33,7 +33,7 @@ c.aliases = {'q': 'quit', 'w': 'session-save', 'wq': 'quit --save'}
 #   - no-3rdparty: Accept cookies from the same origin only. This is known to break some sites, such as GMail.
 #   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
 #   - never: Don't accept cookies at all.
-config.set('content.cookies.accept', 'all', 'chrome-devtools://*')
+config.set("content.cookies.accept", "all", "chrome-devtools://*")
 
 # Which cookies to accept. With QtWebEngine, this setting also controls
 # other features with tracking capabilities similar to those of cookies;
@@ -48,7 +48,7 @@ config.set('content.cookies.accept', 'all', 'chrome-devtools://*')
 #   - no-3rdparty: Accept cookies from the same origin only. This is known to break some sites, such as GMail.
 #   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
 #   - never: Don't accept cookies at all.
-config.set('content.cookies.accept', 'all', 'devtools://*')
+config.set("content.cookies.accept", "all", "devtools://*")
 
 # User agent to send.  The following placeholders are defined:  *
 # `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
@@ -64,7 +64,11 @@ config.set('content.cookies.accept', 'all', 'devtools://*')
 # between 5.12 and 5.14 (inclusive), changing the value exposed to
 # JavaScript requires a restart.
 # Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}', 'https://web.whatsapp.com/')
+config.set(
+    "content.headers.user_agent",
+    "Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}",
+    "https://web.whatsapp.com/",
+)
 
 # User agent to send.  The following placeholders are defined:  *
 # `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
@@ -80,7 +84,11 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{w
 # between 5.12 and 5.14 (inclusive), changing the value exposed to
 # JavaScript requires a restart.
 # Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0', 'https://accounts.google.com/*')
+config.set(
+    "content.headers.user_agent",
+    "Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0",
+    "https://accounts.google.com/*",
+)
 
 # User agent to send.  The following placeholders are defined:  *
 # `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
@@ -96,7 +104,11 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko
 # between 5.12 and 5.14 (inclusive), changing the value exposed to
 # JavaScript requires a restart.
 # Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')
+config.set(
+    "content.headers.user_agent",
+    "Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36",
+    "https://*.slack.com/*",
+)
 
 # User agent to send.  The following placeholders are defined:  *
 # `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
@@ -112,7 +124,11 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/53
 # between 5.12 and 5.14 (inclusive), changing the value exposed to
 # JavaScript requires a restart.
 # Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0', 'https://docs.google.com/*')
+config.set(
+    "content.headers.user_agent",
+    "Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0",
+    "https://docs.google.com/*",
+)
 
 # User agent to send.  The following placeholders are defined:  *
 # `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
@@ -128,31 +144,35 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko
 # between 5.12 and 5.14 (inclusive), changing the value exposed to
 # JavaScript requires a restart.
 # Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0', 'https://drive.google.com/*')
+config.set(
+    "content.headers.user_agent",
+    "Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0",
+    "https://drive.google.com/*",
+)
 
 # Load images automatically in web pages.
 # Type: Bool
-config.set('content.images', True, 'chrome-devtools://*')
+config.set("content.images", True, "chrome-devtools://*")
 
 # Load images automatically in web pages.
 # Type: Bool
-config.set('content.images', True, 'devtools://*')
+config.set("content.images", True, "devtools://*")
 
 # Enable JavaScript.
 # Type: Bool
-config.set('content.javascript.enabled', True, 'chrome-devtools://*')
+config.set("content.javascript.enabled", True, "chrome-devtools://*")
 
 # Enable JavaScript.
 # Type: Bool
-config.set('content.javascript.enabled', True, 'devtools://*')
+config.set("content.javascript.enabled", True, "devtools://*")
 
 # Enable JavaScript.
 # Type: Bool
-config.set('content.javascript.enabled', True, 'chrome://*/*')
+config.set("content.javascript.enabled", True, "chrome://*/*")
 
 # Enable JavaScript.
 # Type: Bool
-config.set('content.javascript.enabled', True, 'qute://*/*')
+config.set("content.javascript.enabled", True, "qute://*/*")
 
 # Allow websites to show notifications.
 # Type: BoolAsk
@@ -160,7 +180,7 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 #   - true
 #   - false
 #   - ask
-config.set('content.notifications.enabled', True, 'https://www.reddit.com')
+config.set("content.notifications.enabled", True, "https://www.reddit.com")
 
 # Allow websites to show notifications.
 # Type: BoolAsk
@@ -168,12 +188,12 @@ config.set('content.notifications.enabled', True, 'https://www.reddit.com')
 #   - true
 #   - false
 #   - ask
-config.set('content.notifications.enabled', True, 'https://www.youtube.com')
+config.set("content.notifications.enabled", True, "https://www.youtube.com")
 
 # Directory to save downloads to. If unset, a sensible OS-specific
 # default is used.
 # Type: Directory
-c.downloads.location.directory = '~/Downloads'
+c.downloads.location.directory = "~/Downloads"
 
 # When to show the tab bar.
 # Type: String
@@ -182,11 +202,11 @@ c.downloads.location.directory = '~/Downloads'
 #   - never: Always hide the tab bar.
 #   - multiple: Hide the tab bar if only one tab is open.
 #   - switching: Show the tab bar when switching tabs.
-c.tabs.show = 'always'
+c.tabs.show = "always"
 
 # Setting default page for when opening new tabs or new windows with
 # commands like :open -t and :open -w .
-startpage = '/home/lautarob/.config/qutebrowser/start-pages/index.html'
+startpage = "/home/lautarob/.config/qutebrowser/start-pages/index.html"
 c.url.default_page = startpage
 c.url.start_pages = startpage
 
@@ -209,19 +229,21 @@ c.url.start_pages = startpage
 # qutebrowser`.
 # Type: Dict
 c.url.searchengines = {
-    'DEFAULT': 'https://duckduckgo.com/?q={}',
-    'aw': 'https://wiki.archlinux.org/?search={}',
-    'r': 'https://www.reddit.com/r/{}',
-    'wiki': 'https://en.wikipedia.org/wiki/{}',
-    'yt': 'https://www.youtube.com/results?search_query={}',
-    'ml': 'https://listado.mercadolibre.com.ar/{}',
-    'lx': 'https://duckduckgo.com/?sites=learnxinyminutes.com&q={}',
-    'py': 'https://docs.python.org/3/search.html?q={}&check_keywords=yes&area=default',
-    'cpp': 'https://duckduckgo.com/?sites=cppreference.com&q={}',
-    'gf': 'https://greasyfork.org/en/scripts?q={}',
-    'sym': 'https://es.symbolab.com/solver/step-by-step/{}',
-    'wa': 'https://www.wolframalpha.com/input?i={}',
- }
+    "DEFAULT": "https://search.brave.com/search?q={}&source=web",
+    "aw": "https://wiki.archlinux.org/?search={}",
+    "r": "https://www.reddit.com/r/{}",
+    "wiki": "https://en.wikipedia.org/wiki/{}",
+    "yt": "https://www.youtube.com/results?search_query={}",
+    "ml": "https://listado.mercadolibre.com.ar/{}",
+    "lx": "https://duckduckgo.com/?sites=learnxinyminutes.com&q={}",
+    "py": "https://docs.python.org/3/search.html?q={}&check_keywords=yes&area=default",
+    "cpp": "https://duckduckgo.com/?sites=cppreference.com&q={}",
+    "gf": "https://greasyfork.org/en/scripts?q={}",
+    "sym": "https://es.symbolab.com/solver/step-by-step/{}",
+    "wa": "https://wolfreealpha.github.io/input?wolfree_input={}",
+    "dh": "https://hub.docker.com/search?q={}",
+    "gt": "https://translate.google.com/?text={}",
+}
 
 
 # Default font families to use. Whenever "default_family" is used in a
@@ -235,7 +257,7 @@ c.fonts.default_family = '"Source Code Pro"'
 # either a float value with a "pt" suffix, or an integer value with a
 # "px" suffix.
 # Type: String
-c.fonts.default_size = '11pt'
+c.fonts.default_size = "11pt"
 
 # Font used in the completion widget.
 # Type: Font
@@ -247,35 +269,52 @@ c.fonts.debug_console = '11pt "Source Code Pro"'
 
 # Font used for prompts.
 # Type: Font
-c.fonts.prompts = 'default_size sans-serif'
+c.fonts.prompts = "default_size sans-serif"
 
 # Font used in the statusbar.
 # Type: Font
 c.fonts.statusbar = '11pt "Source Code Pro"'
 
 # Bindings to use dmenu rather than qutebrowser's builtin search.
-#config.bind('o', 'spawn --userscript dmenu-open')
-#config.bind('O', 'spawn --userscript dmenu-open --tab')
+# config.bind('o', 'spawn --userscript dmenu-open')
+# config.bind('O', 'spawn --userscript dmenu-open --tab')
 
 # Bindings for normal mode
-config.bind('M', 'hint links spawn mpv {hint-url}')
-config.bind('Z', 'hint links spawn st -e youtube-dl {hint-url}')
-config.bind('t', 'set-cmd-text -s :open -t')
-config.bind('xb', 'config-cycle statusbar.show always never')
-config.bind('xt', 'config-cycle tabs.show always never')
-config.bind('xx', 'config-cycle statusbar.show always never;; config-cycle tabs.show always never')
+config.bind("M", "hint links spawn mpv {hint-url}")
+config.bind("Z", "hint links spawn st -e youtube-dl {hint-url}")
+config.bind("t", "set-cmd-text -s :open -t")
+config.bind("xb", "config-cycle statusbar.show always never")
+config.bind("xt", "config-cycle tabs.show always never")
+config.bind(
+    "xx",
+    "config-cycle statusbar.show always never;; config-cycle tabs.show always never",
+)
 
 # Bindings for cycling through CSS stylesheets from Solarized Everything CSS:
 # https://github.com/alphapapa/solarized-everything-css
-config.bind(',ap', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/solarized-everything-css/css/apprentice/apprentice-all-sites.css ""')
-config.bind(',dr', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/solarized-everything-css/css/darculized/darculized-all-sites.css ""')
-config.bind(',gr', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/solarized-everything-css/css/gruvbox/gruvbox-all-sites.css ""')
-config.bind(',sd', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/solarized-everything-css/css/solarized-dark/solarized-dark-all-sites.css ""')
-config.bind(',sl', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/solarized-everything-css/css/solarized-light/solarized-light-all-sites.css ""')
+config.bind(
+    ",ap",
+    'config-cycle content.user_stylesheets ~/.config/qutebrowser/solarized-everything-css/css/apprentice/apprentice-all-sites.css ""',
+)
+config.bind(
+    ",dr",
+    'config-cycle content.user_stylesheets ~/.config/qutebrowser/solarized-everything-css/css/darculized/darculized-all-sites.css ""',
+)
+config.bind(
+    ",gr",
+    'config-cycle content.user_stylesheets ~/.config/qutebrowser/solarized-everything-css/css/gruvbox/gruvbox-all-sites.css ""',
+)
+config.bind(
+    ",sd",
+    'config-cycle content.user_stylesheets ~/.config/qutebrowser/solarized-everything-css/css/solarized-dark/solarized-dark-all-sites.css ""',
+)
+config.bind(
+    ",sl",
+    'config-cycle content.user_stylesheets ~/.config/qutebrowser/solarized-everything-css/css/solarized-light/solarized-light-all-sites.css ""',
+)
 
-config.source('theme.py')
-#config.set("colors.webpage.darkmode.enabled", True)
-config.set('colors.webpage.preferred_color_scheme', 'dark')
+config.source("theme.py")
+# config.set("colors.webpage.darkmode.enabled", True)
+config.set("colors.webpage.preferred_color_scheme", "dark")
 
-config.set('content.autoplay', False)
-
+config.set("content.autoplay", False)
