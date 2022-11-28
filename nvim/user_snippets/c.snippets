@@ -283,4 +283,7 @@ typedef struct ${1:name}{
 } $1;
 endsnippet
 
-
+post_jump "printf_expand_args(snip)"
+snippet "dbg" "DEBUG with auto-expand args" wr
+DEBUG("$1\n"$2);
+endsnippet

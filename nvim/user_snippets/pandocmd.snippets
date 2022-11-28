@@ -28,7 +28,7 @@ def handle_xournalpp(snip):
 def build_table(text):
   rows = text.split("\n")
   col_num = rows[0].count('|') - 1
-  format_row = lambda row: row.strip('| ').replace('|', ' & ') + "\\\\" if '---' not in row else '\\hline'
+  format_row = lambda row: row.strip('|').replace('|', ' & ') + "\\\\" if '--' not in row else '\\hline'
   content = "\n".join([format_row(row) for row in rows if row])
   beggining = "\\begin{tabular}{ |"  + "c|"*col_num + " }"
   ending = "\\end{tabular}"
@@ -404,7 +404,7 @@ snippet PI "Uppercase Pi" wA
 endsnippet
 
 priority 50
-snippet RR "real" wA
+snippet RR "real" w
 \mathbb{R}
 endsnippet
 
@@ -467,7 +467,7 @@ $\ell_{$1}$
 endsnippet
 
 priority 100
-snippet "(\w+)mt" "maps to" rwA
+snippet "(\w+)mt" "maps to" rw
 `!p snip.rv=match.group(1)` \mapsto $1
 endsnippet
 
@@ -509,7 +509,7 @@ Dom(`!p snip.rv=match.group(1)`) $0
 endsnippet
 
 priority 100
-snippet "(\w)RR" "R^n" rwA
+snippet "(\w)RR" "R^n" rw
 \mathbb{R}^`!p snip.rv=match.group(1)` $0
 endsnippet
 
@@ -646,12 +646,12 @@ endsnippet
 
 snippet tabb "tabular env" bA
 \begin{tabular}{ l l l }
-`!p snip.rv = "\n".join(['& ' + line.rstrip().replace("  ", "\\quad ") + '\\\\' for line in snip.v.text.split('\n') if line])`
+`!p snip.rv = "\n".join(['& ' + line.rstrip().replace("  ", "\\quad ").replace("\t", "\\quad "*4).replace("_", "\\_") + '\\\\' for line in snip.v.text.split('\n') if line])`
 \end{tabular}
 endsnippet
 
 snippet untab "tabular env" bA
-`!p snip.rv = snip.v.text.replace('& ', '').replace('\\quad ', '  ').replace('\\\\', '').replace('\\end{tabular}', '').replace('\\begin{tabular}{ l l l }', '')`
+`!p snip.rv = snip.v.text.replace('& ', '').replace('\\quad ', '  ').replace('\\\\', '').replace('\\end{tabular}', '').replace('\\begin{tabular}{ l l l }', '').replace("\\_", "_")`
 endsnippet
 
 snippet _ "snake case" w
@@ -659,7 +659,7 @@ snippet _ "snake case" w
 endsnippet
 
 snippet xour "xournal++ integration" 
-![](`!p if not snip.c: snip.rv = handle_xournalpp(snip)`){ width=${1:250}px }
+![](`!p if not snip.c: snip.rv = handle_xournalpp(snip)`)${1:{ width=${2:250}px }}
 endsnippet
 
 snippet fun "fun template" b
@@ -778,8 +778,8 @@ snippet points "points to"
 ${1:pointer} -> ${2:property}
 endsnippet
 
-snippet comment "comment"
-\\{- $1 -\\}
+snippet comm "comment"
+\\emph{\\{- $1 -\\}}
 endsnippet
 
 snippet tuple "tuple"
@@ -810,18 +810,22 @@ snippet code "code" Ab
   ${VISUAL}$0
 \`\`\`
 endsnippet
-#snippet xour "xournal++ integration" 
-#![](`!p if not snip.c:
-#  file = os.popen(f"~/.config/nvim/user_snippets/xournalpp.sh {snip.basename}_imgs")
-#  snip.rv = file.read()[2:].strip()`){ width=${1:250}px }
-#endsnippet
-## Interesting snippet example ##
-#------------------- SNIP -------------------
-#snippet r "return" "re.match('^\s+if err ', snip.buffer[snip.line-1])" be
-#return err
-#endsnippet
-#------------------- SNAP -------------------
-#
-#That snippet will expand to 'return err' only if the previous line is starting
-#from 'if err' prefix.
+
+snippet headers "doc headers" Ab
+---
+title: $1
+author: ${2:Lautaro Bachmann}
+---
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+
+endsnippet
+
+snippet dincomments "partes programacion dinamica" b
+\emph{\\{- Declaracion de variables -\\}}
+\emph{\\{- Casos base -\\}}
+\emph{\\{- Caso recursivo -\\}}
+endsnippet
 ## vim:ft=snippets
