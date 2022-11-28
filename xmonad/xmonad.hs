@@ -5,7 +5,7 @@ import System.IO (hPutStrLn)
 import System.Exit (exitSuccess)
 import qualified XMonad.StackSet as W
 
-    -- Actions
+-- Actions
 import XMonad.Actions.CopyWindow (kill1)
 import XMonad.Actions.CycleWS (Direction1D(..), moveTo, shiftTo, WSType(..), nextScreen, prevScreen)
 import XMonad.Actions.GridSelect
@@ -27,9 +27,9 @@ import Data.Ratio
 import qualified Data.Map as M
 
     -- Hooks
-import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
+import XMonad.Hooks.DynamicLog (dynamicLogWithPP, filterOutWsPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
 import XMonad.Hooks.EwmhDesktops  -- for some fullscreen events, also for xcomposite in obs.
-import XMonad.Hooks.ManageDocks (avoidStruts, docksEventHook, manageDocks, ToggleStruts(..))
+import XMonad.Hooks.ManageDocks (avoidStruts, docks, manageDocks, ToggleStruts(..))
 import XMonad.Hooks.ManageHelpers (isFullscreen, doFullFloat, doCenterFloat)
 import XMonad.Hooks.ServerMode
 import XMonad.Hooks.SetWMName
@@ -109,9 +109,9 @@ myStartupHook = do
     spawnOnce "picom -b --config ~/.config/dwm/picom.conf &"
     spawnOnce "redshift -P -O 7000 &"
     spawnOnce "config_tablet_buttons.sh &"
-    spawnOnce "calcurse --daemon&"
     spawnOnce "setxkbmap -option caps:none &"
-    spawnOnce "xmodmap ~/.Xmodmap"
+    spawnOnce "sleep 20 && xmodmap ~/.Xmodmap &"
+    spawnOnce "xset s 3600 3600"
 
     spawnOnce "feh --randomize --bg-fill ~/.config/wallpapers &"  -- feh set random wallpaper
     spawnOnOnce (myWorkspaces !! 0) (myBrowser ++ " &")
@@ -147,18 +147,18 @@ spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
                    , gs_font         = myFont
                    }
 
-ayed2 = "https://wiki.cs.famaf.unc.edu.ar/doku.php?id=algo2:main:2022'"
-anNum = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=885'"
-anNum21 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=724'"
-orgComp = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=909'"
-orgComp21 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=708'"
+course1 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=810'"
+course2 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=997'"
+course3 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=967'"
+course4 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=809'"
+course5 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=960'"
 
 myAppGrid = [ 
-	      ("AYED2", myBrowser ++ " '" ++ ayed2)
-	    , ("AnNum", myBrowser ++ " '" ++ anNum)
-	    , ("AnNum (2021)", myBrowser ++ " '" ++ anNum21)
-	    , ("OrgComp", myBrowser ++ " '" ++ orgComp)
-	    , ("OrgComp (2021)", myBrowser ++ " '" ++ orgComp21)
+              ("SistOp (2021)", myBrowser ++ " '" ++ course1)
+            , ("SistOp", myBrowser ++ " '" ++ course2)
+            , ("IntLog", myBrowser ++ " '" ++ course3)
+            , ("IntLog (2021)", myBrowser ++ " '" ++ course4)
+            , ("PyE", myBrowser ++ " '" ++ course5)
           ]
 
 myScratchPads :: [NamedScratchpad]
@@ -213,9 +213,9 @@ tall     = renamed [Replace "tall"]
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
            $ limitWindows 12
-           $ mySpacing 8
+           $ mySpacing 4
            $ ResizableTall 1 (3/100) (1/2) []
-magnify  = renamed [Replace "magnify"]
+magnifyLayout  = renamed [Replace "magnify"]
            $ smartBorders
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
@@ -299,7 +299,7 @@ myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts float
                $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
              where
                myDefaultLayout =     withBorder myBorderWidth tall
-                                 ||| magnify
+                                 ||| magnifyLayout
 --                                 ||| noBorders monocle
                                  ||| noBorders tabs
 --                                 ||| grid
@@ -340,13 +340,13 @@ myManageHook = composeAll
      ] <+> namedScratchpadManageHook myScratchPads
      where 
        centerCustomFloat w h = customFloating $ W.RationalRect l t w h
-	where
-	  l = (1 - w)/2
-	  t = (1 - h)/2
+        where
+          l = (1 - w)/2
+          t = (1 - h)/2
 
        vimclipFloat y w h = customFloating $ W.RationalRect l y w h
-	where
-	  l = (1 - w)/2
+        where
+          l = (1 - w)/2
 
 
 -- START_KEYS
@@ -436,25 +436,25 @@ myKeys =
         , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
         , ("<Print>", spawn "flameshot gui")
 
-	-- Custom Hotkeys
-	--, ("M-f", spawn (myTerminal ++ " -e fish -C ranger"))
-	, ("M-f", spawn (myTerminal ++ " -e fish -C 'ranger --cmd=fzf_select'"))
-	, ("M-i", spawn (myTerminal ++ " -t vimclip -e vimclip"))
-	, ("M-c r", spawn (myTerminal ++ " --hold -t rate.sx -e curl rate.sx"))        
-	, ("M-c w", spawn (myTerminal ++ " --hold -t wttr.in -e curl wttr.in/Cordoba+capital"))        
-	, ("M1-x l", spawn "xmind_shortcut.sh")
-	, ("M3-h", spawn "xdotool keyup h key --clearmodifiers Left")
-	, ("M3-j", spawn "xdotool keyup j key --clearmodifiers Down")
-	, ("M3-k", spawn "xdotool keyup k key --clearmodifiers Up")
-	, ("M3-l", spawn "xdotool keyup l key --clearmodifiers Right")
-	, ("M3-w", spawn "xdotool keyup w key --clearmodifiers ctrl+Right")
-	, ("M3-b", spawn "xdotool keyup b key --clearmodifiers ctrl+Left")
-	, ("M3-S-w", spawn "xdotool keyup W key --clearmodifiers ctrl+shift+Right")
-	, ("M3-S-b", spawn "xdotool keyup B key --clearmodifiers ctrl+shift+Left")
-	, ("M-o", spawn myBrowser)
-	--, ("M1-t", spawn (myBrowser ++ " :'open -w https://track.toggl.com/timer'"))
-	, ("M1-t", spawn "ttask")
-	]
+        -- Custom Hotkeys
+        --, ("M-f", spawn (myTerminal ++ " -e fish -C ranger"))
+        , ("M-f", spawn (myTerminal ++ " -e fish -C 'ranger --cmd=fzf_select'"))
+        , ("M-i", spawn (myTerminal ++ " -t vimclip -e vimclip"))
+        , ("M-c r", spawn (myTerminal ++ " --hold -t rate.sx -e curl rate.sx"))        
+        , ("M-c w", spawn (myTerminal ++ " --hold -t wttr.in -e curl wttr.in/Cordoba+capital"))        
+        , ("M1-x l", spawn "xmind_shortcut.sh")
+        , ("M3-h", spawn "xdotool keyup h key --clearmodifiers Left")
+        , ("M3-j", spawn "xdotool keyup j key --clearmodifiers Down")
+        , ("M3-k", spawn "xdotool keyup k key --clearmodifiers Up")
+        , ("M3-l", spawn "xdotool keyup l key --clearmodifiers Right")
+        , ("M3-w", spawn "xdotool keyup w key --clearmodifiers ctrl+Right")
+        , ("M3-b", spawn "xdotool keyup b key --clearmodifiers ctrl+Left")
+        , ("M3-S-w", spawn "xdotool keyup W key --clearmodifiers ctrl+shift+Right")
+        , ("M3-S-b", spawn "xdotool keyup B key --clearmodifiers ctrl+shift+Left")
+        , ("M-o", spawn myBrowser)
+        --, ("M1-t", spawn (myBrowser ++ " :'open -w https://track.toggl.com/timer'"))
+        , ("M1-t", spawn "ttask")
+        ]
     -- The following lines are needed for named scratchpads.
           where nonNSP          = WSIs (return (\ws -> W.tag ws /= "NSP"))
                 nonEmptyNonNSP  = WSIs (return (\ws -> isJust (W.stack ws) && W.tag ws /= "NSP"))
@@ -464,15 +464,17 @@ main :: IO ()
 main = do
     -- Launching three instances of xmobar on their monitors.
     xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/xmobar.config"
+
+
     -- the xmonad, ya know...what the WM is named after!
-    xmonad $ ewmh def
+    xmonad $ ewmh $ docks $ def
         { manageHook         = myManageHook <+> manageDocks
-        , handleEventHook    = docksEventHook
+        --, handleEventHook    = docksEventHook
                                -- Uncomment this line to enable fullscreen support on things like YouTube/Netflix.
                                -- This works perfect on SINGLE monitor systems. On multi-monitor systems,
                                -- it adds a border around the window if screen does not have focus. So, my solution
                                -- is to use a keybinding to toggle fullscreen noborders instead.  (M-<Space>)
-                              <+> fullscreenEventHook
+                               -- <+> fullscreenEventHook
         , modMask            = myModMask
         , terminal           = myTerminal
         , startupHook        = myStartupHook
@@ -481,7 +483,7 @@ main = do
         , borderWidth        = myBorderWidth
         , normalBorderColor  = myNormColor
         , focusedBorderColor = myFocusColor
-        , logHook = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
+        , logHook = dynamicLogWithPP $ filterOutWsPP [scratchpadWorkspaceTag] $ xmobarPP
               -- the following variables beginning with 'pp' are settings for xmobar.
               { ppOutput = \x -> hPutStrLn xmproc0 x                          -- xmobar on monitor 1
                             -- >> hPutStrLn xmproc1 x                          -- xmobar on monitor 2
