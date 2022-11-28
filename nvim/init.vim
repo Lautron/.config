@@ -16,9 +16,6 @@ set cursorline
 set linebreak
 set undofile
 set foldenable "Enable folding
-set foldlevelstart=10 "Open most of the folds by default. If set to 0, all folds will be closed.
-set foldnestmax=1 "Folds can be nested. Setting a max value protects you from too many folds.
-set foldmethod=syntax "Defines the type of folding.
 
 :filetype on
 
@@ -28,6 +25,8 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
+let g:ale_disable_lsp = 1
 
 call plug#begin('~/.nvim/plugged')
 Plug 'joshdick/onedark.vim'
@@ -64,6 +63,10 @@ Plug 'masukomi/vim-markdown-folding'
 Plug 'sennavanhoek/a64asm-vim'
 Plug 'chrisbra/Colorizer'
 
+Plug 'dense-analysis/ale'
+
+Plug 'yaegassy/coc-tailwindcss3', {'do': 'yarn install --frozen-lockfile'}
+
 call plug#end()
 let s:hidden_all = 1
 set noshowmode
@@ -89,7 +92,7 @@ let mapleader = " "
 let NERDTreeQuitOnOpen=1
 function! RunPython(...)
   ":silent 
-  let ex_command = "! alacritty -e fish -C 'venv &> /dev/null & echo -e \"Running %\\n\" & python % " .. join(a:000, ' ') .. "'"
+  let ex_command = "! alacritty -e fish -C 'venv &> /dev/null & echo -e \"Running %\\n\" & python % " .. join(a:000, ' ') .. "' &"
   silent  execute ex_command
 endfunction
 function! s:get_visual_selection()
@@ -110,8 +113,9 @@ function! QbOpen(engine)
   execute ex_command
 endfunction
 command! -nargs=* -complete=file RunPython call RunPython(<f-args>)
-command! -range OpenSym call QbOpen('sym')
-command! -range OpenWa call QbOpen('wa')
+command! -range OpenMath call QbOpen('sym') <bar> call QbOpen('wa')
+"command! -range OpenSym call QbOpen('sym')
+"command! -range OpenWa call QbOpen('wa')
 nmap <silent> ,/ :nohlsearch<CR>
 nmap <Leader>nt :NERDTreeFind<CR>
 nmap <Leader>rp :w <bar> :RunPython
@@ -124,19 +128,28 @@ nmap <Leader>r+ :w <bar> :! g++ -g -O2 -std=gnu++17 -static -o %< % <CR>
 nmap <Leader>c+ :w <bar> :! g++ -std=c++11 -g -O2 -Wconversion -Wshadow -Wall -Wextra -D_GLIBCXX_DEBUG -o %< % <CR>
 nmap <Leader>cl :w <bar> :!pandoc -f markdown -t latex "%" -o "%:r.pdf"<CR>
 nmap <Leader>p "+p<CR>
+vmap <Leader>y "+y<CR>
 nmap <Leader>op :!zathura '%<'.pdf&;disown<cr>:redraw!<cr>
 nmap <Leader>ot :!alacritty &;disown<cr>:redraw!<cr>
 nmap <Leader>or :!alacritty -e fish -C 'ranger' &;disown<cr>:redraw!<cr>
-vnoremap <Leader>os :OpenSym<CR>
-vnoremap <Leader>ow :OpenWa<CR>
+nmap <Leader>fmi :set foldmethod=indent<cr>
+vnoremap <Leader>om :OpenMath<CR>
+"vnoremap <Leader>os :OpenSym<CR>
+"vnoremap <Leader>ow :OpenWa<CR>
 "Image disable
-nmap <Leader>id :%s/\(<!-- \)\@<!!\[\(.*\)\?\](.*)\({.*}\)\?/<!-- \0 -->/g<cr> 
+nmap <Leader>ida :%s/\(<!-- \)\@<!!\[\(.*\)\?\](.*)\({.*}\)\?/<!-- \0 -->/g<cr> 
+nmap <Leader>idl :s/\(<!-- \)\@<!!\[\(.*\)\?\](.*)\({.*}\)\?/<!-- \0 -->/g<cr> 
 "Image enable
-nmap <Leader>ie :%s/<!-- \(!\[\](.*)\({.*}\)\?\) -->/\1/g<cr>
+nmap <Leader>iea :%s/<!-- \(!\[\](.*)\({.*}\)\?\) -->/\1/g<cr>
+nmap <Leader>iel :'<,'>s/<!-- \(!\[\](.*)\({.*}\)\?\) -->/\1/g<cr>
 source ~/.config/nvim/vimspector.vim
 source ~/.config/nvim/coc-config.vim
 
 "To paste macro do ctrl+r ctrl+r <register>
+
+" Fugitive Conflict Resolution
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>
 
 :nmap <Leader>cs :!sassc % %:r.css<CR>
 autocmd BufWritePost,FileWritePost *.scss :!sassc % %:r.css
@@ -147,3 +160,4 @@ autocmd BufRead,BufNewFile *.vimclip setfiletype vimclip
 au BufWrite *.c,*.cpp :Autoformat
 hi clear Conceal
 colorscheme onedark
+
