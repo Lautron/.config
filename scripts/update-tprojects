@@ -1,0 +1,4 @@
+#!/bin/bash
+
+toggl projects ls -f name > ~/.config/scripts/.projects
+
