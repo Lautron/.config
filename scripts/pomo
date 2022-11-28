@@ -1,32 +1,25 @@
-#!/bin/sh
+#!/sbin/sh
 
-project=$(cat ~/.config/scripts/.projects | fzf)
+project=$(cat ~/.config/scripts/.projects | fzf | xargs)
 name=$2
 breaknum=1
+workset=50
+break_duration=10
+speak_interval=10
 
 function work(){
   local total=$1
-  for ((mins=$((total-5)); mins > 0; mins=$((mins-5)))); do
-    sleep "$((mins*60))" && espeak "$((total-mins)) minutes left" &
+  for ((mins=$((total-speak_interval)); mins > 0; mins=$((mins-speak_interval)))); do
+    sleep "$((mins*60))" && espeak "$speak_interval minutes have passed" &
   done
-  toggl start -o $project $name
+  toggl start -o "$project" $name
   timer "$1m" "Work"
   toggl stop
-  espeak "Take a break"
-  timer "$((30-total))m" "Break $breaknum"
+  timer "$((break_duration))m" "Break #$breaknum"
   breaknum=$((breaknum+1))
 }
 
 for ((a=1; a <= $1; a++)); do
-  test $a -eq 1 && espeak "Start working" || espeak "Start another task"
-  work 25
-
-  if [[ $((breaknum%4)) -eq 0 ]]; then
-    espeak "Make corrections"
-    work 15
-  else
-    espeak "Start another task"
-    work 25
-  fi
+  work $workset
 done
 
