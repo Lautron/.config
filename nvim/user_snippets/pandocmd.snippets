@@ -1,13 +1,18 @@
 global !p
 import glob, time, subprocess
+
+def get_fig_num(filename):
+      regx = re.search("fig(\d+)", filename)
+      return int(regx.group(1))
+
 def get_latest_fig_num(directory):
     files = glob.glob(f"{directory}*.png")
+    result = 0
     if files:
-      latest = max(files, key=os.path.getctime)
-      regx = re.search("fig(\d+)", latest)
-      return int(regx.group(1))
-    else:
-      return 0
+      latest = max(files, key=get_fig_num)
+      result = get_fig_num(latest)
+
+    return result
 
 def get_new_fig_path(snip):
   directory = f"./{snip.basename}_figs/"
