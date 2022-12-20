@@ -1,6 +1,6 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR __fish_initialized:3100
+SETUVAR __fish_initialized:3400
 SETUVAR fish_color_autosuggestion:\x237d7d7d
 SETUVAR fish_color_cancel:b48ead
 SETUVAR fish_color_command:brcyan
@@ -30,4 +30,5 @@ SETUVAR fish_pager_color_completion:eceff4
 SETUVAR fish_pager_color_description:5e81ac
 SETUVAR fish_pager_color_prefix:ebcb8b
 SETUVAR fish_pager_color_progress:d08770
+SETUVAR fish_pager_color_selected_background:\x2dr
 SETUVAR fish_user_paths:/home/lautarob/\x2elocal/bin
