@@ -367,7 +367,7 @@ myKeys =
         -- , ("M-p p", spawn "passmenu")     -- passmenu
 
     -- KB_GROUP Useful programs to have a keybinding for launch
-        , ("M-S-<Return>", spawn (myTerminal))
+        , ("M-S-<Return>", spawn (myTerminal ++ " -e fish -C '_fzf_search_history'"))
 
     -- KB_GROUP Kill windows
         , ("M-S-c", kill1)     -- Kill the currently focused client
