@@ -67,6 +67,13 @@ Plug 'dense-analysis/ale'
 
 Plug 'yaegassy/coc-tailwindcss3', {'do': 'yarn install --frozen-lockfile'}
 
+Plug 'tweekmonster/django-plus.vim'
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+Plug 'dbeniamine/cheat.sh-vim'
+
 call plug#end()
 let s:hidden_all = 1
 set noshowmode
@@ -81,8 +88,7 @@ function! ToggleHiddenAll()
   else
     let s:hidden_all = 0
     "set showmode
-    set laststatus=2
-    set statusline=%f
+    set laststatus=2 set statusline=%f
     "set showcmd
   endif
 endfunction
@@ -142,6 +148,21 @@ nmap <Leader>idl :s/\(<!-- \)\@<!!\[\(.*\)\?\](.*)\({.*}\)\?/<!-- \0 -->/g<cr>
 "Image enable
 nmap <Leader>iea :%s/<!-- \(!\[\](.*)\({.*}\)\?\) -->/\1/g<cr>
 nmap <Leader>iel :'<,'>s/<!-- \(!\[\](.*)\({.*}\)\?\) -->/\1/g<cr>
+
+" PLUGIN: FZF
+nnoremap <silent> <Leader>fg  :GFiles<CR>
+nnoremap <silent> <Leader>ff  :Rg<CR>
+nnoremap <silent> <Leader>f'  :Marks<CR>
+nnoremap <silent> <Leader>fm  :Maps<CR>
+nnoremap <silent> <Leader>fs  :Snippets<CR>
+nnoremap <silent> <Leader>ft  :Filetypes<CR>
+nnoremap <silent> <Leader>fc  :Commands<CR>
+nnoremap <silent> <Leader>fH  :Helptags<CR>
+nnoremap <silent> <Leader>hh :History<CR>
+nnoremap <silent> <Leader>h: :History:<CR>
+"nnoremap <silent> <Leader>h/ :History/<CR>
+
+
 source ~/.config/nvim/vimspector.vim
 source ~/.config/nvim/coc-config.vim
 
