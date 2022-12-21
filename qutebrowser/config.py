@@ -243,6 +243,7 @@ c.url.searchengines = {
     "wa": "https://wolfreealpha.github.io/input?wolfree_input={}",
     "dh": "https://hub.docker.com/search?q={}",
     "gt": "https://translate.google.com/?text={}",
+    "dj": "https://docs.djangoproject.com/en/4.1/search/?q={}",
 }
 
 
