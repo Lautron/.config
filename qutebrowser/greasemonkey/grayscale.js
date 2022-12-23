@@ -6,6 +6,7 @@
 // @author       Lautaro
 // @match        https://www.reddit.com/*
 // @match        https://www.youtube.com/*
+// @match        https://web.whatsapp.com/
 // @grant        none
 // @license      MIT
 // ==/UserScript==
