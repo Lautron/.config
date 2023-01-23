@@ -112,6 +112,7 @@ myStartupHook = do
     spawnOnce "setxkbmap -option caps:none &"
     spawnOnce "sleep 20 && xmodmap ~/.Xmodmap &"
     spawnOnce "xset s 3600 3600"
+    spawnOnce "reddit_notifs &"
 
     spawnOnce "feh --randomize --bg-fill ~/.config/wallpapers &"  -- feh set random wallpaper
     spawnOnOnce (myWorkspaces !! 0) (myBrowser ++ " &")
@@ -336,6 +337,7 @@ myManageHook = composeAll
      , title =? "wttr.in"             --> centerCustomFloat 0.85 0.9 
      , title =? "vimclip"             --> vimclipFloat 0.05 0.5 0.2
      , title =? "ttask"               --> centerCustomFloat 0.7 0.7 
+     , title =? "translate"           --> centerCustomFloat 0.7 0.7 
      , isFullscreen -->  doFullFloat
      ] <+> namedScratchpadManageHook myScratchPads
      where 
@@ -367,7 +369,7 @@ myKeys =
         -- , ("M-p p", spawn "passmenu")     -- passmenu
 
     -- KB_GROUP Useful programs to have a keybinding for launch
-        , ("M-S-<Return>", spawn (myTerminal ++ " -e fish -C '_fzf_search_history'"))
+        , ("M-S-<Return>", spawn (myTerminal))
 
     -- KB_GROUP Kill windows
         , ("M-S-c", kill1)     -- Kill the currently focused client
@@ -436,12 +438,13 @@ myKeys =
         , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
         , ("<Print>", spawn "flameshot gui")
 
-        -- Custom Hotkeys
+    -- Custom Hotkeys
         --, ("M-f", spawn (myTerminal ++ " -e fish -C ranger"))
         , ("M-f", spawn (myTerminal ++ " -e fish -C 'ranger --cmd=fzf_select'"))
         , ("M-i", spawn (myTerminal ++ " -t vimclip -e vimclip"))
         , ("M-c r", spawn (myTerminal ++ " --hold -t rate.sx -e curl rate.sx"))        
         , ("M-c w", spawn (myTerminal ++ " --hold -t wttr.in -e curl wttr.in/Cordoba+capital"))        
+        , ("M-c t", spawn (myTerminal ++ " --hold -t translate -e trslt"))        
         , ("M1-x l", spawn "xmind_shortcut.sh")
         , ("M3-h", spawn "xdotool keyup h key --clearmodifiers Left")
         , ("M3-j", spawn "xdotool keyup j key --clearmodifiers Down")
