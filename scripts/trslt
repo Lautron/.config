@@ -1,0 +1,7 @@
+langs="en\nes\npt\nde"
+from=$(echo -e $langs | dmenu)
+to=$(echo -e $langs | dmenu)
+echo -n "Text to translate: "
+read text
+trans $from:$to $text
+

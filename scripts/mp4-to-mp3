@@ -1,0 +1,2 @@
+file=$1
+ffmpeg -i "$file" -q:a 0 -map a "${file%.mp4}.mp3"

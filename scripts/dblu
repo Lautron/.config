@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+import requests
+
+URL = "https://www.dolarsi.com/api/api.php?type=valoresprincipales"
+
+json = requests.get(URL).json()
+
+print()
+print(" nombre  | compra | venta")
+print("---------|--------|-------")
+
+for dolar in json[:2]:
+    nombre = dolar["casa"]["nombre"].replace("Dolar ", "")
+    compra = dolar["casa"]["compra"][:-1]
+    venta = dolar["casa"]["venta"][:-1]
+
+    print(f" {nombre:<7} |  {compra:<5} | {venta:<5}")
+
+print()
