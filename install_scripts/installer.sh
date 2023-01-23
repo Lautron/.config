@@ -1,4 +1,6 @@
 #!/bin/bash
+paru-packages="ly anki-bin zulip-desktop ncpamixer"
+pip-packages="neovim auto-editor termdown togglCli"
 # set git credentials
 git config --global user.email "laurigbach@gmail.com"
 git config --global user.name "Lautaro Bachmann"
@@ -10,8 +12,11 @@ git config --global user.name "Lautaro Bachmann"
 # compile xmonad
 xmonad --recompile
 
-# Install ly
-paru -S ly
+# install pacman packages
+pacman -S --needed - < pacman-list.txt
+
+# Install paru packages
+paru -S $paru-packages
 
 # enable ly display manager
 systemctl is-active --quiet ly.service || sudo systemctl enable ly.service 
@@ -21,5 +26,5 @@ systemctl is-active --quiet ly.service || sudo systemctl enable ly.service
 
 # Ensure pip is installed
 # install neovim python module
-[ -f ~/.local/bin/pip3 ] || python3 -m ensurepip && $(which pip3) install neovim
+[ -f ~/.local/bin/pip3 ] || python3 -m ensurepip && $(which pip3) install $pip-packages
 
