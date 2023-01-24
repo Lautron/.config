@@ -15,5 +15,6 @@
 !dmenu/
 !install_scripts/
 !scripts/
+!dunst/
   
 scripts/xmind2latex
