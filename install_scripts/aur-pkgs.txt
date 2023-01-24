@@ -1,0 +1,14 @@
+# AUR packages
+etcher-bin
+spotifywm-git
+xmonad-log
+brave-bin
+toilet
+ly
+zulip-desktop-bin
+anki-bin
+ncpamixer
+otf-font-awesome-5
+
+
+
