@@ -10,3 +10,5 @@ change `HandleLidSwitch` and `HandleLidSwitchExternalPower` to one of the follow
 - hibernate
 - suspend
 
+# Xmobar script not working, displaying "updating..."
+Forgot to add shebang line, so xmobar didn't know how to execute script
