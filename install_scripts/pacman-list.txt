@@ -6,7 +6,6 @@ ranger
 zathura
 zathura-pdf-mupdf
 calibre
-firefox
 discord
 etcher-bin
 gimp
@@ -14,11 +13,10 @@ inkscape
 obs-studio
 picom
 flameshot
-spotify
+spotify-launcher
 spotifywm-git
 telegram-desktop
 
-xmonad
 xmonad
 xmobar
 xmonad-contrib
@@ -52,4 +50,21 @@ toilet
 translate-shell
 udiskie
 unison
-paru-bin
+ly
+zulip-desktop-bin
+anki-bin
+ncpamixer
+
+xorg
+xorg-xinit
+node
+sox
+xclip
+python-pip
+mpv
+openssh
+rsync
+tree
+ttf-mononoki-nerd
+otf-font-awesome-5
+xsel
