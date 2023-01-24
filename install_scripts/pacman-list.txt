@@ -7,14 +7,12 @@ zathura
 zathura-pdf-mupdf
 calibre
 discord
-etcher-bin
 gimp
 inkscape
 obs-studio
 picom
 flameshot
 spotify-launcher
-spotifywm-git
 telegram-desktop
 
 xmonad
@@ -22,12 +20,10 @@ xmobar
 xmonad-contrib
 haskell-dbus
 xmonad-utils
-xmonad-log
 feh
 awesome-terminal-fonts
 dmenu
 
-brave-bin
 alacritty
 bat
 calcurse
@@ -35,7 +31,6 @@ clang
 docker
 docker-buildx
 dunst
-etcher-bin
 fd
 feh
 figlet
@@ -46,18 +41,13 @@ qutebrowser
 redshift
 ripgrep
 tmux
-toilet
 translate-shell
 udiskie
 unison
-ly
-zulip-desktop-bin
-anki-bin
-ncpamixer
 
 xorg
 xorg-xinit
-node
+nodejs
 sox
 xclip
 python-pip
@@ -68,3 +58,19 @@ tree
 ttf-mononoki-nerd
 otf-font-awesome-5
 xsel
+trash-cli
+
+# AUR packages
+etcher-bin
+spotifywm-git
+xmonad-log
+brave-bin
+toilet
+ly
+zulip-desktop-bin
+anki-bin
+ncpamixer
+otf-font-awesome-5
+
+
+
