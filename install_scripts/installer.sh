@@ -12,7 +12,7 @@ sudo reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 source log-status "$success"
 
 source log-status "Installing packages.."
-paru -Sy --needed --noconfirm - < pacman-list.txt
+paru -Sy --needed --noconfirm - < aur-pkgs.txt
 source log-status "$success"
 
 source log-status "Setting git credentials..."
