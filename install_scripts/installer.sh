@@ -22,9 +22,9 @@ source log-status "$success"
 
 source log-status "Setting up xmonad..."
 # create .xmonad if it does not exist
-[  ~/.xmonad ] || mkdir ~/.xmonad
+[  $HOME/.xmonad ] || mkdir $HOME/.xmonad
 # create hard link for xmonad.hs
-[ -f ~/.xmonad/xmonad.hs ] || ln ~/.config/xmonad/xmonad.hs ~/.xmonad/ 
+[ -f $HOME/.xmonad/xmonad.hs ] || ln $HOME/.config/xmonad/xmonad.hs $HOME/.xmonad/ 
 # compile xmonad
 xmonad --recompile
 source log-status "$success"
@@ -41,6 +41,6 @@ source log-status "$success"
 
 # Ensure pip is installed
 source log-status "Installing python packages..."
-[ -f ~/.local/bin/pip3 ] || python3 -m ensurepip && pip install $pip_packages
+[ -f $HOME/.local/bin/pip3 ] || python3 -m ensurepip && pip install $pip_packages
 source log-status "$success"
 
