@@ -111,8 +111,9 @@ myStartupHook = do
     spawnOnce "config_tablet_buttons.sh &"
     spawnOnce "setxkbmap -option caps:none &"
     spawnOnce "sleep 20 && xmodmap ~/.Xmodmap &"
-    spawnOnce "xset s 3600 3600"
-    spawnOnce "reddit_notifs &"
+    spawnOnce "xset s 3600 3600 &"
+    --spawnOnce "reddit_notifs &"
+    spawnOnce "xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop &"
 
     spawnOnce "feh --randomize --bg-fill ~/.config/wallpapers &"  -- feh set random wallpaper
     spawnOnOnce (myWorkspaces !! 0) (myBrowser ++ " &")
