@@ -240,7 +240,7 @@ c.url.searchengines = {
     "cpp": "https://duckduckgo.com/?sites=cppreference.com&q={}",
     "gf": "https://greasyfork.org/en/scripts?q={}",
     "sym": "https://es.symbolab.com/solver/step-by-step/{}",
-    "wa": "https://wolfreealpha.github.io/input?wolfree_input={}",
+    "wa": "https://www.wolframalpha.com/input?i={}",
     "dh": "https://hub.docker.com/search?q={}",
     "gt": "https://translate.google.com/?text={}",
     "dj": "https://docs.djangoproject.com/en/4.1/search/?q={}",
