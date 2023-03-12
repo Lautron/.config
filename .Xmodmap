@@ -1,0 +1,8 @@
+!clear Lock
+!keycode 66 = F24
+!add mod3 = F24
+clear mod4
+clear mod3
+keycode 66 = Hyper_L 
+add mod3 = Hyper_L
+add mod4 = Super_L Super_R
