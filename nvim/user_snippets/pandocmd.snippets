@@ -42,6 +42,13 @@ def build_table(text):
   beggining = "\\begin{tabular}{ |"  + "c|"*col_num + " }"
   ending = "\\end{tabular}"
   return f"{beggining}\n{content}\n{ending}"
+
+def unbuild_table(text):
+  rows = text.split("\n")
+  format_row = lambda row: "|" + row.replace(" & ", "|").replace("\\hline", "--").replace("\\\\", "") + "|"
+  content = "\n".join([format_row(row) for row in rows if "tabular" not in row and row])
+  return f"|{content}|"
+
 endglobal
 ###########################
 # Sections and Paragraphs #
@@ -659,7 +666,7 @@ snippet tabb "tabular env" bA
 \end{tabular}
 endsnippet
 
-snippet untab "tabular env" bA
+snippet untabb "tabular env" bA
 `!p snip.rv = snip.v.text.replace('& ', '').replace('\\quad ', '  ').replace('\\\\', '').replace('\\end{tabular}', '').replace('\\begin{tabular}{ l l l }', '').replace("\\_", "_")`
 endsnippet
 
@@ -740,6 +747,10 @@ endsnippet
 
 snippet table "make latex table" bA
 `!p snip.rv = build_table(snip.v.text)`
+endsnippet
+
+snippet untable "make markdown table" bA
+`!p snip.rv = unbuild_table(snip.v.text)`
 endsnippet
 
 snippet undb "underbrace" iA
@@ -825,9 +836,8 @@ snippet headers "doc headers" Ab
 ---
 title: $1
 author: ${2:Lautaro Bachmann}
+documentclass: scrartcl
 ---
-\maketitle
-\newpage
 \tableofcontents
 \newpage
 
@@ -842,5 +852,9 @@ endsnippet
 snippet np "new page"
 \newpage
 $0
+endsnippet
+
+snippet dx "derivative"
+\frac{d}{d${1:x}}$0
 endsnippet
 ## vim:ft=snippets
