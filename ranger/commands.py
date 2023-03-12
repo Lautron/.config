@@ -87,9 +87,9 @@ class fzf_select(Command):
             fd = "fd"
 
         if fd is not None:
-            exclude = "--exclude '.git' --exclude '*.py[co]' --exclude '__pycache__' --exclude 'venv' --exclude '*.build'"
-            only_directories = "--type directory" if self.quantifier else ""
-            dirs = "~/Documents/code ~/Documents/Facultad ~/Documents/books ~/.config/"
+            exclude = "--exclude '.git' --exclude '*.py[co]' --exclude '__pycache__' --exclude 'venv' --exclude '*.build' --exclude 'node_modules'"
+            only_directories = "--type directory"  # if self.quantifier else ""
+            dirs = "~/Documents/ ~/.config/ ~/Downloads/"
             fzf_default_command = f"{fd} -H {exclude} {only_directories} . {dirs}"
         else:
             hidden = (
