@@ -1,6 +1,14 @@
-langs="en\nes\npt\nde"
-from=$(echo -e $langs | dmenu)
-to=$(echo -e $langs | dmenu)
+#!/bin/bash
+
+
+echo "Translate"
+
+echo -n "From: "
+read from
+
+echo -n "To: "
+read to
+
 echo -n "Text to translate: "
 read text
 trans $from:$to $text
