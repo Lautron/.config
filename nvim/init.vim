@@ -16,6 +16,7 @@ set cursorline
 set linebreak
 set undofile
 set foldenable "Enable folding
+set expandtab
 
 :filetype on
 
@@ -73,6 +74,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 Plug 'dbeniamine/cheat.sh-vim'
+
+Plug 'apalmer1377/factorus'
+Plug 'neovimhaskell/haskell-vim'
 
 call plug#end()
 let s:hidden_all = 1
@@ -132,7 +136,7 @@ nmap <Leader>mm :w <bar> :! make<CR>
 nmap <Leader>cc :w <bar> :! gcc -Wall -Werror -Wextra -pedantic -std=c99 -g % -o %< <CR>
 nmap <Leader>r+ :w <bar> :! g++ -g -O2 -std=gnu++17 -static -o %< % <CR>
 nmap <Leader>c+ :w <bar> :! g++ -std=c++11 -g -O2 -Wconversion -Wshadow -Wall -Wextra -D_GLIBCXX_DEBUG -o %< % <CR>
-nmap <Leader>cl :w <bar> :!pandoc -f markdown -t latex "%" -o "%:r.pdf"<CR>
+nmap <Leader>cl :w <bar> :!pandoc --pdf-engine=xelatex --toc --toc-depth=4 -M documentclass=scrartcl -f markdown -t latex "%" -o "%:r.pdf"<CR>
 nmap <Leader>p "+p<CR>
 vmap <Leader>y "+y<CR>
 nmap <Leader>op :!zathura '%<'.pdf&;disown<cr>:redraw!<cr>
