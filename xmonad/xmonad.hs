@@ -149,18 +149,18 @@ spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
                    , gs_font         = myFont
                    }
 
-course1 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=810'"
-course2 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=997'"
-course3 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=967'"
-course4 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=809'"
-course5 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=960'"
+course1 = "https://famaf-nva.aulavirtual.unc.edu.ar/course/view.php?id=20'"
+course2 = "https://famaf-nva.aulavirtual.unc.edu.ar/course/view.php?id=66'"
+course3 = "https://sites.google.com/unc.edu.ar/paradigmas2023'"
+course4 = "https://famaf-nva.aulavirtual.unc.edu.ar/course/view.php?id=55'"
+--course5 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=960'"
 
 myAppGrid = [ 
-              ("SistOp (2021)", myBrowser ++ " '" ++ course1)
-            , ("SistOp", myBrowser ++ " '" ++ course2)
-            , ("IntLog", myBrowser ++ " '" ++ course3)
-            , ("IntLog (2021)", myBrowser ++ " '" ++ course4)
-            , ("PyE", myBrowser ++ " '" ++ course5)
+              ("RyS", myBrowser ++ " '" ++ course1)
+            , ("PdP", myBrowser ++ " '" ++ course2)
+            , ("PdP (Web)", myBrowser ++ " '" ++ course3)
+            , ("MD2", myBrowser ++ " '" ++ course4)
+            --, ("PyE", myBrowser ++ " '" ++ course5)
           ]
 
 myScratchPads :: [NamedScratchpad]
