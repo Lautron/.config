@@ -1,3 +1,35 @@
 {
-  "diagnostic.displayByAle": true
+  "diagnostic.displayByAle": true,
+  "languageserver": {
+    "python": {
+      "command": "python3",
+      "args": [
+        "-mpylsp"
+      ],
+      "trace.server": "verbose",
+      "filetypes": [
+        "python"
+      ],
+      "settings": {
+        "pyls": {
+        "enable": true,
+        "trace": {
+          "server": "verbose"
+        },
+        "commandPath": "",
+        "configurationSources": [
+          "pycodestyle"
+        ],
+        "plugins": {
+        }
+      }
+    }
+  },
+  "haskell": {
+      "command": "haskell-language-server-wrapper",
+      "args": ["--lsp"],
+      "rootPatterns": ["stack.yaml"],
+      "filetypes": ["haskell", "lhaskell"]
+    }
+}
 }
