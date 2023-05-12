@@ -11,6 +11,7 @@ set -x VISUAL "nvim"
 set -x BROWSER "qutebrowser"
 set -x SUDO_ASKPASS "$HOME/.config/scripts/dmenupass sudo -A dmenu"
 set -x PATH "/home/lautarob/.config/scripts" $PATH
+set -x PATH "/usr/lib/jvm/java-11-openjdk/bin" $PATH
 #pyenv
 #set -x PATH "/home/lautarob/.pyenv/bin" $PATH
 #status --is-interactive; and . (pyenv init -|psub)
@@ -52,7 +53,7 @@ else
 end
 
 # Function to go to code folder
-function cdc 
+function cdc
     set argument $argv .
     cd ~/Documents/code/$argument[1]
 end
@@ -67,11 +68,9 @@ end
 
 alias fug='nvim +Git +only'
 alias newmake='nvim makefile -c ":normal ictemp"'
-# Activate python venv
-alias venv='source venv/bin/activate.fish'
 
 # navigation
-alias ..='cd ..' 
+alias ..='cd ..'
 alias ...='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
@@ -94,3 +93,8 @@ alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 # the terminal rickroll
 alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
 
+function venv
+    if test -d "venv"
+        source venv/bin/activate.fish
+    end
+end
