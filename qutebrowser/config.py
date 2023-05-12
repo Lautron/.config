@@ -244,6 +244,7 @@ c.url.searchengines = {
     "dh": "https://hub.docker.com/search?q={}",
     "gt": "https://translate.google.com/?text={}",
     "dj": "https://docs.djangoproject.com/en/4.1/search/?q={}",
+    "gh": "https://github.com/search?q={}",
 }
 
 
