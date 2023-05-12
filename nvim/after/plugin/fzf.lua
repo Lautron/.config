@@ -1,0 +1,11 @@
+
+vim.keymap.set('n', '<Leader>fg', ':GFiles<CR>', { silent = true })
+vim.keymap.set('n', '<Leader>ff', ':Rg<CR>', { silent = true })
+vim.keymap.set('n', '<Leader>f\'', ':Marks<CR>', { silent = true })
+vim.keymap.set('n', '<Leader>fm', ':Maps<CR>', { silent = true })
+vim.keymap.set('n', '<Leader>fs', ':Snippets<CR>', { silent = true })
+vim.keymap.set('n', '<Leader>ft', ':Filetypes<CR>', { silent = true })
+vim.keymap.set('n', '<Leader>fc', ':Commands<CR>', { silent = true })
+vim.keymap.set('n', '<Leader>fH', ':Helptags<CR>', { silent = true })
+vim.keymap.set('n', '<Leader>hh', ':History<CR>', { silent = true })
+vim.keymap.set('n', '<Leader>h:', ':History:<CR>', { silent = true })
