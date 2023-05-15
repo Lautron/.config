@@ -84,6 +84,28 @@ return require('packer').startup(function(use)
     use('dhruvasagar/vim-table-mode')
     use('CRAG666/code_runner.nvim')
     use('junegunn/fzf.vim')
+    use {
+      "zbirenbaum/copilot.lua",
+      cmd = "Copilot",
+      event = "InsertEnter",
+      config = function()
+        require("copilot").setup({
+            filetypes={
+                markdown=true,
+            },
+            suggestion = { enabled = false },
+            panel = { enabled = false },
+        })
+      end,
+    }
+
+    use {
+      "zbirenbaum/copilot-cmp",
+      after = { "copilot.lua" },
+      config = function ()
+        require("copilot_cmp").setup()
+      end
+    }
     -- TODO https://github.com/CRAG666/code_runner.nvim
     -- TODO vim-surround
     -- TODO treeSJ
