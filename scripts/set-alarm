@@ -1,0 +1,8 @@
+#!/bin/bash
+hour=$1
+comment=$2
+
+echo "notify-send $comment && alarm.sh 3" | at $hour &> /dev/null
+
+# Send notification
+notify-send "Task scheduled" "$comment will be executed at $hour"
