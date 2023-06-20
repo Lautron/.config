@@ -114,9 +114,10 @@ myStartupHook = do
     spawnOnce "xset s 3600 3600 &"
     --spawnOnce "reddit_notifs &"
     spawnOnce "xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop &"
+    spawnOnce "alarms.sh &"
 
     spawnOnce "feh --randomize --bg-fill ~/.config/wallpapers &"  -- feh set random wallpaper
-    spawnOnOnce (myWorkspaces !! 0) (myBrowser ++ " &")
+    --spawnOnOnce (myWorkspaces !! 0) (myBrowser ++ " &")
     setWMName "LG3D"
 
 myColorizer :: Window -> Bool -> X (String, String)
@@ -155,7 +156,7 @@ course3 = "https://sites.google.com/unc.edu.ar/paradigmas2023'"
 course4 = "https://famaf-nva.aulavirtual.unc.edu.ar/course/view.php?id=55'"
 --course5 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=960'"
 
-myAppGrid = [ 
+myAppGrid = [
               ("RyS", myBrowser ++ " '" ++ course1)
             , ("PdP", myBrowser ++ " '" ++ course2)
             , ("PdP (Web)", myBrowser ++ " '" ++ course3)
@@ -177,7 +178,7 @@ myScratchPads = [ NS "spotify" spawnSpotify findSpotify manageSpotify
               --   h = 0.9
               --   w = 0.9
               --   t = 0.95 -h
-              --   l = 0.95 -w 
+              --   l = 0.95 -w
     spawnCalc  = "qalculate-gtk"
     findCalc   = className =? "Qalculate-gtk"
     manageCalc = customFloating $ W.RationalRect l t w h
@@ -195,7 +196,7 @@ myScratchPads = [ NS "spotify" spawnSpotify findSpotify manageSpotify
     --             h = 0.95
     --             w = 0.98
     --             t = 1 -h
-    --             l = 1 -w 
+    --             l = 1 -w
 
 --Makes setting the spacingRaw simpler to write. The spacingRaw module adds a configurable amount of space around windows.
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
@@ -334,14 +335,14 @@ myManageHook = composeAll
      , className =? "splash"          --> doFloat
      , className =? "toolbar"         --> doFloat
      , className =? "Yad"             --> doCenterFloat
-     , title =? "rate.sx"             --> centerCustomFloat 0.7 0.7 
-     , title =? "wttr.in"             --> centerCustomFloat 0.85 0.9 
+     , title =? "rate.sx"             --> centerCustomFloat 0.7 0.7
+     , title =? "wttr.in"             --> centerCustomFloat 0.85 0.9
      , title =? "vimclip"             --> vimclipFloat 0.05 0.5 0.2
-     , title =? "ttask"               --> centerCustomFloat 0.7 0.7 
-     , title =? "translate"           --> centerCustomFloat 0.7 0.7 
+     , title =? "ttask"               --> centerCustomFloat 0.7 0.7
+     , title =? "translate"           --> centerCustomFloat 0.7 0.7
      , isFullscreen -->  doFullFloat
      ] <+> namedScratchpadManageHook myScratchPads
-     where 
+     where
        centerCustomFloat w h = customFloating $ W.RationalRect l t w h
         where
           l = (1 - w)/2
@@ -443,9 +444,9 @@ myKeys =
         --, ("M-f", spawn (myTerminal ++ " -e fish -C ranger"))
         , ("M-f", spawn (myTerminal ++ " -e fish -C 'ranger --cmd=fzf_select'"))
         , ("M-i", spawn (myTerminal ++ " -t vimclip -e vimclip"))
-        , ("M-c r", spawn (myTerminal ++ " --hold -t rate.sx -e curl rate.sx"))        
-        , ("M-c w", spawn (myTerminal ++ " --hold -t wttr.in -e curl wttr.in/Cordoba+capital"))        
-        , ("M-c t", spawn (myTerminal ++ " --hold -t translate -e trslt"))        
+        , ("M-c r", spawn (myTerminal ++ " --hold -t rate.sx -e curl rate.sx"))
+        , ("M-c w", spawn (myTerminal ++ " --hold -t wttr.in -e curl wttr.in/Cordoba+capital"))
+        , ("M-c t", spawn (myTerminal ++ " --hold -t translate -e trslt"))
         , ("M1-x l", spawn "xmind_shortcut.sh")
         , ("M3-h", spawn "xdotool keyup h key --clearmodifiers Left")
         , ("M3-j", spawn "xdotool keyup j key --clearmodifiers Down")
