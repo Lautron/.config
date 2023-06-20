@@ -229,7 +229,7 @@ c.url.start_pages = startpage
 # qutebrowser`.
 # Type: Dict
 c.url.searchengines = {
-    "DEFAULT": "https://search.brave.com/search?q={}&source=web",
+    "DEFAULT": "https://www.google.com/search?q={}",
     "aw": "https://wiki.archlinux.org/?search={}",
     "r": "https://www.reddit.com/r/{}",
     "wiki": "https://en.wikipedia.org/wiki/{}",
