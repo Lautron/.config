@@ -47,14 +47,21 @@ return require('packer').startup(function(use)
 
     use {
         'VonHeikemen/lsp-zero.nvim',
-        branch = 'v1.x',
+        branch = 'v2.x',
         requires = {
-            -- LSP Support
-            { 'neovim/nvim-lspconfig' },
-            { 'williamboman/mason.nvim' },
-            { 'williamboman/mason-lspconfig.nvim' },
+          -- LSP Support
+          {'neovim/nvim-lspconfig'},             -- Required
+          {                                      -- Optional
+            'williamboman/mason.nvim',
+          },
+          {'williamboman/mason-lspconfig.nvim'}, -- Optional
+
+          -- Autocompletion
+          {'hrsh7th/nvim-cmp'},     -- Required
+          {'hrsh7th/cmp-nvim-lsp'}, -- Required
+          {'L3MON4D3/LuaSnip'},     -- Required
         }
-    }
+      }
 
     use("folke/zen-mode.nvim")
     use("eandrju/cellular-automaton.nvim")
@@ -83,7 +90,10 @@ return require('packer').startup(function(use)
 
     use('dhruvasagar/vim-table-mode')
     use('CRAG666/code_runner.nvim')
-    use('junegunn/fzf.vim')
+    use {
+        'nvim-telescope/telescope.nvim', tag = '0.1.1',
+        requires = { {'nvim-lua/plenary.nvim'} }
+    }
     use {
       "zbirenbaum/copilot.lua",
       cmd = "Copilot",
@@ -106,7 +116,8 @@ return require('packer').startup(function(use)
         require("copilot_cmp").setup()
       end
     }
-    -- TODO https://github.com/CRAG666/code_runner.nvim
-    -- TODO vim-surround
-    -- TODO treeSJ
+    -- TODO https://github.com/tpope/vim-surround
+    -- TODO https://github.com/Wansmer/treesj
+    -- TODO https://github.com/nvim-tree/nvim-tree.lua
+    -- TODO https://github.com/phaazon/hop.nvim
 end)
