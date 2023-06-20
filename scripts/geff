@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Minimum and maximum wait times in seconds
+min_wait_time=60
+max_wait_time=300
+sound_file="~/.config/scripts/sound.mp3"
+
+while true; do
+  # Generate a random sleep time between the minimum and maximum wait times
+  sleep_duration=$(( (RANDOM % (max_wait_time - min_wait_time + 1)) + min_wait_time ))
+
+  sleep $sleep_duration
+  echo "Slept $sleep_duration seconds"
+
+  play -q $sound_file
+  sleep 10
+  espeak "Done"
+done
