@@ -150,6 +150,12 @@ config.set(
     "https://drive.google.com/*",
 )
 
+# Bing user agent
+config.set(
+    "content.headers.user_agent",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.58",
+    "https://www.bing.com/*",
+)
 # Load images automatically in web pages.
 # Type: Bool
 config.set("content.images", True, "chrome-devtools://*")
