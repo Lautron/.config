@@ -150,18 +150,13 @@ spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
                    , gs_font         = myFont
                    }
 
-course1 = "https://famaf-nva.aulavirtual.unc.edu.ar/course/view.php?id=20'"
-course2 = "https://famaf-nva.aulavirtual.unc.edu.ar/course/view.php?id=66'"
-course3 = "https://sites.google.com/unc.edu.ar/paradigmas2023'"
-course4 = "https://famaf-nva.aulavirtual.unc.edu.ar/course/view.php?id=55'"
---course5 = "https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=960'"
-
 myAppGrid = [
-              ("RyS", myBrowser ++ " '" ++ course1)
-            , ("PdP", myBrowser ++ " '" ++ course2)
-            , ("PdP (Web)", myBrowser ++ " '" ++ course3)
-            , ("MD2", myBrowser ++ " '" ++ course4)
-            --, ("PyE", myBrowser ++ " '" ++ course5)
+              ("IS1 2022", myBrowser ++ " 'https://famaf-consultas.aulavirtual.unc.edu.ar/course/view.php?id=995'")
+              ,("AdC 2022", myBrowser ++ " 'https://famaf-consultas.aulavirtual.unc.edu.ar/course/view.php?id=1023'")
+              ,("BBDD 2022", myBrowser ++ " 'https://famaf-consultas.aulavirtual.unc.edu.ar/course/view.php?id=998'")
+              ,("IS1", myBrowser ++ " 'https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=179'")
+              ,("AdC", myBrowser ++ " 'https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=176'")
+              ,("BBDD", myBrowser ++ " 'https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=187'")
           ]
 
 myScratchPads :: [NamedScratchpad]
@@ -442,7 +437,7 @@ myKeys =
 
     -- Custom Hotkeys
         --, ("M-f", spawn (myTerminal ++ " -e fish -C ranger"))
-        , ("M-f", spawn (myTerminal ++ " -e fish -C 'ranger --cmd=fzf_select'"))
+        , ("M-f", spawn (myTerminal ++ " -e fish -C 'lfub'"))
         , ("M-i", spawn (myTerminal ++ " -t vimclip -e vimclip"))
         , ("M-c r", spawn (myTerminal ++ " --hold -t rate.sx -e curl rate.sx"))
         , ("M-c w", spawn (myTerminal ++ " --hold -t wttr.in -e curl wttr.in/Cordoba+capital"))
