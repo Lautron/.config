@@ -58,5 +58,13 @@ vim.keymap.set('n', '<Leader>or', ":!alacritty -e fish -C 'ranger' &;disown<cr>:
 
 -- compile markdown to PDF using pandoc
 vim.keymap.set('n', '<Leader>cl', ":w <bar> :!pandoc --toc --toc-depth=4 -f markdown -t latex '%' -o '%:r.pdf'<CR>", { silent = true, noremap = true })
+vim.keymap.set('n', '<Leader>mm', ":!markmap '%' -o /tmp/markmap.html && qutebrowser /tmp/markmap.html<CR>", { silent = true, noremap = true })
 
 vim.keymap.set('n', '<Leader>q', ":q<CR>", { silent = true, noremap = true })
+vim.keymap.set('n', '<Leader>so', ":so $MYVIMRC<CR>", { silent = true, noremap = true })
+
+vim.keymap.set('n', '<leader>at', '<cmd>AerialToggle<CR>')
+vim.keymap.set('n', '<leader>an', '<cmd>AerialNavToggle<CR>')
+vim.keymap.set('n', '<leader>fmi', ':set foldmethod=indent<cr>')
+vim.keymap.set('n', '<leader>fmi', ':set foldmethod=indent<cr>')
+vim.keymap.set('n', ',/', ":nohlsearch<CR>", { silent = true })
