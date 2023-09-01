@@ -9,10 +9,13 @@ return require('packer').startup(function(use)
 
     use('nvim-lua/plenary.nvim')
     use({
-        'joshdick/onedark.vim',
-        as = 'onedark',
+        'navarasu/onedark.nvim',
         config = function()
-            vim.cmd('colorscheme onedark')
+            local onedark = require('onedark')
+            onedark.setup {
+                style = 'cool'
+            }
+            onedark.load()
         end
     })
 
@@ -57,36 +60,43 @@ return require('packer').startup(function(use)
           {'williamboman/mason-lspconfig.nvim'}, -- Optional
 
           -- Autocompletion
-          {'hrsh7th/nvim-cmp'},     -- Required
-          {'hrsh7th/cmp-nvim-lsp'}, -- Required
-          {'L3MON4D3/LuaSnip'},     -- Required
+		  {'hrsh7th/nvim-cmp'},
+		  {'hrsh7th/cmp-buffer'},
+		  {'hrsh7th/cmp-path'},
+		  {'saadparwaiz1/cmp_luasnip'},
+		  {'hrsh7th/cmp-nvim-lsp'},
+		  {'hrsh7th/cmp-nvim-lua'},
+
+		  -- Snippets
+		  {'L3MON4D3/LuaSnip'},
         }
       }
 
     use("folke/zen-mode.nvim")
     use("eandrju/cellular-automaton.nvim")
-    use { 'SirVer/ultisnips',
-        requires = { { 'honza/vim-snippets', rtp = '.' } },
-        --config = function()
-        --    vim.g.UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'
-        --    vim.g.UltiSnipsJumpForwardTrigger = '<Plug>(ultisnips_jump_forward)'
-        --    vim.g.UltiSnipsJumpBackwardTrigger = '<Plug>(ultisnips_jump_backward)'
-        --    vim.g.UltiSnipsListSnippets = '<c-x><c-s>'
-        --    vim.g.UltiSnipsRemoveSelectModeMappings = 0
-        --end
-    }
+    --use { 'SirVer/ultisnips',
+    --    requires = { { 'honza/vim-snippets', rtp = '.' } },
+    --    --config = function()
+    --    --    vim.g.UltiSnipsJumpForwardTrigger="<tab>"
+    --    ----    vim.g.UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'
+    --    ----    vim.g.UltiSnipsJumpForwardTrigger = '<Plug>(ultisnips_jump_forward)'
+    --    ----    vim.g.UltiSnipsJumpBackwardTrigger = '<Plug>(ultisnips_jump_backward)'
+    --    ----    vim.g.UltiSnipsListSnippets = '<c-x><c-s>'
+    --    ----    vim.g.UltiSnipsRemoveSelectModeMappings = 0
+    --    --end
+    --}
 
-    use({
-        "hrsh7th/nvim-cmp",
-        requires = {
-            {"quangnguyen30192/cmp-nvim-ultisnips"},
-            { 'hrsh7th/cmp-buffer' },
-            { 'hrsh7th/cmp-path' },
-            { 'saadparwaiz1/cmp_luasnip' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/cmp-nvim-lua' },
-        },
-    })
+    --use({
+    --    "hrsh7th/nvim-cmp",
+    --    requires = {
+    --        {"quangnguyen30192/cmp-nvim-ultisnips"},
+    --        { 'hrsh7th/cmp-buffer' },
+    --        { 'hrsh7th/cmp-path' },
+    --        { 'saadparwaiz1/cmp_luasnip' },
+    --        { 'hrsh7th/cmp-nvim-lsp' },
+    --        { 'hrsh7th/cmp-nvim-lua' },
+    --    },
+    --})
 
     use('dhruvasagar/vim-table-mode')
     use('CRAG666/code_runner.nvim')
@@ -94,30 +104,81 @@ return require('packer').startup(function(use)
         'nvim-telescope/telescope.nvim', tag = '0.1.1',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
+
+    -- https://github.com/Wansmer/treesj
+    use({
+      'Wansmer/treesj',
+      requires = { 'nvim-treesitter' },
+    })
+
+    -- https://github.com/nvim-tree/nvim-tree.lua
     use {
-      "zbirenbaum/copilot.lua",
-      cmd = "Copilot",
-      event = "InsertEnter",
-      config = function()
-        require("copilot").setup({
-            filetypes={
-                markdown=true,
-            },
-            suggestion = { enabled = false },
-            panel = { enabled = false },
-        })
-      end,
+      'nvim-tree/nvim-tree.lua',
+      requires = {
+        'nvim-tree/nvim-web-devicons', -- optional
+      },
+    }
+
+    -- https://github.com/kylechui/nvim-surround
+    use({
+        "kylechui/nvim-surround",
+        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+        config = function()
+            require("nvim-surround").setup({
+                -- Configuration here, or leave empty to use defaults
+            })
+        end
+    })
+
+    -- https://github.com/stevearc/aerial.nvim
+    use {
+      'stevearc/aerial.nvim',
+      config = function() require('aerial').setup({
+          -- optionally use on_attach to set keymaps when aerial has attached to a buffer
+          on_attach = function(bufnr)
+              vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', {buffer = bufnr})
+              vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', {buffer = bufnr})
+          end,
+          manage_folds = true,
+      }) end
+    }
+    -- https://github.com/numToStr/Comment.nvim
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
+
+    -- https://github.com/ggandor/leap.nvim
+    use {
+        'ggandor/leap.nvim',
+        config = function()
+            require('leap').add_default_mappings()
+        end
+    }
+
+    -- https://github.com/lewis6991/gitsigns.nvim
+    use {
+        'lewis6991/gitsigns.nvim',
+        config = function()
+            require('gitsigns').setup()
+        end
+    }
+
+    -- optional https://github.com/kevinhwang91/nvim-bqf
+    use{
+        'anuvyklack/pretty-fold.nvim',
+        config = function()
+            require('pretty-fold').setup()
+        end
     }
 
     use {
-      "zbirenbaum/copilot-cmp",
-      after = { "copilot.lua" },
-      config = function ()
-        require("copilot_cmp").setup()
-      end
+        'https://github.com/milisims/foldhue.nvim',
+        config = function()
+            require('foldhue').enable()
+        end
     }
-    -- TODO https://github.com/tpope/vim-surround
-    -- TODO https://github.com/Wansmer/treesj
-    -- TODO https://github.com/nvim-tree/nvim-tree.lua
-    -- TODO https://github.com/phaazon/hop.nvim
+
 end)
