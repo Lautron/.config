@@ -57,10 +57,6 @@ function cdc
     set argument $argv .
     cd ~/Documents/code/$argument[1]
 end
-# Function to change screen brightness
-function dbright
-    redshift -P -O 3000 -b $argv
-end
 
 function lolban
     toilet -f pagga $argv | lolcat
