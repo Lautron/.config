@@ -16,5 +16,6 @@
 !install_scripts/
 !scripts/
 !dunst/
-  
+!lf/
+
 scripts/xmind2latex
