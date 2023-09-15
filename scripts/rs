@@ -1,0 +1,2 @@
+redshift -P -O 3000 -b $1
+

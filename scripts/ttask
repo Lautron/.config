@@ -1,6 +1,6 @@
 #!/bin/sh
 
-project=$(cat ~/.config/scripts/.projects | sed -r 's/(^\s|\s+$)//g' | dmenu -i)
-description=$(echo "" | dmenu -p 'Task Description: ' -i) 
-toggl start -o "$project" "$description"
-tstatus
+#project=$(cat ~/.config/scripts/.projects | sed -r 's/(^\s|\s+$)//g' | dmenu -i)
+#description=$(echo "" | dmenu -p 'Task Description: ' -i)
+#toggl start -o "$project" "$description"
+#tstatus

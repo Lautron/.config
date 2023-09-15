@@ -1,0 +1,9 @@
+#!/bin/bash
+
+for video in *.mp4 ; do
+    if [[ $video == *"ALTERED"* ]]; then
+        continue
+    fi
+    echo "Trimming $video"
+    auto-editor "$video" --frame-margin 3
+done
