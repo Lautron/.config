@@ -5,10 +5,9 @@ require('code_runner').setup({
         go = "go run $file"
     },
     project = {
-        ["/home/lautarob/Documents/code/clients/pejnozord/bbc/java"] = {
-           name = "Java WS",
-           description = "Java Web scraping",
-           command = "make"
+        ["/home/lautarob/Documents/Facultad/año3/IS1/proyecto/code/back"] = {
+           name = "LaCosa",
+           command = "venv; pytest -s"
         },
     }
 })
