@@ -140,14 +140,13 @@ cmd restore_trash ${{
 # Bindings
 # Remove some defaults
 map m
-map o
-map n
-map "'"
-map '"'
+#map o
+#map n
+#map "'"
+#map '"'
 map d
 map c
 map e
-map f
 
 # File Openers
 map ee $$EDITOR "$f"
@@ -165,7 +164,6 @@ map DD trash
 map tr restore_trash
 
 # Broot Mapping
-map f broot_jump
 
 # Dragon Mapping
 map dr dragon
@@ -190,11 +188,13 @@ map C clear
 map U unselect
 
 map g. :cd ~/.config; fzf_folders
-map gd :cd ~/Downloads; fzf_jump
+map gd :cd ~/Downloads; set reverse true; set sortby time; set info time
 map gf :cd ~/Documents/Facultad; fzf_folders
 map gc :cd ~/Documents/code; fzf_folders
+map gb :cd ~/Documents/books; fzf_folders
 
 map st :set reverse true; set sortby time; set info time
 map sa :set reverse true; set sortby atime; set info atime
 map sc :set reverse true; set sortby ctime; set info ctime
-# Movement
+
+map S $fish
