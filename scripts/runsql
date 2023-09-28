@@ -3,4 +3,3 @@
 IP=$(sudo docker inspect --format  '{{ .NetworkSettings.IPAddress }}' mysql-labs)
 
 mycli --host $IP -u root -p admin
-mycli --host $IP -u root -p admin -e "drop database world;"

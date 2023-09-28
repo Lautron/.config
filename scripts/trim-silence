@@ -5,5 +5,5 @@ for video in *.mp4 ; do
         continue
     fi
     echo "Trimming $video"
-    auto-editor "$video" --frame-margin 3
+    auto-editor "$video" --frame-margin 3 --no-open
 done

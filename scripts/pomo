@@ -1,20 +1,21 @@
 #!/sbin/sh
 
-project=$(cat ~/.config/scripts/.projects | fzf | xargs)
-name=$2
 breaknum=1
-workset=50
-break_duration=10
-speak_interval=10
+workset=25
+break_duration=5
+speak_interval=5
+
+function notify() {
+    dunstify "$1"
+  ( speaker-test -t sine -f 1000  > /dev/null 2>&1 )& pid=$! ; sleep 0.5s ; kill -9 $pid > /dev/null 2>&1
+}
 
 function work(){
   local total=$1
   for ((mins=$((total-speak_interval)); mins > 0; mins=$((mins-speak_interval)))); do
-    sleep "$((mins*60))" && espeak "$speak_interval minutes have passed" &
+    sleep "$((mins*60))" && notify "$speak_interval minutes have passed" &
   done
-  toggl start -o "$project" $name
   timer "$1m" "Work"
-  toggl stop
   timer "$((break_duration))m" "Break #$breaknum"
   breaknum=$((breaknum+1))
 }
