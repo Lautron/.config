@@ -68,3 +68,5 @@ vim.keymap.set('n', '<leader>an', '<cmd>AerialNavToggle<CR>')
 vim.keymap.set('n', '<leader>fmi', ':set foldmethod=indent<cr>')
 vim.keymap.set('n', '<leader>fmi', ':set foldmethod=indent<cr>')
 vim.keymap.set('n', ',/', ":nohlsearch<CR>", { silent = true })
+
+vim.keymap.set("x", "<leader>re", ":Refactor extract<cr>")
