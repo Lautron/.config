@@ -112,7 +112,7 @@ myStartupHook = do
     spawnOnce "setxkbmap -option caps:none &"
     spawnOnce "sleep 20 && xmodmap ~/.Xmodmap &"
     spawnOnce "xset s 3600 3600 &"
-    --spawnOnce "reddit_notifs &"
+    spawnOnce "reddit_notifs &"
     spawnOnce "xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop &"
     spawnOnce "alarms.sh &"
 
@@ -437,7 +437,7 @@ myKeys =
 
     -- Custom Hotkeys
         --, ("M-f", spawn (myTerminal ++ " -e fish -C ranger"))
-        , ("M-f", spawn (myTerminal ++ " -e fish -C 'lfub'"))
+        , ("M-f", spawn (myTerminal ++ " -e fish -C 'lf'"))
         , ("M-i", spawn (myTerminal ++ " -t vimclip -e vimclip"))
         , ("M-c r", spawn (myTerminal ++ " --hold -t rate.sx -e curl rate.sx"))
         , ("M-c w", spawn (myTerminal ++ " --hold -t wttr.in -e curl wttr.in/Cordoba+capital"))
