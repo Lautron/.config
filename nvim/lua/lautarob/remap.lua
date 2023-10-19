@@ -69,4 +69,12 @@ vim.keymap.set('n', '<leader>fmi', ':set foldmethod=indent<cr>')
 vim.keymap.set('n', '<leader>fmi', ':set foldmethod=indent<cr>')
 vim.keymap.set('n', ',/', ":nohlsearch<CR>", { silent = true })
 
-vim.keymap.set("x", "<leader>re", ":Refactor extract<cr>")
+vim.keymap.set('n', 'gdh', ":diffget //2<CR>", { silent = true })
+vim.keymap.set('n', 'gdl', ":diffget //3<CR>", { silent = true })
+
+vim.keymap.set('n', '<leader>o', ":only<CR>", { silent = true })
+vim.keymap.set('x', "<leader>re", ":Refactor extract<cr>")
+
+vim.keymap.set('n', "<leader>sj", ":lua require('treesj').toggle()<cr>")
+
+

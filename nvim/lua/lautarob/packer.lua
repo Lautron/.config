@@ -43,10 +43,10 @@ return require('packer').startup(function(use)
     }
     use("nvim-treesitter/playground")
     use("theprimeagen/harpoon")
-    use{
+    use {
         "theprimeagen/refactoring.nvim",
         config = function()
-          require("refactoring").setup()
+            require("refactoring").setup()
         end,
     };
     use("mbbill/undotree")
@@ -57,25 +57,25 @@ return require('packer').startup(function(use)
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v2.x',
         requires = {
-          -- LSP Support
-          {'neovim/nvim-lspconfig'},             -- Required
-          {                                      -- Optional
-            'williamboman/mason.nvim',
-          },
-          {'williamboman/mason-lspconfig.nvim'}, -- Optional
+            -- LSP Support
+            { 'neovim/nvim-lspconfig' }, -- Required
+            {                            -- Optional
+                'williamboman/mason.nvim',
+            },
+            { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
-          -- Autocompletion
-		  {'hrsh7th/nvim-cmp'},
-		  {'hrsh7th/cmp-buffer'},
-		  {'hrsh7th/cmp-path'},
-		  {'saadparwaiz1/cmp_luasnip'},
-		  {'hrsh7th/cmp-nvim-lsp'},
-		  {'hrsh7th/cmp-nvim-lua'},
+            -- Autocompletion
+            { 'hrsh7th/nvim-cmp' },
+            { 'hrsh7th/cmp-buffer' },
+            { 'hrsh7th/cmp-path' },
+            { 'saadparwaiz1/cmp_luasnip' },
+            { 'hrsh7th/cmp-nvim-lsp' },
+            { 'hrsh7th/cmp-nvim-lua' },
 
-		  -- Snippets
-		  {'L3MON4D3/LuaSnip'},
+            -- Snippets
+            { 'L3MON4D3/LuaSnip' },
         }
-      }
+    }
 
     use("folke/zen-mode.nvim")
     use("eandrju/cellular-automaton.nvim")
@@ -107,21 +107,21 @@ return require('packer').startup(function(use)
     use('CRAG666/code_runner.nvim')
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.1',
-        requires = { {'nvim-lua/plenary.nvim'} }
+        requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
     -- https://github.com/Wansmer/treesj
     use({
-      'Wansmer/treesj',
-      requires = { 'nvim-treesitter' },
+        'Wansmer/treesj',
+        requires = { 'nvim-treesitter' },
     })
 
     -- https://github.com/nvim-tree/nvim-tree.lua
     use {
-      'nvim-tree/nvim-tree.lua',
-      requires = {
-        'nvim-tree/nvim-web-devicons', -- optional
-      },
+        'nvim-tree/nvim-tree.lua',
+        requires = {
+            'nvim-tree/nvim-web-devicons', -- optional
+        },
     }
 
     -- https://github.com/kylechui/nvim-surround
@@ -137,15 +137,17 @@ return require('packer').startup(function(use)
 
     -- https://github.com/stevearc/aerial.nvim
     use {
-      'stevearc/aerial.nvim',
-      config = function() require('aerial').setup({
-          -- optionally use on_attach to set keymaps when aerial has attached to a buffer
-          on_attach = function(bufnr)
-              vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', {buffer = bufnr})
-              vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', {buffer = bufnr})
-          end,
-          manage_folds = true,
-      }) end
+        'stevearc/aerial.nvim',
+        config = function()
+            require('aerial').setup({
+                -- optionally use on_attach to set keymaps when aerial has attached to a buffer
+                on_attach = function(bufnr)
+                    vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
+                    vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
+                end,
+                manage_folds = true,
+            })
+        end
     }
     -- https://github.com/numToStr/Comment.nvim
     use {
@@ -172,7 +174,7 @@ return require('packer').startup(function(use)
     }
 
     -- optional https://github.com/kevinhwang91/nvim-bqf
-    use{
+    use {
         'anuvyklack/pretty-fold.nvim',
         config = function()
             require('pretty-fold').setup()
@@ -185,5 +187,30 @@ return require('packer').startup(function(use)
             require('foldhue').enable()
         end
     }
+    use {
+        "zbirenbaum/copilot.lua",
+        cmd = "Copilot",
+        event = "InsertEnter",
+        config = function()
+            require("copilot").setup({
+                suggestion = { enabled = false },
+                panel = { enabled = false },
+            })
+        end,
+    }
 
+    use {
+        "zbirenbaum/copilot-cmp",
+        after = { "copilot.lua" },
+        config = function()
+            require("copilot_cmp").setup()
+        end
+    }
+    use {
+        'Wansmer/treesj',
+        requires = { 'nvim-treesitter/nvim-treesitter' },
+        config = function()
+            require('treesj').setup()
+        end,
+    }
 end)
