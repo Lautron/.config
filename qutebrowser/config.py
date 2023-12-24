@@ -156,6 +156,11 @@ config.set(
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.58",
     "https://www.bing.com/*",
 )
+config.set(
+    "content.headers.user_agent",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
+    "https://chat.openai.com/*",
+)
 # Load images automatically in web pages.
 # Type: Bool
 config.set("content.images", True, "chrome-devtools://*")
