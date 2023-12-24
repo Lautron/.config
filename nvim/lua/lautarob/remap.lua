@@ -74,6 +74,7 @@ vim.keymap.set('n', 'gdl', ":diffget //3<CR>", { silent = true })
 
 vim.keymap.set('n', '<leader>o', ":only<CR>", { silent = true })
 vim.keymap.set('x', "<leader>re", ":Refactor extract<cr>")
+vim.keymap.set('x', "<leader>rv", ":Refactor extract_var<cr>")
 
 vim.keymap.set('n', "<leader>sj", ":lua require('treesj').toggle()<cr>")
 
