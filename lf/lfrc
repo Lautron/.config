@@ -27,7 +27,7 @@ set previewer '~/.config/lf/scope'
 
 # Custom Functions
 cmd open &{{
-    xdg-open "$f"
+    set -f; rifle -p 0 $fx
 }}
 
 cmd mkdir ${{
@@ -140,6 +140,7 @@ cmd restore_trash ${{
 # Bindings
 # Remove some defaults
 map m
+map /
 #map o
 #map n
 #map "'"
@@ -198,3 +199,6 @@ map sa :set reverse true; set sortby atime; set info atime
 map sc :set reverse true; set sortby ctime; set info ctime
 
 map S $fish
+map / fzf_jump
+
+map br $vimv $fx
