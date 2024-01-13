@@ -1,5 +1,6 @@
 require("lautarob.set")
 require("lautarob.remap")
+require("lautarob.commands")
 
 -- DO NOT INCLUDE THIS
 vim.opt.rtp:append("~/personal/streamer-tools")
