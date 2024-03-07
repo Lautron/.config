@@ -8,7 +8,7 @@ end
 
 set -x EDITOR "nvim"
 set -x VISUAL "nvim"
-set -x BROWSER "qutebrowser"
+set -x BROWSER "thorium-browser"
 set -x SUDO_ASKPASS "$HOME/.config/scripts/dmenupass sudo -A dmenu"
 set -x PATH "/home/lautarob/.config/scripts" $PATH
 set -x PATH "/usr/lib/jvm/java-11-openjdk/bin" $PATH
@@ -63,6 +63,7 @@ function lolban
 end
 
 alias fug='nvim +Git +only'
+alias ff="nvim +'Telescope find_files'"
 alias newmake='nvim makefile -c ":normal ictemp"'
 
 # navigation
