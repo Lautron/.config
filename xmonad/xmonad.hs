@@ -78,7 +78,7 @@ myTerminal :: String
 myTerminal = "alacritty"    -- Sets default terminal
 
 myBrowser :: String
-myBrowser = "qutebrowser"  -- Sets qutebrowser as browser
+myBrowser = "thor"  -- Sets qutebrowser as browser
 
 myEmacs :: String
 myEmacs = "emacsclient -c -a 'emacs' "  -- Makes emacs keybindings easier to type
@@ -165,7 +165,7 @@ myScratchPads = [ NS "spotify" spawnSpotify findSpotify manageSpotify
                 , NS "bullet" spawnBullet findBullet manageBullet
                 ]
   where
-    spawnSpotify = "spotify"
+    spawnSpotify = "spotify-launcher"
     findSpotify  = className =? "Spotify"
     manageSpotify = doFullFloat
     --customFloating $ W.RationalRect l t w h
@@ -430,9 +430,9 @@ myKeys =
         , ("<XF86AudioStop>", spawn "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop")
         , ("<XF86AudioNext>", spawn "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")
         , ("<XF86AudioPrev>", spawn "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")
-        , ("<XF86AudioMute>", spawn "amixer set Master toggle")
-        , ("<XF86AudioLowerVolume>", spawn "amixer set Master 5%- unmute")
-        , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
+        , ("<XF86AudioMute>", spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
+        , ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
+        , ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
         , ("<Print>", spawn "flameshot gui")
 
     -- Custom Hotkeys
