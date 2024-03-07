@@ -1,5 +1,5 @@
 #!/bin/bash
-pip_packages="neovim auto-editor termdown togglCli"
+#pip_packages="neovim auto-editor termdown togglCli"
 success="DONE\n"
 
 source log-status "Installing paru..."
@@ -40,7 +40,7 @@ source log-status "Setting up fish..."
 source log-status "$success"
 
 # Ensure pip is installed
-source log-status "Installing python packages..."
-[ -f $HOME/.local/bin/pip3 ] || python3 -m ensurepip && pip install $pip_packages
-source log-status "$success"
+#source log-status "Installing python packages..."
+#[ -f $HOME/.local/bin/pip3 ] || python3 -m ensurepip && pipx install $pip_packages
+#source log-status "$success"
 
