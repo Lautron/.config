@@ -213,5 +213,14 @@ return require('packer').startup(function(use)
             require('treesj').setup()
         end,
     }
-    use { 'David-Kunz/gen.nvim' }
+    use {
+        'huynle/ogpt.nvim',
+        requires = {
+            'MunifTanjim/nui.nvim',
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim',
+        },
+    }
 end)
+
+-- TODO: add octo.nvim
