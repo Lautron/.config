@@ -202,3 +202,5 @@ map S $fish
 map / fzf_jump
 
 map br $vimv $fx
+
+map xt $python -m highext $fx
