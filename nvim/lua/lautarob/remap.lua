@@ -57,7 +57,8 @@ vim.keymap.set('n', '<Leader>ot', ":!alacritty &;disown<cr>:redraw!<cr>", {silen
 vim.keymap.set('n', '<Leader>or', ":!alacritty -e fish -C 'ranger' &;disown<cr>:redraw!<cr>", {silent = true, noremap = true})
 
 -- compile markdown to PDF using pandoc
-vim.keymap.set('n', '<Leader>cl', ":w <bar> :!pandoc --toc --toc-depth=4 -f markdown -t latex '%' -o '%:r.pdf'<CR>", { silent = true, noremap = true })
+vim.keymap.set('n', '<Leader>cl', ":w <bar> :!pandoc.sh '%'<CR>", { silent = true, noremap = true })
+vim.keymap.set('n', '<Leader>cd', ":w <bar> :!pandoc-draft.sh '%'<CR>", { silent = true, noremap = true })
 vim.keymap.set('n', '<Leader>mm', ":!markmap '%' -o /tmp/markmap.html && qutebrowser /tmp/markmap.html<CR>", { silent = true, noremap = true })
 
 vim.keymap.set('n', '<Leader>q', ":q<CR>", { silent = true, noremap = true })
@@ -78,4 +79,32 @@ vim.keymap.set('x', "<leader>rv", ":Refactor extract_var<cr>")
 
 vim.keymap.set('n', "<leader>sj", ":lua require('treesj').toggle()<cr>")
 
+--vim.keymap.set('n', "<leader>xo", ":Xour<cr>")
+vim.api.nvim_set_keymap('n', '<leader>xo', [[:normal! o<CR>:Xour<CR>]],
+    { noremap = true, silent = true }
+)
 
+vim.keymap.set('n', '<Leader>ida', function()
+        vim.cmd([[:%s/\(<!-- \)\@<!!\[\(.*\)\?\](.*)\({.*}\)\?/<!-- \0 -->/g]])
+    end, { noremap = true, silent = true })
+
+vim.keymap.set('n', '<Leader>iea', function()
+        vim.cmd([[:%s/<!-- \(!\[\](.*)\({.*}\)\?\) -->/\1/g]])
+    end, { noremap = true, silent = true })
+
+
+local function toggle_md_comment()
+    local current_line = vim.fn.getline('.')
+    if string.match(current_line, "^<!--") then
+        vim.cmd([[:s/<!-- \(!\[\](.*)\({.*}\)\?\) -->/\1/g]])
+        vim.cmd(":nohlsearch")
+    else
+        vim.cmd([[:s/\(<!-- \)\@<!!\[\(.*\)\?\](.*)\({.*}\)\?/<!-- \0 -->/g]])
+        vim.cmd(":nohlsearch")
+    end
+end
+
+vim.keymap.set('n', '<Leader>it', function() toggle_md_comment() end, { noremap = true, silent = true })
+
+vim.keymap.set('n', '<Leader>cp', ":Copilot panel<cr>", { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>ca', function() require("copilot.panel").accept() end, { noremap = true, silent = true })
