@@ -84,19 +84,23 @@ vim.api.nvim_set_keymap('n', '<leader>xo', [[:normal! o<CR>:Xour<CR>]],
     { noremap = true, silent = true }
 )
 
-vim.keymap.set('n', '<Leader>ida', function()
-        vim.cmd([[:%s/\(<!-- \)\@<!!\[\(.*\)\?\](.*)\({.*}\)\?/<!-- \0 -->/g]])
-    end, { noremap = true, silent = true })
+local function disable_images()
+    vim.cmd([[:%s/\(<!-- \)\@<!!\[\(.*\)\?\](.*)\({.*}\)\?/<!-- \0 -->/g]])
+end
 
-vim.keymap.set('n', '<Leader>iea', function()
-        vim.cmd([[:%s/<!-- \(!\[\](.*)\({.*}\)\?\) -->/\1/g]])
-    end, { noremap = true, silent = true })
+
+local function enable_images()
+    vim.cmd([[:%s/<!-- \(!\[\w*\](.*)\({.*}\)\?\) -->/\1/g]])
+end
+
+vim.keymap.set('n', '<Leader>ida', disable_images, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>iea', enable_images, { noremap = true, silent = true })
 
 
 local function toggle_md_comment()
     local current_line = vim.fn.getline('.')
     if string.match(current_line, "^<!--") then
-        vim.cmd([[:s/<!-- \(!\[\](.*)\({.*}\)\?\) -->/\1/g]])
+        vim.cmd([[:s/<!-- \(!\[\w*\](.*)\({.*}\)\?\) -->/\1/g]])
         vim.cmd(":nohlsearch")
     else
         vim.cmd([[:s/\(<!-- \)\@<!!\[\(.*\)\?\](.*)\({.*}\)\?/<!-- \0 -->/g]])
