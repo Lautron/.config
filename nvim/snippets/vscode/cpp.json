@@ -1,0 +1,473 @@
+[
+    {
+        "prefix": "forc",
+        "description": "general for loop (for)",
+        "body": [
+            "for (${6:auto} ${1:i} = ${2:v.begin()}; `!p import re; snip.rv = re.split(\"[^\\w]\",t[1])[-1]` ${4:!=} ${3:`!p m = re.search(r'^(?:(.*)(\\.|-\u003e)begin\\(\\)|((?:std|boost)::)?begin\\((.*)\\))$', t[2]); snip.rv = (((m.group(3) if m.group(3) else \"\") + \"end(\" + m.group(4) + \")\") if m.group(4) else (m.group(1) + m.group(2) + \"end()\")) if m else \"\"`}; ${5:++`!p snip.rv = t[1].split(\" \")[-1]`}) {",
+            "\t${VISUAL}$0",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "beginend",
+        "description": "$1.begin(), $1.end() (beginend)",
+        "body": [
+            "${1:v}${1/^.*?(-)?(\u003e)?$/(?2::(?1:\u003e:.))/}begin(), $1${1/^.*?(-)?(\u003e)?$/(?2::(?1:\u003e:.))/}end()"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "cl",
+        "description": "class .. (class)",
+        "body": [
+            "class ${1:`!p snip.rv = snip.basename or \"name\"`}",
+            "{",
+            "public:",
+            "\t${1/(\\w+).*/$1/} (${2:arguments});",
+            "\tvirtual ~${1/(\\w+).*/$1/} ();",
+            "",
+            "private:",
+            "\t${0:/* data */}",
+            "};"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ns",
+        "description": "namespace .. (namespace)",
+        "body": [
+            "namespace${1/.+/ /m}${1:`!p snip.rv = snip.basename or \"name\"`}",
+            "{",
+            "\t${VISUAL}$0",
+            "}${1/.+/ \\/* /m}$1${1/.+/ *\\/ /m}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "readfile",
+        "description": "read file (readF)",
+        "body": [
+            "vector\u003cchar\u003e v;",
+            "if (FILE *fp = fopen(${1:\"filename\"}, \"r\"))",
+            "{",
+            "\tchar buf[1024];",
+            "\twhile(size_t len = fread(buf, 1, sizeof(buf), fp))",
+            "\t\tv.insert(v.end(), buf, buf + len);",
+            "\tfclose(fp);",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "map",
+        "description": "map (map)",
+        "body": [
+            "map\u003c${1:key}, ${2:value}\u003e map$0;"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "vector",
+        "description": "vector (v)",
+        "body": [
+            "vector\u003c${1:char}\u003e v$0;"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "tp",
+        "description": "template \u003ctypename ..\u003e (template)",
+        "body": [
+            "template \u003ctypename ${1:_InputIter}\u003e"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "cla",
+        "description": "An entire .h generator",
+        "body": [
+            "#ifndef ${2:`!v substitute(vim_snippets#Filename('$1_H','ClassName'),'.*','\\U\u0026\\E','')`}",
+            "#define $2",
+            "",
+            "class ${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.','\\u\u0026',''), '_\\(\\w\\)', '\\u\\1', 'g')`}",
+            "{",
+            "private:",
+            "\t$3",
+            "",
+            "public:",
+            "\t$1();",
+            "\tvirtual ~$1();",
+            "};",
+            "",
+            "#endif /* $2 */"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "fnc",
+        "description": "Basic c++ doxygen function template",
+        "body": [
+            "/**",
+            "* @brief: ${4:brief}",
+            "*",
+            "* @param: `!p write_docstring_args(t[3],snip)`",
+            "*",
+            "* @return: `!p snip.rv = t[1]`",
+            "*/",
+            "${1:ReturnType} ${2:FunctionName}(${3:param})",
+            "{",
+            "\t${0:FunctionBody}",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "boost_test",
+        "description": "Boost test module",
+        "body": [
+            "#define BOOST_TEST_MODULE ${1:TestModuleName}",
+            "#include \u003cboost/test/included/unit_test.hpp\u003e",
+            "",
+            "BOOST_AUTO_TEST_CASE(${2:TestCaseName})",
+            "{",
+            "\t${0:TestDefinition}",
+            "}",
+            ""
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "boost_suite",
+        "description": "Boost test suite module",
+        "body": [
+            "#define BOOST_TEST_MODULE ${1:TestModuleName}",
+            "#include \u003cboost/test/included/unit_test.hpp\u003e",
+            "",
+            "BOOST_AUTO_TEST_SUITE(${2:SuiteName})",
+            "",
+            "BOOST_AUTO_TEST_CASE(${3:TestCaseName})",
+            "{",
+            "\t${0:TestDefinition}",
+            "}",
+            "",
+            "BOOST_AUTO_TEST_SUITE_END()",
+            ""
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "boost_test_fixture",
+        "description": "Boost test module with fixture",
+        "body": [
+            "#define BOOST_TEST_MODULE ${1:TestModuleName}",
+            "#include \u003cboost/test/included/unit_test.hpp\u003e",
+            "",
+            "struct ${2:FixtureName} {",
+            "\t$2() {}",
+            "\tvirtual ~$2() {}",
+            "\t/* define members here */",
+            "};",
+            "",
+            "BOOST_FIXTURE_TEST_CASE(${3:SuiteName}, $2)",
+            "{",
+            "\t${0:TestDefinition}",
+            "}",
+            ""
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "boost_suite_fixture",
+        "description": "Boost test suite with fixture",
+        "body": [
+            "#define BOOST_TEST_MODULE ${1:TestModuleName}",
+            "#include \u003cboost/test/included/unit_test.hpp\u003e",
+            "",
+            "struct ${2:FixtureName} {",
+            "\t$2() {}",
+            "\tvirtual ~$2() {}",
+            "\t/* define members here */",
+            "};",
+            "",
+            "BOOST_FIXTURE_TEST_SUITE(${3:SuiteName}, $2)",
+            "",
+            "BOOST_AUTO_TEST_CASE(${4:TestCaseName})",
+            "{",
+            "\t${0:TestDefinition}",
+            "}",
+            "",
+            "BOOST_AUTO_TEST_SUITE_END()",
+            ""
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "comp",
+        "description": "Compettive programming template",
+        "body": [
+            "#include \u003cbits/stdc++.h\u003e",
+            "using namespace std;",
+            "",
+            "#define all(x) x.begin(), x.end()",
+            "#define rall(x) x.rbegin(), x.rend()",
+            "#define sortD(v) sort(v.begin(), v.end(), greater\u003cauto\u003e())",
+            "#define sortall(x) sort(all(x))",
+            "",
+            "#define fore(it, s) for (vit it = s.begin(); it != s.end(); ++it)",
+            "#define fori (i, n) for (int i = 0; i \u003c (n); ++i)",
+            "#define fst first",
+            "#define snd second",
+            "#define pb push_back",
+            "",
+            "typedef long long ll;",
+            "typedef pair\u003cint, int\u003e ii;",
+            "typedef vector\u003cint\u003e vi;",
+            "typedef vector\u003cii\u003e vii;",
+            "typedef vector\u003clong long int\u003e vll;",
+            "typedef vector\u003cchar\u003e vc;",
+            "",
+            "typedef set\u003cint\u003e::iterator sit;",
+            "typedef map\u003cint, int\u003e::iterator mit;",
+            "typedef vector\u003cint\u003e::iterator vit;",
+            "typedef vector\u003cll\u003e::iterator vllit;",
+            "",
+            "const int INF = 1e9 + 7;",
+            "const int MOD = 1e9 + 7;",
+            "const int MAXN = 1e6 + 3;",
+            "",
+            "void solve()",
+            "{",
+            "  $0;",
+            "}",
+            "",
+            "int main()",
+            "{",
+            "  ios::sync_with_stdio(false);",
+            "  solve();",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "rvec",
+        "description": "read vector",
+        "body": [
+            "${1:vll} read_input_vector(ll size){",
+            "  $1 v;",
+            "  for (int i = 0; i \u003c size; ++i){",
+            "    ll aux;",
+            "    cin \u003e\u003e aux;",
+            "    v.push_back(aux)",
+            "  }",
+            "  return v;",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ovec",
+        "description": "output vector",
+        "body": [
+            "void out_vector(${1:vll} v){",
+            "  for (int i = 0; i \u003c v.size(); ++i)",
+            "    cout \u003c\u003c v[i] \u003c\u003c \" \";",
+            "}",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "bpow",
+        "description": "binary power",
+        "body": [
+            "ll binary_power(ll a, ll b){",
+            "  ll res = 1;",
+            "  while (b \u003e 0){",
+            "    if (b \u0026 1)",
+            "      res = res * a;",
+            "    a = a * a;",
+            "    b \u003e\u003e= 1;",
+            "  }",
+            "  return res;",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "bpowm",
+        "description": "binary power mod",
+        "body": [
+            "ll binary_power_mod(ll a, ll b, ll m){",
+            "  a %= m;",
+            "  ll res = 1;",
+            "  while (b \u003e 0){",
+            "    if (b \u0026 1)",
+            "      res = res * a % m;",
+            "    a = a * a % m;",
+            "    b \u003e\u003e= 1;",
+            "  }",
+            "  return res;",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "omap",
+        "description": "output map",
+        "body": [
+            "void out_map(map\u003cll,ll\u003e m){",
+            "  for (auto it = m.begin(); it != m.end(); it++)",
+            "    cout \u003c\u003c it-\u003efirst \u003c\u003c \" \";",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "funct",
+        "description": "simple functor",
+        "body": [
+            "struct $1",
+            "{",
+            " ${2:int} operator()($2 x) { return $0;}",
+            "};"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "getline",
+        "description": "get line from input",
+        "body": [
+            "string s;",
+            "getline(cin, s);"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "whilecin",
+        "description": "while cin",
+        "body": [
+            "while (cin \u003e\u003e ${1:x}){",
+            "  $1",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "fileinput",
+        "description": "file input",
+        "body": [
+            "freopen(\"input.txt\", \"r\", stdin);",
+            "freopen(\"output.txt\", \"w\", stdout);"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "llass",
+        "description": "long long assignment",
+        "body": [
+            "ll ${1:x} = $2LL;"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    }
+]

@@ -61,10 +61,10 @@ end)
 
 local autocmd = vim.api.nvim_create_autocmd
 
-autocmd('BufWritePost', {
-  pattern = {'*.py', "*.go"},
-  command = "LspZeroFormat"
-})
+-- autocmd('BufWritePost', {
+--   pattern = {'*.py', "*.go"},
+--   command = "LspZeroFormat"
+-- })
 
 lsp.setup()
 
@@ -76,7 +76,8 @@ vim.diagnostic.config({
 
 local ls = require("luasnip")
 ls.config.setup({ enable_autosnippets = true })
-require("luasnip.loaders.from_snipmate").lazy_load({paths = "~/.config/nvim/snippets/snipmate/" })
+--require("luasnip.loaders.from_snipmate").lazy_load({paths = "~/.config/nvim/snippets/snipmate/" })
+require("luasnip.loaders.from_vscode").lazy_load({paths = "~/.config/nvim/snippets/vscode/" })
 
 local cmp_action = require('lsp-zero').cmp_action()
 

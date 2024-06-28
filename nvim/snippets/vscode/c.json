@@ -1,0 +1,476 @@
+[
+    {
+        "prefix": "def",
+        "description": "#define ...",
+        "body": [
+            "#define $1"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "#ifndef",
+        "description": "#ifndef ... #define ... #endif",
+        "body": [
+            "#ifndef ${1/([A-Za-z0-9_]+).*/$1/}",
+            "#define ${1:SYMBOL} ${2:value}",
+            "#endif /* ifndef $1 */"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "#if",
+        "description": "#if #endif",
+        "body": [
+            "#if ${1:0}",
+            "${VISUAL}$0",
+            "#endif"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "mark",
+        "description": "#pragma mark (mark)",
+        "body": [
+            "#if 0",
+            "${1:#pragma mark -",
+            "}#pragma mark $2",
+            "#endif",
+            "",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "main",
+        "description": "main() (main)",
+        "body": [
+            "int main(int argc, char *argv[])",
+            "{",
+            "\t${VISUAL}$0",
+            "\treturn 0;",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "for",
+        "description": "for loop (for)",
+        "body": [
+            "for (${2:i} = 0; $2 \u003c ${1:count}; ${3:++$2}) {",
+            "\t${VISUAL}$0",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "fori",
+        "description": "for int loop (fori)",
+        "body": [
+            "for (${4:int} ${2:i} = 0; $2 \u003c ${1:count}; ${3:++$2}) {",
+            "\t${VISUAL}$0",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "fora",
+        "description": "for-loop",
+        "body": [
+            "for (${1:var}; ${2:condition}; `!p",
+            "if len(t[1]) \u003e 0:",
+            "\tsnip.rv = t[1].split('=')[0].split()[-1]",
+            "`++) {",
+            "\t",
+            "\t$0",
+            "} /* for ($1; $2; `!p if len(t[1]) \u003e 0: snip.rv = t[1].split('=')[0].split()[-1]`++) */"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "once",
+        "description": "Include header once only guard",
+        "body": [
+            "#ifndef ${1:`!p",
+            "if not snip.c:",
+            "\timport random, string",
+            "\tname = re.sub(r'[^A-Za-z0-9]+','_', snip.fn).upper()",
+            "\trand = ''.join(random.sample(string.ascii_letters+string.digits, 8))",
+            "\tsnip.rv = ('%s_%s' % (name,rand)).upper()",
+            "else:",
+            "\tsnip.rv = snip.c`}",
+            "#define $1",
+            "",
+            "${VISUAL}$0",
+            "",
+            "#endif /* end of include guard: $1 */"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "fprintf",
+        "description": "fprintf ...",
+        "body": [
+            "fprintf(${1:stderr}, \"${2:%s}\\n\"${2/([^%]|%%)*(%.)?.*/(?2:, :\\);)/}$3${2/([^%]|%%)*(%.)?.*/(?2:\\);)/}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "eli",
+        "description": "else if .. (eli)",
+        "body": [
+            "else if (${1:/* condition */}) {",
+            "\t${VISUAL}$0",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "\"printf\"",
+        "description": "printf with auto-expand args",
+        "body": [
+            "printf(\"$1\\n\"$2);"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "st",
+        "description": "struct",
+        "body": [
+            "struct ${1:`!p snip.rv = (snip.basename or \"name\") + \"_t\"`} {",
+            "\t${0:/* data */}",
+            "};"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "tst",
+        "description": "typedef struct",
+        "body": [
+            "typedef struct {",
+            "  ${2:/* data */}",
+            "} ${1:`!p snip.rv = (snip.basename or \"name\") + \"_t\"`};"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "fun",
+        "description": "function",
+        "body": [
+            "${1:void} ${2:function_name}($3) {",
+            "\t${VISUAL}$0",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "fund",
+        "description": "function declaration",
+        "body": [
+            "${1:void} ${2:function_name}($3);"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "head",
+        "description": "File Header",
+        "body": [
+            "/******************************************************************************",
+            "* File:             `!p snip.rv = fn`",
+            "*",
+            "* Author:           ${2}  ",
+            "* Created:          `date +%m/%d/%y` ",
+            "* Description:      ${4:${VISUAL}}",
+            "*****************************************************************************/",
+            "${0}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "func",
+        "description": "Function Header",
+        "body": [
+            "/******************************************************************************",
+            "* Function:         $1",
+            "* Description:      ${4:${VISUAL}}",
+            "* Where:`!p ",
+            "snip.rv = \"\"",
+            "snip \u003e\u003e 2",
+            "",
+            "args = get_args(t[2])",
+            "if args:",
+            "\tfor arg in args:",
+            "\t\tsnip.rv += '\\n' + '*' + ' '*19 + arg + ' - TODO'",
+            "snip \u003c\u003c 2",
+            "`",
+            "* Return:           $5",
+            "* Error:            $6",
+            "*****************************************************************************/",
+            "${1}($2){",
+            "\t${0}",
+            "}",
+            ""
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "template",
+        "description": "template",
+        "body": [
+            "#include\u003cstdio.h\u003e",
+            "",
+            "$1",
+            "",
+            "int main(void){",
+            "  $0;",
+            "  return 0;",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "vario",
+        "description": "variable I/O",
+        "body": [
+            "int pedirEntero(char *nombre){",
+            "  int x;",
+            "  printf(\"Ingrese un valor\\n%s = \", nombre);",
+            "  scanf(\"%d\", \u0026x);",
+            "  return x;",
+            "}",
+            "",
+            "void imprimeEntero(char *nombre, int x) {",
+            "  printf(\"\\n%s --\u003e %d\", nombre, x);",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "arrio",
+        "description": "array I/O",
+        "body": [
+            "void pedirArreglo(int a[], int n_max)",
+            "{",
+            "  printf(\"Ingrese %d argumentos (separando con espacios)\\n\", n_max);",
+            "  int i = 0;",
+            "  while (i \u003c n_max) {",
+            "    scanf(\"%d\", \u0026a[i]);",
+            "    i++;",
+            "  }",
+            "}",
+            "",
+            "void imprimeArreglo(int a[], int n_max)",
+            "{",
+            "  int i = 0;",
+            "  while (i \u003c n_max) {",
+            "    printf(\"%d \", a[i]);",
+            "    i++;",
+            "  }",
+            "  printf(\"\\n\");",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "pede",
+        "description": "pedir entero",
+        "body": [
+            "int $1 = pedirEntero(\"$1\");",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "impe",
+        "description": "imprime entero",
+        "body": [
+            "imprimeEntero(\"$1\", $1);",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "peda",
+        "description": "pedir arreglo",
+        "body": [
+            "int ${1:a}[$2];",
+            "pedirArreglo($1, $2);",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "impa",
+        "description": "imprime arreglo",
+        "body": [
+            "imprimeArreglo(${1:a}, $2);",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "while",
+        "description": "while loop",
+        "body": [
+            "while (${1:true}){",
+            "  $2",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "{",
+        "description": "brackets",
+        "body": [
+            "{",
+            " $1",
+            "}$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "inc",
+        "description": "include",
+        "body": [
+            "#include \u003c$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "struct",
+        "description": "structure",
+        "body": [
+            "typedef struct ${1:name}{",
+            "  $2",
+            "} $1;"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "\"dbg\"",
+        "description": "DEBUG with auto-expand args",
+        "body": [
+            "DEBUG(\"$1\\n\"$2);"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    }
+]

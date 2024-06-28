@@ -1,0 +1,876 @@
+[
+    {
+        "prefix": "#!",
+        "description": "#!/usr/bin/env python",
+        "body": [
+            "#!/usr/bin/env python",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "#!2",
+        "description": "#!/usr/bin/env python2",
+        "body": [
+            "#!/usr/bin/env python2",
+            "# -*- coding: utf-8 -*-",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "#!3",
+        "description": "#!/usr/bin/env python3",
+        "body": [
+            "#!/usr/bin/env python3",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "\"^# ?[uU][tT][fF]-?8\"",
+        "description": "# encoding: UTF-8",
+        "body": [
+            "# -*- coding: utf-8 -*-",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ifmain",
+        "description": "ifmain",
+        "body": [
+            "if __name__ == \"__main__\":",
+            "\t${1:main()}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "with",
+        "description": "with",
+        "body": [
+            "with ${1:expr}`!p snip.rv = \" as \" if t[2] else \"\"`${2:var}:",
+            "\t${3:${VISUAL:pass}}",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "for",
+        "description": "for loop",
+        "body": [
+            "for ${1:item} in ${2:iterable}:",
+            "\t${3:${VISUAL:pass}}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "class",
+        "description": "class with docstrings",
+        "body": [
+            "class ${1:MyClass}(${2:object}):",
+            "",
+            "\t`!p snip.rv = triple_quotes(snip)`${3:Docstring for $1. }`!p snip.rv = triple_quotes(snip)`",
+            "",
+            "\tdef __init__(self$4):",
+            "\t\t`!p snip.rv = triple_quotes(snip)`${5:TODO: to be defined.}`!p",
+            "snip.rv = \"\"",
+            "snip \u003e\u003e 2",
+            "",
+            "args = get_args(t[4])",
+            "",
+            "write_docstring_args(args, snip)",
+            "if args:",
+            "\tsnip.rv += '\\n' + snip.mkline('', indent='')",
+            "\tsnip += '{0}'.format(triple_quotes(snip))",
+            "",
+            "write_init_body(args, t[2], snip)",
+            "`",
+            "\t\t$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "slotclass",
+        "description": "class with slots and docstrings",
+        "body": [
+            "class ${1:MyClass}(${2:object}):",
+            "",
+            "\t`!p snip.rv = triple_quotes(snip)`${3:Docstring for $1. }`!p snip.rv = triple_quotes(snip)`",
+            "`!p",
+            "snip \u003e\u003e 1",
+            "args = get_args(t[4])",
+            "write_slots_args(args, snip)",
+            "`",
+            "",
+            "\tdef __init__(self$4):",
+            "\t\t`!p snip.rv = triple_quotes(snip)`${5:TODO: to be defined.}`!p",
+            "snip.rv = \"\"",
+            "snip \u003e\u003e 2",
+            "",
+            "args = get_args(t[4])",
+            "",
+            "write_docstring_args(args, snip)",
+            "if args:",
+            "\tsnip.rv += '\\n' + snip.mkline('', indent='')",
+            "\tsnip += triple_quotes(snip)",
+            "",
+            "write_init_body(args, t[2], snip)",
+            "`",
+            "\t\t$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "contain",
+        "description": "methods for emulating a container type",
+        "body": [
+            "def __len__(self):",
+            "\t${1:pass}",
+            "",
+            "def __getitem__(self, key):",
+            "\t${2:pass}",
+            "",
+            "def __setitem__(self, key, value):",
+            "\t${3:pass}",
+            "",
+            "def __delitem__(self, key):",
+            "\t${4:pass}",
+            "",
+            "def __iter__(self):",
+            "\t${5:pass}",
+            "",
+            "def __reversed__(self):",
+            "\t${6:pass}",
+            "",
+            "def __contains__(self, item):",
+            "\t${7:pass}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "context",
+        "description": "context manager methods",
+        "body": [
+            "def __enter__(self):",
+            "\t${1:pass}",
+            "",
+            "def __exit__(self, exc_type, exc_value, traceback):",
+            "\t${2:pass}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "attr",
+        "description": "methods for customizing attribute access",
+        "body": [
+            "def __getattr__(self, name):",
+            "\t${1:pass}",
+            "",
+            "def __setattr__(self, name, value):",
+            "\t${2:pass}",
+            "",
+            "def __delattr__(self, name):",
+            "\t${3:pass}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "desc",
+        "description": "methods implementing descriptors",
+        "body": [
+            "def __get__(self, instance, owner):",
+            "\t${1:pass}",
+            "",
+            "def __set__(self, instance, value):",
+            "\t${2:pass}",
+            "",
+            "def __delete__(self, instance):",
+            "\t${3:pass}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "cmp",
+        "description": "methods implementing rich comparison",
+        "body": [
+            "def __eq__(self, other):",
+            "\t${1:pass}",
+            "",
+            "def __ne__(self, other):",
+            "\t${2:pass}",
+            "",
+            "def __lt__(self, other):",
+            "\t${3:pass}",
+            "",
+            "def __le__(self, other):",
+            "\t${4:pass}",
+            "",
+            "def __gt__(self, other):",
+            "\t${5:pass}",
+            "",
+            "def __ge__(self, other):",
+            "\t${6:pass}",
+            "",
+            "def __cmp__(self, other):",
+            "\t${7:pass}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "repr",
+        "description": "methods implementing string representation",
+        "body": [
+            "def __repr__(self):",
+            "\t${1:pass}",
+            "",
+            "def __str__(self):",
+            "\t${2:pass}",
+            "",
+            "def __unicode__(self):",
+            "\t${3:pass}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "numeric",
+        "description": "methods for emulating a numeric type",
+        "body": [
+            "def __add__(self, other):",
+            "\t${1:pass}",
+            "",
+            "def __sub__(self, other):",
+            "\t${2:pass}",
+            "",
+            "def __mul__(self, other):",
+            "\t${3:pass}",
+            "",
+            "def __div__(self, other):",
+            "\t${4:pass}",
+            "",
+            "def __truediv__(self, other):",
+            "\t${5:pass}",
+            "",
+            "def __floordiv__(self, other):",
+            "\t${6:pass}",
+            "",
+            "",
+            "def __mod__(self, other):",
+            "\t${7:pass}",
+            "",
+            "def __divmod__(self, other):",
+            "\t${8:pass}",
+            "",
+            "def __pow__(self, other):",
+            "\t${9:pass}",
+            "",
+            "",
+            "def __lshift__(self, other):",
+            "\t${10:pass}",
+            "",
+            "def __rshift__(self, other):",
+            "\t${11:pass}",
+            "",
+            "def __and__(self, other):",
+            "\t${12:pass}",
+            "",
+            "def __xor__(self, other):",
+            "\t${13:pass}",
+            "",
+            "def __or__(self, other):",
+            "\t${14:pass}",
+            "",
+            "",
+            "def __neg__(self):",
+            "\t${15:pass}",
+            "",
+            "def __pos__(self):",
+            "\t${16:pass}",
+            "",
+            "def __abs__(self):",
+            "\t${17:pass}",
+            "",
+            "def __invert__(self):",
+            "\t${18:pass}",
+            "",
+            "",
+            "def __complex__(self):",
+            "\t${19:pass}",
+            "",
+            "def __int__(self):",
+            "\t${20:pass}",
+            "",
+            "def __long__(self):",
+            "\t${21:pass}",
+            "",
+            "def __float__(self):",
+            "\t${22:pass}",
+            "",
+            "",
+            "def __oct__(self):",
+            "\t${22:pass}",
+            "",
+            "def __hex__(self):",
+            "\t${23:pass}",
+            "",
+            "",
+            "def __index__(self):",
+            "\t${24:pass}",
+            "",
+            "def __coerce__(self, other):",
+            "\t${25:pass}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "deff",
+        "description": "function or class method",
+        "body": [
+            "def ${1:fname}($2) -> ${3:None}:",
+            "\t$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "def",
+        "description": "function with docstrings",
+        "body": [
+            "def ${1:function}(`!p",
+            "if snip.indent:",
+            "\tsnip.rv = 'self' + (\", \" if len(t[2]) else \"\")`${2:arg1}):",
+            "\t`!p snip.rv = triple_quotes(snip)`${4:TODO: Docstring for $1.}`!p",
+            "write_function_docstring(t, snip) `",
+            "\t${5:${VISUAL:pass}}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "defc",
+        "description": "class method with docstrings",
+        "body": [
+            "@classmethod",
+            "def ${1:function}(`!p",
+            "if snip.indent:",
+            "\tsnip.rv = 'cls' + (\", \" if len(t[2]) else \"\")`${2:arg1}):",
+            "\t`!p snip.rv = triple_quotes(snip)`${4:TODO: Docstring for $1.}`!p",
+            "write_function_docstring(t, snip) `",
+            "\t${5:${VISUAL:pass}}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "defs",
+        "description": "static method with docstrings",
+        "body": [
+            "@staticmethod",
+            "def ${1:function}(${2:arg1}):",
+            "\t`!p snip.rv = triple_quotes(snip)`${4:TODO: Docstring for $1.}`!p",
+            "write_function_docstring(t, snip) `",
+            "\t${5:${VISUAL:pass}}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "/(^|(?\u003c=\\W))\\./",
+        "description": "self.",
+        "body": [
+            "self."
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "from",
+        "description": "from module import name",
+        "body": [
+            "from ${1:module} import ${2:Stuff}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "roprop",
+        "description": "Read Only Property",
+        "body": [
+            "@property",
+            "def ${1:name}(self):",
+            "\t${2:return self._$1}$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "rwprop",
+        "description": "Read write property",
+        "body": [
+            "def ${1:name}():",
+            "\t`!p snip.rv = triple_quotes(snip) if t[2] else ''",
+            "`${2:TODO: Docstring for $1.}`!p",
+            "if t[2]:",
+            "\tsnip \u003e\u003e 1",
+            "",
+            "\tstyle = get_style(snip)",
+            "\tsnip.rv += '\\n' + snip.mkline('', indent='')",
+            "\tsnip += format_return(style)",
+            "\tsnip.rv += '\\n' + snip.mkline('', indent='')",
+            "\tsnip += triple_quotes(snip)",
+            "else:",
+            "\tsnip.rv = \"\"`",
+            "\tdef fget(self):",
+            "\t\treturn self._$1$0",
+            "",
+            "\tdef fset(self, value):",
+            "\t\tself._$1 = value",
+            "\treturn locals()",
+            "",
+            "$1 = property(**$1(), doc=$1.__doc__)"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "if",
+        "description": "If",
+        "body": [
+            "if ${1:condition}:",
+            "\t${2:${VISUAL:pass}}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ife",
+        "description": "If / Else",
+        "body": [
+            "if ${1:condition}:",
+            "\t${2:${VISUAL:pass}}",
+            "else:",
+            "\t${3:pass}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ifee",
+        "description": "If / Elif / Else",
+        "body": [
+            "if ${1:condition}:",
+            "\t${2:${VISUAL:pass}}",
+            "elif ${3:condition}:",
+            "\t${4:pass}",
+            "else:",
+            "\t${5:pass}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "try",
+        "description": "Try / Except",
+        "body": [
+            "try:",
+            "\t${1:${VISUAL:pass}}",
+            "except ${2:Exception} as ${3:e}:",
+            "\t${4:raise $3}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "trye",
+        "description": "Try / Except / Else",
+        "body": [
+            "try:",
+            "\t${1:${VISUAL:pass}}",
+            "except ${2:Exception} as ${3:e}:",
+            "\t${4:raise $3}",
+            "else:",
+            "\t${5:pass}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "tryf",
+        "description": "Try / Except / Finally",
+        "body": [
+            "try:",
+            "\t${1:${VISUAL:pass}}",
+            "except ${2:Exception} as ${3:e}:",
+            "\t${4:raise $3}",
+            "finally:",
+            "\t${5:pass}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "tryef",
+        "description": "Try / Except / Else / Finally",
+        "body": [
+            "try:",
+            "\t${1:${VISUAL:pass}}",
+            "except${2: ${3:Exception} as ${4:e}}:",
+            "\t${5:raise}",
+            "else:",
+            "\t${6:pass}",
+            "finally:",
+            "\t${7:pass}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ae",
+        "description": "Assert equal",
+        "body": [
+            "self.assertEqual(${1:${VISUAL:first}}, ${2:second})"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "at",
+        "description": "Assert True",
+        "body": [
+            "self.assertTrue(${1:${VISUAL:expression}})"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "af",
+        "description": "Assert False",
+        "body": [
+            "self.assertFalse(${1:${VISUAL:expression}})"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "aae",
+        "description": "Assert almost equal",
+        "body": [
+            "self.assertAlmostEqual(${1:${VISUAL:first}}, ${2:second})"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ar",
+        "description": "Assert raises",
+        "body": [
+            "self.assertRaises(${1:exception}, ${2:${VISUAL:func}}${3/.+/, /}${3:arguments})"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "an",
+        "description": "Assert is None",
+        "body": [
+            "self.assertIsNone(${1:${VISUAL:expression}})"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ann",
+        "description": "Assert is not None",
+        "body": [
+            "self.assertIsNotNone(${1:${VISUAL:expression}})"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "testcase",
+        "description": "pyunit testcase",
+        "body": [
+            "class Test${1:Class}(${2:unittest.TestCase}):",
+            "",
+            "\t`!p snip.rv = triple_quotes(snip)`${3:Test case docstring.}`!p snip.rv = triple_quotes(snip)`",
+            "",
+            "\tdef setUp(self):",
+            "\t\t${4:pass}",
+            "",
+            "\tdef tearDown(self):",
+            "\t\t${5:pass}",
+            "",
+            "\tdef test_${6:name}(self):",
+            "\t\t${7:${VISUAL:pass}}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "\"",
+        "description": "triple quoted string (double quotes)",
+        "body": [
+            "\"\"\"",
+            "${1:${VISUAL:doc}}",
+            "`!p triple_quotes_handle_trailing(snip, '\"')`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "'",
+        "description": "triple quoted string (single quotes)",
+        "body": [
+            "'''",
+            "${1:${VISUAL:doc}}",
+            "`!p triple_quotes_handle_trailing(snip, \"'\")`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "doc",
+        "description": "doc block (triple quotes)",
+        "body": [
+            "`!p snip.rv = triple_quotes(snip)`",
+            "${1:${VISUAL:doc}}",
+            "`!p snip.rv = triple_quotes(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "pmdoc",
+        "description": "pocoo style module doc string",
+        "body": [
+            "# -*- coding: utf-8 -*-",
+            "\"\"\"",
+            "\t`!p snip.rv = get_dir_and_file_name(snip)`",
+            "\t`!p snip.rv = '~' * len(get_dir_and_file_name(snip))`",
+            "",
+            "\t${1:DESCRIPTION}",
+            "",
+            "\t:copyright: (c) `date +%Y` by ${2:YOUR_NAME}.",
+            "\t:license: ${3:LICENSE_NAME}, see LICENSE for more details.",
+            "\"\"\"",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "\"(\\w+)dic\"",
+        "description": "dict entry",
+        "body": [
+            "`!p snip.rv = f'\"{match.group(1)}\": {match.group(1)},'",
+            "snip += \"\"`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ttemp",
+        "description": "typing template",
+        "body": [
+            "def ${1:func}():",
+            "  $3",
+            "  data = {",
+            "  }",
+            "  temp = \"\"\"",
+            "$2",
+            "\"\"\"",
+            "  return write_output(temp, data, 'typing')"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "otemp",
+        "description": "options template",
+        "body": [
+            "def ${1:func}():",
+            "  ${3:Variables}",
+            "  options = make_options([], res)",
+            "  data = {",
+            "    **options",
+            "  }",
+            "  temp = \"\"\"",
+            "${2:String template}",
+            "\"\"\"",
+            "  return write_output(temp, data, 'options')"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "mainif",
+        "description": "main() and ifmain",
+        "body": [
+            "def main():",
+            "  $0",
+            "",
+            "if __name__ == '__main__':",
+            "  main()"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    }
+]

@@ -1,0 +1,44 @@
+[
+    {
+        "prefix": "ctemp",
+        "description": "Template",
+        "body": [
+            "CC = gcc",
+            "GDB = gdb",
+            "VAL = valgrind",
+            "CFLAGS = -Wall -Werror -Wextra -ansi -pedantic -std=c99 -g",
+            "VFLAGS = --leak-check=full --show-leak-kinds=all --track-origins=yes -s",
+            "HEADERS = $(wildcard *.h)",
+            "SOURCES = $(wildcard *.c)",
+            "OBJECTS = $(SOURCES:.c=.o)",
+            "TARGET = main",
+            "ARGS = $1",
+            "",
+            "%.o : %.c $(HEADERS)",
+            "\t$(CC) $(CFLAGS) -c $\u003c -o $@",
+            "",
+            "$(TARGET): $(OBJECTS)",
+            "\t$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)",
+            "",
+            "run: $(TARGET)",
+            "\t./$^ $(ARGS)",
+            "",
+            "gdb: $(TARGET)",
+            "\t$(GDB) --args ./$^ $(ARGS)",
+            "\t",
+            "val: $(TARGET)",
+            "\t$(VAL) $(VFLAGS) ./$^ $(ARGS)",
+            "",
+            ".PHONY: clean",
+            "",
+            "clean:",
+            "\trm -f $(OBJECTS) $(TARGET)",
+            ""
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    }
+]

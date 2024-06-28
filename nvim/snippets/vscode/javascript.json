@@ -1,0 +1,501 @@
+[
+    {
+        "prefix": "get",
+        "description": "Get Elements",
+        "body": [
+            "getElement${1/(T)|(C)|.*/(?1:s)(?2:s)/}By${1:T}${1/(T)|(I)|(C).*/(?1:agName)(?2:d)(?3:lassName)/}('$2')"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "'':f",
+        "description": "object method string",
+        "body": [
+            "'${1:${2:#thing}:${3:click}}': function`!p snip.rv = space_before_function_paren(snip)`(element) {",
+            "\t${VISUAL}$0",
+            "}${10:,}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": ":f",
+        "description": "Object Method",
+        "body": [
+            "${1:method_name}: function`!p snip.rv = space_before_function_paren(snip)`(${3:attribute}) {",
+            "\t${VISUAL}$0",
+            "}${10:,}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": ":,",
+        "description": "Object Value JS",
+        "body": [
+            "${1:value_name}: ${0:value},"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": ":",
+        "description": "Object key key: 'value'",
+        "body": [
+            "${1:key}: ${2:\"${3:value}\"}${4:, }"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "proto",
+        "description": "Prototype (proto)",
+        "body": [
+            "${1:class_name}.prototype.${2:method_name} = function`!p snip.rv = space_before_function_paren(snip)`(${3:first_argument}) {",
+            "\t${VISUAL}$0",
+            "}`!p snip.rv = semi(snip)`",
+            ""
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "fun",
+        "description": "function (named)",
+        "body": [
+            "function ${1:function_name}`!p snip.rv = space_before_function_paren(snip)`(${2:argument}) {",
+            "\t${VISUAL}$0",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "vf",
+        "description": "function (assigned to var)",
+        "body": [
+            "${1:var }${2:function_name} = function $2`!p snip.rv = space_before_function_paren(snip)`($3) {",
+            "\t${VISUAL}$0",
+            "}`!p snip.rv = semi(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "fun",
+        "description": "function (anonymous)",
+        "body": [
+            "function`!p snip.rv = space_before_function_paren(snip)`($1) {",
+            "\t${VISUAL}$0",
+            "}$2"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "anf",
+        "description": "function (anonymous)",
+        "body": [
+            "function`!p snip.rv = space_before_function_paren(snip)`($1) {",
+            "\t${VISUAL}$0",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "iife",
+        "description": "Immediately-Invoked Function Expression (iife)",
+        "body": [
+            "(function`!p snip.rv = space_before_function_paren(snip)`(${1:window}) {",
+            "\t${VISUAL}$0",
+            "}(${2:$1}))`!p snip.rv = semi(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": ";fe",
+        "description": "Minify safe iife",
+        "body": [
+            ";(function`!p snip.rv = space_before_function_paren(snip)`(${1}) {",
+            "\t${VISUAL}$0",
+            "}(${2}))"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "timeout",
+        "description": "setTimeout function",
+        "body": [
+            "setTimeout(function`!p snip.rv = space_before_function_paren(snip)`() {",
+            "\t${VISUAL}$0",
+            "}${2:.bind(${3:this})}, ${1:10})`!p snip.rv = semi(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "fi",
+        "description": "for prop in obj using hasOwnProperty",
+        "body": [
+            "for`!p snip.rv = keyword_spacing(snip)`(${1:prop} in ${2:obj}){",
+            "\tif`!p snip.rv = keyword_spacing(snip)`($2.hasOwnProperty($1)) {",
+            "\t\t${VISUAL}$0",
+            "\t}",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "if",
+        "description": "if (condition) { ... }",
+        "body": [
+            "if`!p snip.rv = keyword_spacing(snip)`(${1:true}) {",
+            "\t${VISUAL}$0",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ife",
+        "description": "if (condition) { ... } else { ... }",
+        "body": [
+            "if`!p snip.rv = keyword_spacing(snip)`(${1:true}) {",
+            "\t${VISUAL}$0",
+            "}`!p snip.rv = keyword_spacing(snip)`else`!p snip.rv = keyword_spacing(snip)`{",
+            "\t${2}",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "case",
+        "description": "case 'xyz': ... break",
+        "body": [
+            "case`!p snip.rv = keyword_spacing(snip)`'${VISUAL}${1:case}':",
+            "\t${VISUAL}$0",
+            "\tbreak`!p snip.rv = semi(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "do",
+        "description": "do { ... } while (condition)",
+        "body": [
+            "do`!p snip.rv = keyword_spacing(snip)`{",
+            "\t${VISUAL}$0",
+            "}`!p snip.rv = keyword_spacing(snip)`while`!p snip.rv = keyword_spacing(snip)`(${1:/* condition */})`!p snip.rv = semi(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ret",
+        "description": "Return statement",
+        "body": [
+            "return ${VISUAL}$0`!p snip.rv = semi(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "imp",
+        "description": "import",
+        "body": [
+            "import ${2} from ${1}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "cl",
+        "description": "console.log",
+        "body": [
+            "console.log(${0})`!p snip.rv = semi(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "cd",
+        "description": "console.debug",
+        "body": [
+            "console.debug(${0})`!p snip.rv = semi(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ce",
+        "description": "console.error",
+        "body": [
+            "console.error(${0})`!p snip.rv = semi(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "cw",
+        "description": "console.warn",
+        "body": [
+            "console.warn(${0})`!p snip.rv = semi(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ci",
+        "description": "console.info",
+        "body": [
+            "console.info(${0})`!p snip.rv = semi(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ct",
+        "description": "console.trace",
+        "body": [
+            "console.trace(${0:label})`!p snip.rv = semi(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ctime",
+        "description": "console.time ... console.timeEnd",
+        "body": [
+            "console.time(\"${1:label}\")`!p snip.rv = semi(snip)`",
+            "${0:${VISUAL}}",
+            "console.timeEnd(\"$1\")`!p snip.rv = semi(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ctimestamp",
+        "description": "console.timeStamp",
+        "body": [
+            "console.timeStamp(\"${1:label}\")`!p snip.rv = semi(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ca",
+        "description": "console.assert",
+        "body": [
+            "console.assert(${1:expression}, ${0:obj})`!p snip.rv = semi(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "cclear",
+        "description": "console.clear",
+        "body": [
+            "console.clear()`!p snip.rv = semi(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "cdir",
+        "description": "console.dir",
+        "body": [
+            "console.dir(${0:obj})`!p snip.rv = semi(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "cdirx",
+        "description": "console.dirxml",
+        "body": [
+            "console.dirxml(${1:object})`!p snip.rv = semi(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "cgroup",
+        "description": "console.group",
+        "body": [
+            "console.group(\"${1:label}\")`!p snip.rv = semi(snip)`",
+            "${0:${VISUAL}}",
+            "console.groupEnd()`!p snip.rv = semi(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "cgroupc",
+        "description": "console.groupCollapsed",
+        "body": [
+            "console.groupCollapsed(\"${1:label}\")`!p snip.rv = semi(snip)`",
+            "${0:${VISUAL}}",
+            "console.groupEnd()`!p snip.rv = semi(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "cprof",
+        "description": "console.profile",
+        "body": [
+            "console.profile(\"${1:label}\")`!p snip.rv = semi(snip)`",
+            "${0:${VISUAL}}",
+            "console.profileEnd()`!p snip.rv = semi(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ctable",
+        "description": "console.table",
+        "body": [
+            "console.table(${1:\"${2:value}\"})`!p snip.rv = semi(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "clstr",
+        "description": "console.log stringified",
+        "body": [
+            "console.log(JSON.stringify(${0}, null, 2))`!p snip.rv = semi(snip)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "=\u003e",
+        "description": "arrow function",
+        "body": [
+            "($1) =\u003e $2"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": true
+        }
+    }
+]
