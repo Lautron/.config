@@ -10,17 +10,42 @@ return {
             onedark.load()
         end
     },
-
     {
         "folke/trouble.nvim",
-        config = function()
-            require("trouble").setup {
-                icons = false,
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
-            }
-        end
+        opts = {}, -- for default options, refer to the configuration section for custom setup.
+        cmd = "Trouble",
+        keys = {
+            {
+                "<leader>xx",
+                "<cmd>Trouble diagnostics toggle<cr>",
+                desc = "Diagnostics (Trouble)",
+            },
+            {
+                "<leader>xX",
+                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+                desc = "Buffer Diagnostics (Trouble)",
+            },
+            {
+                "<leader>cs",
+                "<cmd>Trouble symbols toggle focus=false<cr>",
+                desc = "Symbols (Trouble)",
+            },
+            {
+                "<leader>cx",
+                "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+                desc = "LSP Definitions / references / ... (Trouble)",
+            },
+            {
+                "<leader>xL",
+                "<cmd>Trouble loclist toggle<cr>",
+                desc = "Location List (Trouble)",
+            },
+            {
+                "<leader>xQ",
+                "<cmd>Trouble qflist toggle<cr>",
+                desc = "Quickfix List (Trouble)",
+            },
+        },
     },
 
     {
@@ -143,13 +168,6 @@ return {
 
     -- optional https://github.com/kevinhwang91/nvim-bqf
     {
-        'anuvyklack/pretty-fold.nvim',
-        config = function()
-            require('pretty-fold').setup()
-        end
-    },
-
-    {
         'https://github.com/milisims/foldhue.nvim',
         config = function()
             require('foldhue').enable()
@@ -188,4 +206,31 @@ return {
             'nvim-telescope/telescope.nvim',
         },
     },
+    {
+        'serenevoid/kiwi.nvim',
+        dependencies = {
+            "nvim-lua/plenary.nvim"
+        },
+        opts = {
+            {
+                name = "personal",
+                path = "/home/lautarob/Documents/wiki",
+            }
+        },
+        keys = {
+            { "<leader>ww", ":lua require(\"kiwi\").open_wiki_index()<cr>", desc = "Open Wiki index" },
+            { "T",          ":lua require(\"kiwi\").todo.toggle()<cr>",     desc = "Toggle Markdown Task" }
+        },
+        lazy = true
+    },
+    "benfowler/telescope-luasnip.nvim",
+    {
+        "nvim-tree/nvim-tree.lua",
+        version = "*",
+        lazy = false,
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+        },
+    }
+
 }
