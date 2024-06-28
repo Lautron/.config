@@ -60,7 +60,15 @@ sxiv
 lxappearance
 python-pipx
 noto-fonts
+noto-fonts-emoji
+noto-fonts-extra
+noto-fonts-cjk
 arc-gtk-theme
 neofetch
 xdotool
 unzip
+python-pipx
+gparted
+texlive
+texlive-fontsrecommended
+imagemagick

@@ -9,3 +9,5 @@ ncpamixer
 otf-font-awesome-5
 nvim-packer-git
 bibata-cursor-theme-bin
+otf-font-awesome-5
+vimv
