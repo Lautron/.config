@@ -17,6 +17,12 @@ require('telescope').setup{
   }
 }
 
+require('telescope').load_extension('luasnip')
+
+
+vim.keymap.set('n', '<leader>fs', function ()
+        vim.cmd('Telescope luasnip')
+    end, {})
 ----vim.keymap.set('n', '<Leader>fg', ':GFiles<CR>', { silent = true })
 ----vim.keymap.set('n', '<Leader>ff', ':Rg<CR>', { silent = true })
 ----vim.keymap.set('n', '<Leader>fm', ':Maps<CR>', { silent = true })
