@@ -7,7 +7,7 @@ URL = "https://api.bluelytics.com.ar/v2/latest"
 json = requests.get(URL).json()
 
 # Calculate the maximum width needed for alignment
-blue, oficial = "$" + str(json['blue']['value_avg']), "$" + str(json['oficial']['value_avg'])
+blue, oficial = "$" + str(json['blue']['value_buy']), "$" + str(json['oficial']['value_buy'])
 max_width = max(len(blue), len(oficial)) + 2  # Adding extra space for padding
 
 # Create a centered table
