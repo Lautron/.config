@@ -1,0 +1,78 @@
+[
+    {
+        "prefix": "module",
+        "description": "module name( parameters ) { actions }",
+        "body": [
+            "module ${1:name}(${2:parameters}){",
+            "  ${3:actions};",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "if",
+        "description": "if( condidion ) { actions }",
+        "body": [
+            "if (${1:condition}){",
+            "  ${3:actions};",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "trans",
+        "description": "translate([ coordinates ])",
+        "body": [
+            "translate([${1:x}, ${2:y}, ${3:z}])"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "rot",
+        "description": "rotate([ coordinates ])",
+        "body": [
+            "rotate([${1:x}, ${2:y}, ${3:z}])"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "cube",
+        "description": "cube([x, y, z], center)",
+        "body": [
+            "cube([${1:x}, ${2:y}, ${3:z}]);"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "cyl",
+        "description": "cylinder(height, radius)",
+        "body": [
+            "cylinder(${1:height}, ${2:radius});"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    }
+]

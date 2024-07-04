@@ -113,11 +113,8 @@ myStartupHook = do
     spawnOnce "sleep 20 && xmodmap ~/.Xmodmap &"
     spawnOnce "xset s 3600 3600 &"
     spawnOnce "reddit_notifs &"
-    spawnOnce "xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop &"
-    spawnOnce "alarms.sh &"
 
     spawnOnce "feh --randomize --bg-fill ~/.config/wallpapers &"  -- feh set random wallpaper
-    --spawnOnOnce (myWorkspaces !! 0) (myBrowser ++ " &")
     setWMName "LG3D"
 
 myColorizer :: Window -> Bool -> X (String, String)
@@ -439,6 +436,7 @@ myKeys =
         --, ("M-f", spawn (myTerminal ++ " -e fish -C ranger"))
         , ("M-f", spawn (myTerminal ++ " -e fish -C 'lf'"))
         , ("M-i", spawn (myTerminal ++ " -t vimclip -e vimclip"))
+        , ("M-w", spawn (myTerminal ++ " -e nvim -c 'lua require(\"kiwi\").open_wiki_index()'"))
         , ("M-c r", spawn (myTerminal ++ " --hold -t rate.sx -e curl rate.sx"))
         , ("M-c w", spawn (myTerminal ++ " --hold -t wttr.in -e curl wttr.in/Cordoba+capital"))
         , ("M-c t", spawn (myTerminal ++ " --hold -t translate -e trslt"))

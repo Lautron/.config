@@ -1,0 +1,219 @@
+[
+    {
+        "prefix": "struct",
+        "description": "Struct declaration",
+        "body": [
+            "type ${1:Struct} struct {",
+            "\t$0",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "interface",
+        "description": "Interface declaration",
+        "body": [
+            "type ${1:Interface} interface {",
+            "\t${0:${VISUAL}}",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "funch",
+        "description": "HTTP handler",
+        "body": [
+            "func ${1:handler}(${2:w} http.ResponseWriter, ${3:r} *http.Request) {",
+            "\t${0:${VISUAL}}",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "map",
+        "description": "Map type",
+        "body": [
+            "map[${1:keytype}]${2:valtype}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": ":",
+        "description": "Variable declaration :=",
+        "body": [
+            "${1:name} := ${0:value}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "json",
+        "description": "JSON field",
+        "body": [
+            "\\`json:\"${1:displayName}\"\\`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "err",
+        "description": "Basic error handling",
+        "body": [
+            "if err != nil {",
+            "\tlog.${1:Fatal}(err)",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "import",
+        "description": "Import statement",
+        "body": [
+            "import (",
+                "\t\"$1\"$2",
+            ")",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "fmain",
+        "description": "Main function",
+        "body": [
+            "func main() {",
+                "\t$0",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "pr",
+        "description": "print statement",
+        "body": [
+            "fmt.Println($0)"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "prf",
+        "description": "print statement",
+        "body": [
+            "fmt.Printf(\"%${2:+v}\\n\", $1)"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "fore",
+        "description": "foreach loop",
+        "body": [
+        "for ${1:_}, ${2:element} := range ${3:someSlice} {",
+            "$0",
+        "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "fori",
+        "description": "for i loop",
+        "body": [
+        "for ${1:i} := ${2:start}; ${1:i} <= ${3:end}; ${1:i}++ {",
+            "\t$0",
+        "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "if",
+        "description": "if statement",
+        "body": [
+        "if ${1:condition} {",
+            "\t$0",
+        "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "deftemp",
+        "description": "default template",
+        "body": [
+        "package main",
+        "",
+        "func main() {",
+            "\t$0",
+        "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "meth",
+        "description": "default template",
+        "body": [
+        "func (${1:self} *${2:type}) ${3:name}() ${4:returnType} {",
+            "\t$0",
+        "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    }
+]

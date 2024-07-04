@@ -1,6 +1,6 @@
 for file in "$@"
 do
   pngfile="${file%.*}.png"
-  xournalpp --export-no-background -i $pngfile "$file"
-  convert -trim $pngfile $pngfile
+  xournalpp --export-no-background --export-no-ruling -i $pngfile "$file"
+  magick $pngfile -trim $pngfile
 done

@@ -1,0 +1,2096 @@
+[
+    {
+        "prefix": "sec",
+        "description": "Section",
+        "body": [
+            "# ${1:Section Name}",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ssec",
+        "description": "Sub Section",
+        "body": [
+            "## ${1:Section Name}",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "sssec",
+        "description": "SubSub Section",
+        "body": [
+            "### ${1:Section Name}",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "par",
+        "description": "Paragraph",
+        "body": [
+            "#### ${1:Paragraph Name}",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "spar",
+        "description": "Paragraph",
+        "body": [
+            "##### ${1:Paragraph Name}",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "*",
+        "description": "italics",
+        "body": [
+            "#*${1:${VISUAL}}*$0",
+            "#endsnippet",
+            "#",
+            "#snippet ** \"bold\"",
+            "#**${1:${VISUAL}}**$0",
+            "#endsnippet",
+            "#",
+            "#snippet *** \"bold italics\"",
+            "#***${1:${VISUAL}}***$0",
+            "#endsnippet",
+            "",
+            "snippet /* \"Comment\"",
+            "\u003c!-- ${1:${VISUAL}} --\u003e$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "link",
+        "description": "Link to something",
+        "body": [
+            "[${1:${VISUAL:Text}}](${3:https://${2:www.url.com}})$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "img",
+        "description": "Image",
+        "body": [
+            "![${1:pic alt}](${2:path}${3/.+/ \"/}${3:opt title}${3/.+/\"/})$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ilc",
+        "description": "Inline Code",
+        "body": [
+            "\\`$1\\`$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "cbl",
+        "description": "Codeblock",
+        "body": [
+            "\\`\\`\\`",
+            "$1",
+            "\\`\\`\\`",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "refl",
+        "description": "Reference Link",
+        "body": [
+            "[${1:${VISUAL:Text}}][${2:id}]$0",
+            "",
+            "[$2]:${4:https://${3:www.url.com}} \"${5:$4}\""
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "fnt",
+        "description": "Footnote",
+        "body": [
+            "[^${1:${VISUAL:Footnote}}]$0",
+            "",
+            "[^$1]:${2:Text}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "detail",
+        "description": "Disclosure",
+        "body": [
+            "\u003cdetails${3: open=\"\"}\u003e",
+            "  ${1:\u003csummary\u003e${2}\u003c/summary\u003e}$0",
+            "\u003c/details\u003e"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "mk",
+        "description": "Math",
+        "body": [
+            "$$${1}$$`!p",
+            "if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:",
+            "\tsnip.rv = ' '",
+            "else:",
+            "\tsnip.rv = ''",
+            "`$2"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ms",
+        "description": "Math",
+        "body": [
+            "$${1}$`!p",
+            "if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:",
+            "\tsnip.rv = ' '",
+            "else:",
+            "\tsnip.rv = ''",
+            "`$2"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "lim",
+        "description": "limit",
+        "body": [
+            "\\lim_{${1:n} \\to ${2:\\infty}} "
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "sqrt",
+        "description": "\\sqrt{}",
+        "body": [
+            "\\sqrt{${1:${VISUAL}}} $0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "set",
+        "description": "set",
+        "body": [
+            "\\\\{$1\\\\} $0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "beg",
+        "description": "begin{} / end{}",
+        "body": [
+            "\\\\begin{$1}",
+            "${2:${VISUAL}}",
+            "\\\\end{$1}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "..",
+        "description": "ldots",
+        "body": [
+            "\\ldots"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "frac",
+        "description": "Fraction",
+        "body": [
+            "\\\\frac{${1:${VISUAL}}}{$2}$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "\"([^ {]+)/\"",
+        "description": "symbol frac",
+        "body": [
+            "\\\\frac{`!p snip.rv = match.group(1)`}{$1}$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "'([A-Za-z])(\\d)'",
+        "description": "auto subscript",
+        "body": [
+            "`!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "'([A-Za-z])_(\\d\\d)'",
+        "description": "auto subscript2",
+        "body": [
+            "`!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "sympy",
+        "description": "sympy block",
+        "body": [
+            "sympy $1 sympy$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "'sympy(.*)sympy'",
+        "description": "sympy",
+        "body": [
+            "`!p",
+            "from sympy import *",
+            "x, y, z, t = symbols('x y z t')",
+            "k, m, n = symbols('k m n', integer=True)",
+            "f, g, h = symbols('f g h', cls=Function)",
+            "init_printing()",
+            "snip.rv = eval('latex(' + match.group(1).replace('\\\\', '').replace('^', '**').replace('{', '(').replace('}', ')') + ')')",
+            "`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "pmat",
+        "description": "pmat",
+        "body": [
+            "\\begin{pmatrix} $1 \\end{pmatrix} $0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "bmat",
+        "description": "bmat",
+        "body": [
+            "\\begin{bmatrix} $1 \\end{bmatrix} $0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "()",
+        "description": "left( right)",
+        "body": [
+            "\\left( ${1:${VISUAL}} \\right) $0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "lr",
+        "description": "left( right)",
+        "body": [
+            "\\left( ${1:${VISUAL}} \\right) $0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "lr(",
+        "description": "left( right)",
+        "body": [
+            "\\left( ${1:${VISUAL}} \\right) $0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "lr|",
+        "description": "left| right|",
+        "body": [
+            "\\left| ${1:${VISUAL}} \\right| $0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "lr{",
+        "description": "left\\{ right\\}",
+        "body": [
+            "\\left\\\\{ ${1:${VISUAL}} \\right\\\\} $0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "lrb",
+        "description": "left\\{ right\\}",
+        "body": [
+            "\\left\\\\{ ${1:${VISUAL}} \\right\\\\} $0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "lr[",
+        "description": "left[ right]",
+        "body": [
+            "\\left[ ${1:${VISUAL}} \\right] $0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "lra",
+        "description": "leftangle rightangle",
+        "body": [
+            "\\left\u003c${1:${VISUAL}} \\right\u003e$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "sum",
+        "description": "sum",
+        "body": [
+            "\\sum_{${1:n=1}}^{${2:\\infty}} ${3:a_n}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "prod",
+        "description": "product",
+        "body": [
+            "\\prod_{${1:n=${2:1}}}^{${3:\\infty}} ${4:${VISUAL}} $0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "part",
+        "description": "d/dx",
+        "body": [
+            "\\frac{\\partial ${1:V}}{\\partial ${2:x}} $0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "td",
+        "description": "to the ... power",
+        "body": [
+            "^{$1}$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "__",
+        "description": "subscript",
+        "body": [
+            "_{$1}$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "ooo",
+        "description": "\\infty",
+        "body": [
+            "\\infty"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "\u003c=",
+        "description": "leq",
+        "body": [
+            "\\le "
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "\u003e=",
+        "description": "geq",
+        "body": [
+            "\\ge "
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "lll",
+        "description": "l",
+        "body": [
+            "\\ell"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "xx",
+        "description": "cross",
+        "body": [
+            "\\times "
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "'(?\u003c!\\\\)(sin|cos|arccot|cot|csc|ln|log|exp|star|perp)'",
+        "description": "ln",
+        "body": [
+            "\\\\`!p snip.rv = match.group(1)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "'(?\u003c!\\\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec|zeta|int)'",
+        "description": "ln",
+        "body": [
+            "\\\\`!p snip.rv = match.group(1)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "\"([^ {]+)bar\"",
+        "description": "bar",
+        "body": [
+            "\\bar{`!p snip.rv=match.group(1)`}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "inn",
+        "description": "in ",
+        "body": [
+            "\\in "
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "cc",
+        "description": "subset",
+        "body": [
+            "\\subset "
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "-\u003e",
+        "description": "to",
+        "body": [
+            "\\to "
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "norm",
+        "description": "norm",
+        "body": [
+            "\\|$1\\|$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "eqq",
+        "description": "equivalent",
+        "body": [
+            "\\equiv "
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "\"(\\w+)!(\\d+)\"",
+        "description": "index",
+        "body": [
+            "`!p snip.rv=match.group(1)`~!~`!p snip.rv=match.group(2)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "/=",
+        "description": "not equal",
+        "body": [
+            "\\neq"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "range",
+        "description": "range",
+        "body": [
+            "${2:0} \\leq $1 \u003c ${3:\\#xs} $4"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "#",
+        "description": "cardinal",
+        "body": [
+            "\\#"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "brang",
+        "description": "bracket angled",
+        "body": [
+            "\\langle $1 \\rangle"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "AA",
+        "description": "forall",
+        "body": [
+            "\\forall"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "EE",
+        "description": "exists",
+        "body": [
+            "\\exists"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "--\u003e",
+        "description": "arrow",
+        "body": [
+            "\\rightarrow "
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "andd",
+        "description": "and",
+        "body": [
+            "\\wedge "
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "orr",
+        "description": "or",
+        "body": [
+            "\\vee "
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "props",
+        "description": "props",
+        "body": [
+            "\\equiv \\\\{ \\text{$1} \\\\}",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "negg",
+        "description": "negation",
+        "body": [
+            "\\neg "
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "undd",
+        "description": "underline",
+        "body": [
+            "\\underline{${1:${VISUAL}}}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "mbf",
+        "description": "bold math",
+        "body": [
+            "\\mathbf{${1:${VISUAL}}}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "bf",
+        "description": "bold text",
+        "body": [
+            "\\textbf{${1:${VISUAL}}}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "squigg",
+        "description": "squiggly arrow",
+        "body": [
+            "\\rightsquigarrow "
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "o+",
+        "description": "oplus",
+        "body": [
+            "\\oplus"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "pegg",
+        "description": "pegado",
+        "body": [
+            "\\triangleright"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "Sig",
+        "description": "Uppercase Sigma",
+        "body": [
+            "\\Sigma"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "PI",
+        "description": "Uppercase Pi",
+        "body": [
+            "\\Pi"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "RR",
+        "description": "real",
+        "body": [
+            "\\mathbb{R}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "NN",
+        "description": "natural",
+        "body": [
+            "\\mathbb{N}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "II",
+        "description": "I",
+        "body": [
+            "\\mathbb{I}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "KK",
+        "description": "K",
+        "body": [
+            "\\mathbb{K}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "uiN",
+        "description": "undefined integral",
+        "body": [
+            "\\int $1~dx $0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "diN",
+        "description": "integral",
+        "body": [
+            "\\int_{${1:-\\infty}}^{${2:\\infty}}$3~${4:dx} $0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "uP",
+        "description": "up arrow",
+        "body": [
+            "\\uparrow"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "++",
+        "description": "concatenation operator",
+        "body": [
+            "\\concat "
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "concatDef",
+        "description": "concat command definition",
+        "body": [
+            "\\newcommand{\\concat}{%",
+            "  \\mathbin{{+}\\mspace{-8mu}{+}}%",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "=\u003e",
+        "description": "Right arrow",
+        "body": [
+            "\\Rightarrow "
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "taylor",
+        "description": "taylor",
+        "body": [
+            "\\frac{f^{(${1:n})}(${2:a})}{${3:n}!} $0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "funcder",
+        "description": "Function Derivation",
+        "body": [
+            "${1:f}^{(${2:n})}(${3:a}) $0 "
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "vD",
+        "description": "Variable declaration",
+        "body": [
+            "#$Var~ $1: ${2:Int};$\\",
+            "#$0",
+            "#endsnippet",
+            "",
+            "snippet stn \"state name\" wA",
+            "$\\sigma_{$1}$"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "lnn",
+        "description": "line name",
+        "body": [
+            "$\\ell_{$1}$"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "\"(\\w+)mt\"",
+        "description": "maps to",
+        "body": [
+            "`!p snip.rv=match.group(1)` \\mapsto $1"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "conm",
+        "description": "conjunto matriz",
+        "body": [
+            "${1:\\mathbb{K}}^{${2:n}\\times ${3:n}} $0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "iff",
+        "description": "Leftrightarrow",
+        "body": [
+            "\\Leftrightarrow "
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "rH",
+        "description": "Row header",
+        "body": [
+            "|    linea   | nombre del estado |       estado/guardas      |   aclaracion   |",
+            "|:----------:|:-----------------:|:-------------------------:|:--------------:|",
+            "|     -      |    $\\sigma_{0}$   | $$1$                      | Estado inicial |"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "terh",
+        "description": "Inline Terna de Hoare",
+        "body": [
+            "\\\\{${1:P}\\\\}~${3:S}~\\\\{${2:Q}\\\\} $0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "terH",
+        "description": "Terna de Hoare",
+        "body": [
+            "\\\\{${1:P}\\\\}",
+            "$3",
+            "\\\\{${2:Q}\\\\}",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "\"gen(\\w+)\"",
+        "description": "Generalization",
+        "body": [
+            "${1:`!p snip.rv=match.group(1)`}_${2:1},\\ldots,$1_${3:n}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "mc",
+        "description": "mathcal",
+        "body": [
+            "\\mathcal{$1} $0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "\"dom([a-zA-Z])\"",
+        "description": "Dominio",
+        "body": [
+            "Dom(`!p snip.rv=match.group(1)`) $0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "\"(\\w)RR\"",
+        "description": "R^n",
+        "body": [
+            "\\mathbb{R}^`!p snip.rv=match.group(1)` $0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "fndef",
+        "description": "function definition",
+        "body": [
+            "${1:f}:${2:\\mathbb{R}^n}\\to ${3:\\mathbb{R}}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "\"txt([a-zA-Z]+)\"",
+        "description": "text",
+        "body": [
+            "\\text{ `!p snip.rv=match.group(1)`$2 } $1"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "\"([^ {]+)sqrt\"",
+        "description": "square root",
+        "body": [
+            "\\sqrt{`!p snip.rv=match.group(1)`} $0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "c=",
+        "description": "subset",
+        "body": [
+            "\\subseteq "
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "\"([^ ]+)\u003c-([^ ])\"",
+        "description": "left arrow",
+        "body": [
+            "`!p snip.rv=match.group(1)` \\leftarrow `!p snip.rv=match.group(2)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "wp",
+        "description": "weakest precondition",
+        "body": [
+            "wp.($1).($2)"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "wpif",
+        "description": "wp(if...fi)",
+        "body": [
+            "(${1:B1} \\vee ${2:B2})",
+            "\\wedge ($1 \\Rightarrow wp.(${4:S0}).${3:${VISUAL}})",
+            "\\wedge ($2 \\Rightarrow wp.(${5:S1}).$3)"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "if",
+        "description": "if..fi",
+        "body": [
+            "#if~${1:expression}\\rightarrow $2",
+            "#$3",
+            "#fi",
+            "#endsnippet",
+            "",
+            "snippet else \"[] -\u003e\" w",
+            "[]~${1:expression}\\rightarrow $2",
+            "$3"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "grad",
+        "description": "gradient",
+        "body": [
+            "\\nabla ${3:f}(${1:\\bar{a}})$2"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "fndom",
+        "description": "function definition based on Dom(f)",
+        "body": [
+            "${1:f}:${2:Dom(f) \\subseteq \\mathbb{R}^n}\\to ${3:\\mathbb{R}}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "bola",
+        "description": "bola",
+        "body": [
+            "B(${1:\\bar{a}}, ${2:r})"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "dim",
+        "description": "Dimension",
+        "body": [
+            "dim~"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "verdo",
+        "description": "verification do",
+        "body": [
+            "P \\Rightarrow ${4:I} ",
+            "\\wedge $4 \\wedge \\neg (${1:B}) \\Rightarrow ${3:Q}",
+            "\\wedge \\\\{$4 \\wedge $1\\\\} ${2:S} \\\\{$4\\\\} ",
+            "\\wedge $4 \\wedge $1 \\Rightarrow t \\ge 0",
+            "\\wedge \\\\{$4 \\wedge $1 \\wedge t = T\\\\} $2 \\\\{t \u003c T\\\\} "
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "alib",
+        "description": "align block",
+        "body": [
+            "\\begin{${1:align*}}",
+            "`!p snip.rv = \"\\n\".join(['\u0026 ' + line.rstrip().replace(\"  \", \"\\\\quad \") + '\\\\\\\\' for line in snip.v.text.split('\\n') if line])`",
+            "\\end{$1}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "alig",
+        "description": "align block",
+        "body": [
+            "`!p snip.rv = \"\\n\".join(['\u0026 ' + line.rstrip().replace(\"  \", \"\\\\quad \") + '\\\\\\\\' for line in snip.v.text.split('\\n') if line])`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "dobint",
+        "description": "integral doble",
+        "body": [
+            "\\int\\int_${1:D} ${2:f(x,y)}~dA"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "dood",
+        "description": "do..od",
+        "body": [
+            "\\textbf{do} $${1:B} \\rightarrow$",
+            "  $2",
+            "\\textbf{od}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "loopf",
+        "description": "First part of Derivation",
+        "body": [
+            "## Encontrar Invariante ##",
+            "$$I:${1:${VISUAL}}$$",
+            "## Inicializacion ##",
+            "\\{${2:P}\\}",
+            "S_0",
+            "\\{$1\\}",
+            "## Finalizacion ##",
+            "$1 \\wedge \\neg B",
+            "\\Rightarrow ${3:Q}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "loops",
+        "description": "Second part of derivation",
+        "body": [
+            "## Cota candidata ##",
+            "## Cuerpo del bucle ##",
+            "\\{${1:${VISUAL}} \\wedge ${2:B}\\}",
+            "S_1",
+            "\\{$1\\}",
+            "## Demostrar que la cota es positiva ##",
+            "$1 \\wedge $2 \\Rightarrow t \\Rightarrow 0",
+            "## Demostrar que la cota disminuye ##",
+            "\\{$1 \\wedge $2 \\wedge t = T\\}",
+            "S_1",
+            "\\{t \u003c T\\}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "!!",
+        "description": "index",
+        "body": [
+            "~!!~"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "gatb",
+        "description": "gather block",
+        "body": [
+            "\\begin{${1:gather*}}",
+            "`!p snip.rv = \"\\n\".join([line.rstrip().replace(\"  \", \"\\\\quad \") + '\\\\\\\\' for line in snip.v.text.split('\\n') if line])`",
+            "\\end{$1}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "proc",
+        "description": "proc template",
+        "body": [
+            "\\textbf{proc} ${1:name}(${2:arg})",
+            "  $3",
+            "\\textbf{end proc}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "var",
+        "description": "var declaration",
+        "body": [
+            "\\textbf{var} ${1:name}: ${2:type}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "tabb",
+        "description": "tabular env",
+        "body": [
+            "\\begin{tabular}{ l l l }",
+            "`!p snip.rv = \"\\n\".join(['\u0026 ' + line.rstrip().replace(\"  \", \"\\\\quad \").replace(\"\\t\", \"\\\\quad \"*4).replace(\"_\", \"\\\\_\") + '\\\\\\\\' for line in snip.v.text.split('\\n') if line])`",
+            "\\end{tabular}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "untabb",
+        "description": "tabular env",
+        "body": [
+            "`!p snip.rv = snip.v.text.replace('\u0026 ', '').replace('\\\\quad ', '  ').replace('\\\\\\\\', '').replace('\\\\end{tabular}', '').replace('\\\\begin{tabular}{ l l l }', '').replace(\"\\\\_\", \"_\")`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "_",
+        "description": "snake case",
+        "body": [
+            "\\_"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "xour",
+        "description": "xournal++ integration",
+        "body": [
+            "![](`!p if not snip.c: snip.rv = get_new_fig_path(snip)`)"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "fun",
+        "description": "fun template",
+        "body": [
+            "\\textbf{fun} ${1:name}(${2:arg}) \\textbf{ret} ${3:r} : ${4:type}",
+            "  $6",
+            "\\textbf{end fun}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "fort",
+        "description": "for to",
+        "body": [
+            "\\textbf{for} ${1:i} := ${2:N} \\textbf{to} ${3:M} \\textbf{do}",
+            "  $4",
+            "\\textbf{od}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ford",
+        "description": "for downtoto",
+        "body": [
+            "\\textbf{for} ${1:i} := ${2:N} \\textbf{downto} ${3:M} \\textbf{do}",
+            "  $4",
+            "\\textbf{od}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "arr",
+        "description": "array declaration",
+        "body": [
+            "array[${1:N}..${2:M}] of ${3:int}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ift",
+        "description": "if else",
+        "body": [
+            "\\textbf{if} ${1:B} \\textbf{then}",
+            "  ${2:S1}",
+            "\\textbf{fi}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ifelse",
+        "description": "if else",
+        "body": [
+            "\\textbf{if} ${1:B} \\textbf{then}",
+            "  ${2:S1}",
+            "\\textbf{else}",
+            "  ${3:skip}",
+            "\\textbf{fi}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "eps",
+        "description": "epsilon",
+        "body": [
+            "\\epsilon"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "succ",
+        "description": "succession",
+        "body": [
+            "\\\\{${1:x}_n\\\\}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "while",
+        "description": "while do",
+        "body": [
+            "\\textbf{while} ${1:B} \\textbf{do} ",
+            "  ${2:S}",
+            "\\textbf{od}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "del",
+        "description": "delta",
+        "body": [
+            "\\delta"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "Del",
+        "description": "Delta",
+        "body": [
+            "\\Delta"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "\"enum(\\w+)\"",
+        "description": "Generalization",
+        "body": [
+            "`!p snip.rv=match.group(1)` = ${1:0},\\ldots, ${2:n}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "alp",
+        "description": "alpha",
+        "body": [
+            "\\alpha"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "table",
+        "description": "make latex table",
+        "body": [
+            "`!p snip.rv = build_table(snip.v.text)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "untable",
+        "description": "make markdown table",
+        "body": [
+            "`!p snip.rv = unbuild_table(snip.v.text)`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "undb",
+        "description": "underbrace",
+        "body": [
+            "\\underbrace{${1:${VISUAL}}}_{$2}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "cI",
+        "description": "closed interval",
+        "body": [
+            "[${1:a}, ${2:b}]"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "oI",
+        "description": "open interval",
+        "body": [
+            "(${1:a}, ${2:b})"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "newfig",
+        "description": "link to new figure",
+        "body": [
+            "![](`!p if not snip.c: snip.rv = get_new_fig_path(f\"./{snip.basename}_imgs/\")`){ width=${1:250}px }"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "spec",
+        "description": "specification",
+        "body": [
+            "\\textbf{spec} ${1:name} \\textbf{of} T \\textbf{where}",
+            "",
+            "\\textbf{constructors}",
+            "",
+            "\\textbf{operations}",
+            "",
+            "\\textbf{destroy}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "implement",
+        "description": "implementation",
+        "body": [
+            "\\textbf{implement} ${1:name} \\textbf{of} T \\textbf{where}",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "type",
+        "description": "implementation",
+        "body": [
+            "\\textbf{type} ${1:Typename} = $0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "off",
+        "description": "Type of",
+        "body": [
+            "\\textbf{of} ${2:T} "
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "vof",
+        "description": "variabel of",
+        "body": [
+            "${1:name}: ${2:Type} "
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "points",
+        "description": "points to",
+        "body": [
+            "${1:pointer} -\u003e ${2:property}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "comm",
+        "description": "comment",
+        "body": [
+            "\\\\emph{\\\\{- $1 -\\\\}}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "tuple",
+        "description": "tuple",
+        "body": [
+            "\\textbf{tuple}",
+            "  ${1:var}: ${2:Type}",
+            "  $3",
+            "\\textbf{end tuple}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "pointer",
+        "description": "pointer to",
+        "body": [
+            "\\textbf{pointer to} ${1:Type}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "parg",
+        "description": "proc argument",
+        "body": [
+            "\\textbf{${2:I/O}} ${3:var}: ${4:type}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "proch",
+        "description": "proc header",
+        "body": [
+            "\\textbf{proc} ${1:name}(${2:arg})"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "funh",
+        "description": "fun header",
+        "body": [
+            "\\textbf{fun} ${1:name}(${2:arg}) \\textbf{ret} ${3:r} : ${4:type}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "code",
+        "description": "code",
+        "body": [
+            "\\`\\`\\`",
+            "  ${VISUAL}$0",
+            "\\`\\`\\`"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "headers",
+        "description": "doc headers",
+        "body": [
+            "---",
+            "title: $1",
+            "author: ${2:Lautaro Bachmann}",
+            "documentclass: scrartcl",
+            "toc: true",
+            "toc-depth: 4",
+            "---",
+            "\\newpage",
+            ""
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "dincomments",
+        "description": "partes programacion dinamica",
+        "body": [
+            "\\emph{\\\\{- Declaracion de variables -\\\\}}",
+            "\\emph{\\\\{- Casos base -\\\\}}",
+            "\\emph{\\\\{- Caso recursivo -\\\\}}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "np",
+        "description": "new page",
+        "body": [
+            "\\newpage",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "dx",
+        "description": "derivative",
+        "body": [
+            "\\frac{d}{d${1:x}}$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ol",
+        "description": "overline",
+        "body": [
+            "\\\\overline{$1}$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": true
+        }
+    },
+    {
+        "prefix": "hh",
+        "description": "header 4",
+        "body": [
+            "#### $1",
+            "\\\\",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    }
+]

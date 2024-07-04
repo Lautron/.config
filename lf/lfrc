@@ -192,7 +192,9 @@ map g. :cd ~/.config; fzf_folders
 map gd :cd ~/Downloads; set reverse true; set sortby time; set info time
 map gf :cd ~/Documents/Facultad; fzf_folders
 map gc :cd ~/Documents/code; fzf_folders
+map gs :cd ~/Documents/code/clients/henk/morphais-ng/morphais_ng/data/; fzf_folders
 map gb :cd ~/Documents/books; fzf_folders
+map gm :cd /run/media/lautarob
 
 map st :set reverse true; set sortby time; set info time
 map sa :set reverse true; set sortby atime; set info atime
