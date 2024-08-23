@@ -18,8 +18,7 @@ return {
             {
                 "<leader>xx",
                 "<cmd>Trouble diagnostics toggle<cr>",
-                desc = "Diagnostics (Trouble)",
-            },
+                desc = "Diagnostics (Trouble)", },
             {
                 "<leader>xX",
                 "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
@@ -199,12 +198,14 @@ return {
         end,
     },
     {
-        'huynle/ogpt.nvim',
+        "jackMort/ChatGPT.nvim",
+        event = "VeryLazy",
         dependencies = {
-            'MunifTanjim/nui.nvim',
-            'nvim-lua/plenary.nvim',
-            'nvim-telescope/telescope.nvim',
-        },
+            "MunifTanjim/nui.nvim",
+            "nvim-lua/plenary.nvim",
+            "folke/trouble.nvim",
+            "nvim-telescope/telescope.nvim"
+        }
     },
     {
         'serenevoid/kiwi.nvim',
