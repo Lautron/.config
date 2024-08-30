@@ -1,0 +1,27 @@
+#!/usr/bin/env fish
+# Initialize variables
+set reverse false
+# Parse options
+for arg in $argv
+    switch $arg
+        case '-r'
+            set reverse true
+    end
+end
+# Check if a destination argument is provided
+if test (count $argv) -eq 0
+    echo "Usage: cmd [-r] <destination>"
+    exit 1
+end
+# The last argument is the destination
+set destination $argv[-1]
+set destination (realpath $destination)/
+# Set source and destination based on the reverse flag
+if test $reverse = true
+    set source "192.168.100.51:$destination"
+else
+    set source "$destination"
+end
+# Run rsync
+rsync -iPa -v --delete --exclude={'__pycache__', 'node_modules', 'custom-distros/work', "*.mp4", "venv"} "$source" "$destination"
+
