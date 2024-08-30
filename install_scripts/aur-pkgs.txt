@@ -5,9 +5,11 @@ thorium-browser-bin
 ly
 zulip-desktop-bin
 anki-bin
-ncpamixer
 otf-font-awesome-5
-nvim-packer-git
 bibata-cursor-theme-bin
 otf-font-awesome-5
 vimv
+vimclip
+slack-desktop
+dragon-drop
+python310
