@@ -112,7 +112,7 @@ myStartupHook = do
     spawnOnce "setxkbmap -option caps:none &"
     spawnOnce "sleep 20 && xmodmap ~/.Xmodmap &"
     spawnOnce "xset s 3600 3600 &"
-    spawnOnce "reddit_notifs &"
+    --spawnOnce "reddit_notifs &"
 
     spawnOnce "feh --randomize --bg-fill ~/.config/wallpapers &"  -- feh set random wallpaper
     setWMName "LG3D"
@@ -310,10 +310,6 @@ clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
 
 myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
 myManageHook = composeAll
-     -- 'doFloat' forces a window to float.  Useful for dialog boxes and such.
-     -- using 'doShift ( myWorkspaces !! 7)' sends program to workspace 8!
-     -- I'm doing it this way because otherwise I would have to write out the full
-     -- name of my workspaces and the names would be very long if using clickable workspaces.
      [ manageSpawn
      , className =? "confirm"         --> doFloat
      , className =? "file_progress"   --> doFloat
@@ -332,13 +328,14 @@ myManageHook = composeAll
      , title =? "vimclip"             --> vimclipFloat 0.05 0.5 0.2
      , title =? "ttask"               --> centerCustomFloat 0.7 0.7
      , title =? "translate"           --> centerCustomFloat 0.7 0.7
+     , title =? "ChatGPT"             --> centerCustomFloat 0.9 0.9
      , isFullscreen -->  doFullFloat
      ] <+> namedScratchpadManageHook myScratchPads
      where
        centerCustomFloat w h = customFloating $ W.RationalRect l t w h
         where
           l = (1 - w)/2
-          t = (1 - h)/2
+          t = (1 - h)/2 + 0.015  -- Added offset from the top of the screen
 
        vimclipFloat y w h = customFloating $ W.RationalRect l y w h
         where
@@ -440,6 +437,7 @@ myKeys =
         , ("M-c r", spawn (myTerminal ++ " --hold -t rate.sx -e curl rate.sx"))
         , ("M-c w", spawn (myTerminal ++ " --hold -t wttr.in -e curl wttr.in/Cordoba+capital"))
         , ("M-c t", spawn (myTerminal ++ " --hold -t translate -e trslt"))
+        , ("M-c o", spawn (myTerminal ++ " --hold -t ChatGPT -e nvim +ChatGPT"))
         , ("M1-x l", spawn "xmind_shortcut.sh")
         , ("M3-h", spawn "xdotool keyup h key --clearmodifiers Left")
         , ("M3-j", spawn "xdotool keyup j key --clearmodifiers Down")
