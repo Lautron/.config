@@ -1,0 +1,148 @@
+[
+    {
+        "prefix": "sel",
+        "description": "SELECT statement",
+        "body": [
+            "SELECT $1",
+            "FROM $2",
+            "WHERE $3;",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ins",
+        "description": "INSERT INTO statement",
+        "body": [
+            "INSERT INTO $1 ($2)",
+            "VALUES ($3);",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "upd",
+        "description": "UPDATE statement",
+        "body": [
+            "UPDATE $1",
+            "SET $2",
+            "WHERE $3;",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "del",
+        "description": "DELETE FROM statement",
+        "body": [
+            "DELETE FROM $1",
+            "WHERE $2;",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "ct",
+        "description": "CREATE TABLE statement",
+        "body": [
+            "CREATE TABLE $1 (",
+            "\t$2",
+            ");",
+            "$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "pk",
+        "description": "Primary Key",
+        "body": [
+            "PRIMARY KEY ($1),"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "nn",
+        "description": "not null",
+        "body": [
+            "NOT NULL"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "au",
+        "description": "Auto increment",
+        "body": [
+            "AUTO_INCREMENT"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "vc",
+        "description": "Variable size char",
+        "body": [
+            "${1:name} VARCHAR(${2:size}),"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "nu",
+        "description": "Floating point var",
+        "body": [
+            "${1:name} numeric(${2:digits}, ${3:decimals}),"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "fk",
+        "description": "Foreign key",
+        "body": [
+            "FOREIGN KEY (${1:lkey}) REFERENCES ${2:ftable}(${3:fkey})"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    }
+]
+

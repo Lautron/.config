@@ -33,8 +33,7 @@ def handle_xournalpp(basename):
     xopp_path = png_path.replace("png", "xopp")
     commands = " && ".join([
         f'xournalpp "{xopp_path}"',
-        f'xournalpp --export-no-background -i "{png_path}" "{xopp_path}"',
-        f'convert -trim "{png_path}" "{png_path}"'
+        f'get-png "{xopp_path}"',
     ])
     subprocess.Popen(commands, shell=True)
     print(f"![]({png_path})")
