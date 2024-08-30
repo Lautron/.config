@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# List of websites to block and unblock
+SITES=(
+    "www.youtube.com"
+    "youtube.com"
+    "web.whatsapp.com"
+    "whatsapp.com"
+    "www.instagram.com"
+    "instagram.com"
+    "www.reddit.com"
+    "reddit.com"
+)
+
+# Get root privileges
+if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run as root."
+    exit 1
+fi
+
+# Function to block sites
+block_sites() {
+    for site in "${SITES[@]}"; do
+        if grep -q $site /etc/hosts; then
+            :
+        else
+            echo "127.0.0.1 $site" >> /etc/hosts
+        fi
+    done
+    echo "All sites have been blocked."
+}
+
+# Function to unblock sites
+unblock_sites() {
+    for site in "${SITES[@]}"; do
+        if grep -q $site /etc/hosts; then
+            sed -i "/$site/d" /etc/hosts
+        fi
+    done
+    echo "All sites have been unblocked."
+}
+
+if [[ $1 == "block" ]]; then
+    block_sites
+elif [[ $1 == "unblock" ]]; then
+    unblock_sites
+else
+    echo "Usage: $0 {block|unblock}"
+    exit 1
+fi
+

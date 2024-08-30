@@ -89,14 +89,26 @@
         }
     },
     {
-        "prefix": "link",
+        "prefix": "linkmd",
         "description": "Link to something",
         "body": [
-            "[${1:${VISUAL:Text}}](${3:https://${2:www.url.com}})$0"
+            "[${1:DISPLAY TEXT}](${3:FILE}.md)$0"
         ],
         "luasnip": {
             "priority": 1,
-            "autotrigger": false,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "linkw",
+        "description": "Link to something",
+        "body": [
+            "[${1:DISPLAY TEXT}](https://${3:website.com})$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
             "wordTrig": false
         }
     },
@@ -1140,7 +1152,7 @@
         ],
         "luasnip": {
             "priority": 1,
-            "autotrigger": true,
+            "autotrigger": false,
             "wordTrig": false
         }
     },
@@ -1998,13 +2010,13 @@
         "prefix": "code",
         "description": "code",
         "body": [
-            "\\`\\`\\`",
-            "  ${VISUAL}$0",
-            "\\`\\`\\`"
+            "```${1:bash}",
+            "$0",
+            "```"
         ],
         "luasnip": {
             "priority": 1,
-            "autotrigger": true,
+            "autotrigger": false,
             "wordTrig": false
         }
     },

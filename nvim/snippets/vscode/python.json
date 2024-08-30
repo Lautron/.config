@@ -400,6 +400,19 @@
         }
     },
     {
+        "prefix": "defi",
+        "description": "function or class method",
+        "body": [
+            "def __init__(self, $1):",
+            "\t$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
         "prefix": "def",
         "description": "function with docstrings",
         "body": [
@@ -772,9 +785,9 @@
         "prefix": "doc",
         "description": "doc block (triple quotes)",
         "body": [
-            "`!p snip.rv = triple_quotes(snip)`",
-            "${1:${VISUAL:doc}}",
-            "`!p snip.rv = triple_quotes(snip)`"
+            "\"\"\"",
+            "${1:doc}",
+            "\"\"\""
         ],
         "luasnip": {
             "priority": 1,
@@ -833,7 +846,7 @@
         "luasnip": {
             "priority": 1,
             "autotrigger": true,
-            "wordTrig": false
+            "wordTrig": true
         }
     },
     {
@@ -870,6 +883,30 @@
         "luasnip": {
             "priority": 1,
             "autotrigger": false,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "logvar",
+        "description": "log variable",
+        "body": [
+            "logger.${2:debug}(f'{${1:var}=}')$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
+            "wordTrig": false
+        }
+    },
+    {
+        "prefix": "loggg",
+        "description": "log",
+        "body": [
+            "logger.${1:info}(f'$2')$0"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": true,
             "wordTrig": false
         }
     }
