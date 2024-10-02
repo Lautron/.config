@@ -18,7 +18,8 @@ return {
             {
                 "<leader>xx",
                 "<cmd>Trouble diagnostics toggle<cr>",
-                desc = "Diagnostics (Trouble)", },
+                desc = "Diagnostics (Trouble)",
+            },
             {
                 "<leader>xX",
                 "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
@@ -232,6 +233,13 @@ return {
         dependencies = {
             "nvim-tree/nvim-web-devicons",
         },
+    },
+    { "mfussenegger/nvim-lint" },
+    { 'mhartington/formatter.nvim' },
+    {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
     }
-
 }
