@@ -72,3 +72,9 @@ gparted
 texlive
 texlive-fontsrecommended
 imagemagick
+pass
+pass-otp
+tree-sitter
+luarocks
+npm
+python-pynvim
