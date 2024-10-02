@@ -1,148 +1,445 @@
 [
-    {
-        "prefix": "sel",
-        "description": "SELECT statement",
-        "body": [
-            "SELECT $1",
-            "FROM $2",
-            "WHERE $3;",
-            "$0"
-        ],
-        "luasnip": {
-            "priority": 1,
-            "autotrigger": false,
-            "wordTrig": false
-        }
-    },
-    {
-        "prefix": "ins",
-        "description": "INSERT INTO statement",
-        "body": [
-            "INSERT INTO $1 ($2)",
-            "VALUES ($3);",
-            "$0"
-        ],
-        "luasnip": {
-            "priority": 1,
-            "autotrigger": false,
-            "wordTrig": false
-        }
-    },
-    {
-        "prefix": "upd",
-        "description": "UPDATE statement",
-        "body": [
-            "UPDATE $1",
-            "SET $2",
-            "WHERE $3;",
-            "$0"
-        ],
-        "luasnip": {
-            "priority": 1,
-            "autotrigger": false,
-            "wordTrig": false
-        }
-    },
-    {
-        "prefix": "del",
-        "description": "DELETE FROM statement",
-        "body": [
-            "DELETE FROM $1",
-            "WHERE $2;",
-            "$0"
-        ],
-        "luasnip": {
-            "priority": 1,
-            "autotrigger": false,
-            "wordTrig": false
-        }
-    },
-    {
-        "prefix": "ct",
-        "description": "CREATE TABLE statement",
-        "body": [
-            "CREATE TABLE $1 (",
-            "\t$2",
-            ");",
-            "$0"
-        ],
-        "luasnip": {
-            "priority": 1,
-            "autotrigger": false,
-            "wordTrig": false
-        }
-    },
-    {
-        "prefix": "pk",
-        "description": "Primary Key",
-        "body": [
-            "PRIMARY KEY ($1),"
-        ],
-        "luasnip": {
-            "priority": 1,
-            "autotrigger": false,
-            "wordTrig": false
-        }
-    },
-    {
-        "prefix": "nn",
-        "description": "not null",
-        "body": [
-            "NOT NULL"
-        ],
-        "luasnip": {
-            "priority": 1,
-            "autotrigger": false,
-            "wordTrig": false
-        }
-    },
-    {
-        "prefix": "au",
-        "description": "Auto increment",
-        "body": [
-            "AUTO_INCREMENT"
-        ],
-        "luasnip": {
-            "priority": 1,
-            "autotrigger": false,
-            "wordTrig": false
-        }
-    },
-    {
-        "prefix": "vc",
-        "description": "Variable size char",
-        "body": [
-            "${1:name} VARCHAR(${2:size}),"
-        ],
-        "luasnip": {
-            "priority": 1,
-            "autotrigger": false,
-            "wordTrig": false
-        }
-    },
-    {
-        "prefix": "nu",
-        "description": "Floating point var",
-        "body": [
-            "${1:name} numeric(${2:digits}, ${3:decimals}),"
-        ],
-        "luasnip": {
-            "priority": 1,
-            "autotrigger": false,
-            "wordTrig": false
-        }
-    },
-    {
-        "prefix": "fk",
-        "description": "Foreign key",
-        "body": [
-            "FOREIGN KEY (${1:lkey}) REFERENCES ${2:ftable}(${3:fkey})"
-        ],
-        "luasnip": {
-            "priority": 1,
-            "autotrigger": false,
-            "wordTrig": false
-        }
+  {
+    "prefix": "sel",
+    "description": "SELECT statement",
+    "body": [
+      "SELECT ${2:fields}",
+      "FROM ${1:table}",
+      "WHERE ${3:condition};",
+      "$0"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
     }
+  },
+  {
+    "prefix": "selj",
+    "description": "SELECT JOIN",
+    "body": [
+      "SELECT ${4:fields}",
+      "FROM ${1:table1} ${2:INNER} JOIN ${3:table2}",
+      "\tON ${5:condition}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "jo",
+    "description": "JOIN",
+    "body": [
+      "JOIN ${3:table2}",
+      "\tON ${5:condition}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "ups",
+    "description": "UPDATE SET",
+    "body": [
+      "UPDATE ${1:table}",
+      "SET ${2:field} = ${3:val}",
+      "WHERE ${4:condition};"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "insq",
+    "description": "INSERT QUERY",
+    "body": [
+      "INSERT INTO ${1:table} (${3:cols})",
+      "\t${2:value}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "del",
+    "description": "DELETE FROM statement",
+    "body": [
+      "DELETE FROM $1",
+      "WHERE $2;",
+      "$0"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "ct",
+    "description": "CREATE TABLE statement",
+    "body": [
+      "DROP TABLE IF EXISTS ${1:name}",
+      "CREATE TABLE ${1:name} (",
+      "\t${2:fields}",
+      ");",
+      "$0"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "pk",
+    "description": "Primary Key",
+    "body": [
+      "PRIMARY KEY ($1),"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "nn",
+    "description": "not null",
+    "body": [
+      "NOT NULL"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "au",
+    "description": "Auto increment",
+    "body": [
+      "AUTO_INCREMENT"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "vc",
+    "description": "Variable size char",
+    "body": [
+      "$VARCHAR(${2:size}),"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "nu",
+    "description": "Floating point var",
+    "body": [
+      "NUMERIC(${1:digits}, ${2:decimals}),"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "ob",
+    "description": "Order By",
+    "body": [
+      "ORDER BY ${1:field} ${2:asc}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "lim",
+    "description": "LIMIT",
+    "body": [
+      "LIMIT ${1:limit}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "fk",
+    "description": "Foreign key",
+    "body": [
+      "FOREIGN KEY (${1:lkey}) REFERENCES ${2:ftable}(${3:fkey})"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "in",
+    "description": "Set membership (IN)",
+    "body": [
+      "IN (${1:subquery})"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "all",
+    "description": "Set comparison (ALL)",
+    "body": [
+      "${1:>} ALL (${1:subquery})"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "some",
+    "description": "Set comparison (SOME)",
+    "body": [
+      "${1:>} SOME (${1:subquery})"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "exists",
+    "description": "Empty relations (EXISTS)",
+    "body": [
+      "EXISTS (${1:subquery})"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "with",
+    "description": "With statement",
+    "body": [
+      "WITH ${1:name} AS (${2:query})"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "gb",
+    "description": "GROUP BY",
+    "body": [
+      "GROUP BY ${1:column_name}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "hav",
+    "description": "HAVING",
+    "body": [
+      "HAVING ${1:condition}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "die",
+    "description": "DROP IF EXISTS",
+    "body": [
+      "DROP ${1:TABLE} IF EXISTS ${2:name};$0"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "enum",
+    "description": "ENUM",
+    "body": [
+      "ENUM (${1:val1}, ${2:val2});"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "cv",
+    "description": "CREATE VIEW",
+    "body": [
+      "DROP VIEW IF EXISTS $1;",
+      "CREATE VIEW ${1:view_name} AS (${2:query});"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "trig",
+    "description": "CREATE TRIGGER statement",
+    "body": [
+      "CREATE TRIGGER ${1:trigger_name} ${2:(BEFORE | AFTER)} ${3:(INSERT | UPDATE | DELETE)}",
+      "ON ${4:table_name} FOR EACH ROW",
+      "BEGIN",
+      "-- (FOLLOWS | PRECEDES)",
+      "\t${5:actions}",
+      "END;"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "proc",
+    "description": "CREATE PROCEDURE",
+    "body": [
+      "DROP PROCEDURE IF EXISTS ${1:name};",
+      "CREATE PROCEDURE ${1:name} (${2:args}) BEGIN",
+      "\t${5:body}",
+      "END;"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "func",
+    "description": "CREATE FUNCTION",
+    "body": [
+      "DROP FUNCTION IF EXISTS ${1:name};",
+      "CREATE FUNCTION ${1:name} (${2:args}) RETURNS ${3:return_type} BEGIN",
+      "\t${5:body}",
+      "END;"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "grant",
+    "description": "GRANT ACCESS TO USER",
+    "body": [
+      "GRANT ${1:(SELECT | INSERT | UPDATE | DELETE | ALL PRIVILEGES)}",
+      "ON ${2:table_name}",
+      "TO ${3:(user | role)};"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "revoke",
+    "description": "REVOKE ACCESS TO USER",
+    "body": [
+      "REVOKE ${1:(SELECT | INSERT | UPDATE | DELETE)}",
+      "ON ${2:table_name}",
+      "FROM ${3:(user | role)};"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "cr",
+    "description": "CREATE ROLE",
+    "body": [
+      "CREATE ROLE ${1:role_name};"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "cu",
+    "description": "CREATE USER",
+    "body": [
+      "DROP USER IF EXISTS $1;",
+      "CREATE USER ${1:name@ip};"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "tt",
+    "description": "TEST TRANSACTION",
+    "body": [
+      "START TRANSACTION;",
+      "\t${1:body}",
+      "ROLLBACK;"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "altc",
+    "description": "ALTER TABLE COLUMN",
+    "body": [
+      "ALTER TABLE ${1:table_name}",
+      "ADD ${2:column_name} ${3:datatype};"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  }
 ]
-
