@@ -1,0 +1,16 @@
+#!/bin/sh
+WS_ID=mp-ws
+PROJECT_FILE=~/.config/scripts/.mp-projects
+
+configure_workspace() {
+  toggl config workspace "$WS_ID"
+}
+
+get_project() {
+  cat "$PROJECT_FILE" | sed -r 's/(^\s|\s+$)//g' | dmenu -i
+}
+
+configure_workspace
+project=$(get_project)
+toggl ls -o $project | xclip -selection clipboard
+dunstify -t 15000 "Copied work summary to clipboard"
