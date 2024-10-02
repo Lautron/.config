@@ -89,6 +89,9 @@ alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 
 # the terminal rickroll
 alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
+alias mp='sudo mpdeploy .'
+alias mpe='sudo mpdeploy --execute-job .'
+alias mpd='sudo mpdeploy --run-docker .'
 
 function venv
     if test -d "venv"
