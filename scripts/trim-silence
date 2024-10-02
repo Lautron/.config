@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for video in *.mp4 ; do
+for video in "$@"; do
     if [[ $video == *"ALTERED"* ]]; then
         continue
     fi
