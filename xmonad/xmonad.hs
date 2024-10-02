@@ -329,6 +329,7 @@ myManageHook = composeAll
      , title =? "ttask"               --> centerCustomFloat 0.7 0.7
      , title =? "translate"           --> centerCustomFloat 0.7 0.7
      , title =? "ChatGPT"             --> centerCustomFloat 0.9 0.9
+     , className =? "Stremio"         --> do (liftIO $ spawn "xset s off -dpms") >> doF W.focusDown
      , isFullscreen -->  doFullFloat
      ] <+> namedScratchpadManageHook myScratchPads
      where
