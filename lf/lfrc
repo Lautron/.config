@@ -205,4 +205,4 @@ map / fzf_jump
 
 map br $vimv $fx
 
-map xt $python -m highext $fx
+map xt $highext $fx
