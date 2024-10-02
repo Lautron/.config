@@ -2,4 +2,4 @@
 
 IP=$(sudo docker inspect --format  '{{ .NetworkSettings.IPAddress }}' mysql-labs)
 
-mycli --host $IP -u root -p admin
+mycli -t --no-warn --host $IP -u root -p admin
