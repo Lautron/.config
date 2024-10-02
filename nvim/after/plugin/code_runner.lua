@@ -2,7 +2,8 @@ require('code_runner').setup({
     mode = "tab",
     filetype = {
         python = "venv && python3 -u",
-        go = "go run $file"
+        go = "go run $file",
+        sql = "runsql < $file"
     },
     project = {
         ["/home/lautarob/Documents/Facultad/año3/IS1/proyecto/code/back"] = {
@@ -14,7 +15,7 @@ require('code_runner').setup({
 
 vim.keymap.set('n', '<leader>rc', ':RunCode<CR>', { noremap = true, silent = false })
 vim.keymap.set('n', '<leader>rf', ':RunFile<CR>', { noremap = true, silent = false })
-vim.keymap.set('n', '<leader>ec', function()
+vim.keymap.set('n', '<leader>er', function()
     vim.cmd("split")
     vim.cmd("e ~/.config/nvim/after/plugin/code_runner.lua")
     vim.cmd("winc T")
