@@ -19,9 +19,10 @@ if not argument:
     oficial : {oficial.center(max_width)}
     """
 else:
+    price = json['blue']['value_buy']*0.99
     msg = f"""
-        precio: {json['blue']['value_buy']*0.98}
-        pesos : {int(argument[0])*json['blue']['value_buy']*0.98}
+        precio: {price}
+        pesos : {int(argument[0])*price}
     """
 
 
