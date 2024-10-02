@@ -53,20 +53,11 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
---lsp.format_on_save({
---  servers = {
---    ['gofmt'] = {'go'},
---  }
---})
-
-local autocmd = vim.api.nvim_create_autocmd
-
--- autocmd('BufWritePost', {
---   pattern = {'*.py', "*.go"},
---   command = "LspZeroFormat"
--- })
-
-lsp.setup()
+lsp.extend_lspconfig({
+  sign_text = true,
+  float_border = 'rounded',
+  capabilities = require('cmp_nvim_lsp').default_capabilities()
+})
 
 vim.diagnostic.config({
     virtual_text = true
@@ -88,12 +79,30 @@ vim.keymap.set("n", "<leader>es", function()
     vim.cmd("so $MYVIMRC")
 end)
 
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  handlers = {
+    function(server_name)
+      require('lspconfig')[server_name].setup({})
+    end,
+  }
+})
+
 cmp.setup({
     sources = {
-        {name = "copilot"},
+        --{name = "copilot"},
         {name = 'luasnip'},
         {name = 'nvim_lsp'},
-        {name = 'buffer'},
+        {name = 'buffer', keyword_length = 3},
+    },
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    },
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end,
     },
 
     preselect = cmp.PreselectMode.None,
@@ -104,5 +113,9 @@ cmp.setup({
             ['<C-Space>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
             ['<Tab>'] = cmp_action.luasnip_jump_forward(),
             ['<S-Tab>'] = cmp_action.luasnip_jump_backward(),
+            ['<C-n>'] = cmp.mapping.select_next_item(), -- Navigate to the next suggestion
+            ['<C-p>'] = cmp.mapping.select_prev_item(), -- Navigate to the previous suggestion
+
     },
+    formatting = lsp.cmp_format({details = true}),
 })
