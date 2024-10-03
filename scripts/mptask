@@ -1,0 +1,66 @@
+#!/bin/sh
+WS_ID=mp-ws
+PROJECT_FILE=~/.config/scripts/.mp-projects
+TAGS="work"
+
+# Function to configure the workspace
+configure_workspace() {
+  toggl config workspace "$WS_ID"
+}
+# Function to show the current status of the timer
+show_status() {
+  local message=$(toggl now)
+  local project=$(echo "$message" | sed -n "s/Project: \(.*\) (#\w\+)/\1/p")
+  local duration=$(echo "$message" | sed -n "s/Duration: \(.*\)/\1/p")
+  local description=$(echo "$message" | sed -n "s/\(.*\) \#[0-9]\+/\1/p")
+
+  echo "$description"
+
+  if [[ -z "$description" ]]; then
+    dunstify -t 15000 "$project" "$duration"
+  else
+    dunstify -t 15000 "$description - $project" "$duration"
+  fi
+}
+# Function to get the project name from the PROJECT_FILE
+get_project() {
+  cat "$PROJECT_FILE" | sed -r 's/(^\s|\s+$)//g' | dmenu -i
+}
+# Function to get the task description from the user
+get_description() {
+  echo "" | dmenu -p 'Task Description: ' -i
+}
+
+start_toggl() {
+  local project="$1"
+  local description="$2"
+  toggl start -o "$project" --tags "$TAGS" "$description"
+}
+# Function to start a new Toggl timer
+start_timer() {
+  local project="$1"
+  local description="$2"
+
+  start_toggl "$project" "$description" || {
+    toggl projects add -n "$project"
+    start_toggl "$project" "$description"
+  }
+}
+
+# Function to update the project list
+update_project_list() {
+  toggl projects ls -f name | sed '1d' > "$PROJECT_FILE"
+}
+# Function to remind the user to time track
+remind_time_tracking() {
+  sleep 900 && dunstify -t 15000 "Don't forget to time track!"
+}
+# Main script execution
+configure_workspace
+project=$(get_project)
+description=$(get_description)
+start_timer "$project" "$description"
+show_status
+update_project_list
+remind_time_tracking &
+
