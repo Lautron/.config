@@ -1,0 +1,22 @@
+#!/bin/bash
+# Check if at least two arguments are provided (output file and at least one input file)
+if [ "$#" -lt 1 ]; then
+    echo "Usage: $0 <input_file1> <input_file2> ..."
+    exit 1
+fi
+# Create a temporary variable to hold the output
+output=""
+# Loop through each input file
+for input_file in "$@"; do
+    if [ -f "$input_file" ]; then
+        # Append the file name and content in the specified format
+        output+="File: $input_file\n"
+        output+="\`\`\`\n$(cat "$input_file")\n\`\`\`\n\n"
+    else
+        echo "Warning: $input_file is not a valid file and will be skipped."
+    fi
+done
+# Write the output to the clipboard using xclip
+echo -e "$output" | xclip -selection clipboard
+echo "Contents of files have been copied to the clipboard."
+
