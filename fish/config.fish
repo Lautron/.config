@@ -92,6 +92,7 @@ alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/mas
 alias mp='sudo mpdeploy .'
 alias mpe='sudo mpdeploy --execute-job .'
 alias mpd='sudo mpdeploy --run-docker .'
+alias pvenv='python3.10 -m venv venv && venv && pip install -r requirements.txt'
 
 function venv
     if test -d "venv"
