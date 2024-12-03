@@ -137,6 +137,17 @@ cmd restore_trash ${{
   trash-restore
 }}
 
+cmd paste-overwrite %{{
+         mode=$(head -1 ~/.local/share/lf/files)
+         list=$(sed 1d ~/.local/share/lf/files)
+         if [ $mode = 'copy' ]; then
+              cp -r $list .
+         elif [ $mode = 'move' ]; then
+             mv $list .
+         fi
+         lf -remote 'send load'
+         lf -remote 'send clear'
+}}
 # Bindings
 # Remove some defaults
 map m
@@ -173,7 +184,9 @@ map ok okular
 # Basic Functions
 map . set hidden!
 #map DD delete
+map p
 map pp paste
+map po paste-overwrite
 map dd cut
 map yy copy
 map <enter> open

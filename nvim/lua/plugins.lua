@@ -65,12 +65,15 @@ return {
         config = function()
             require("refactoring").setup()
         end,
+        cmd = 'Refactor',  -- Load when the Refactor command is called
+
     },
     "mbbill/undotree",
     "tpope/vim-fugitive",
     "nvim-treesitter/nvim-treesitter-context",
     {
         'VonHeikemen/lsp-zero.nvim',
+        -- event = 'InsertEnter',  -- Load when entering insert mode
         branch = 'v2.x',
         dependencies = {
             -- LSP Support
@@ -108,6 +111,7 @@ return {
     {
         'Wansmer/treesj',
         dependencies = { 'nvim-treesitter' },
+        keys = {'<leader>sj'}
     },
 
     -- https://github.com/nvim-tree/nvim-tree.lua
@@ -116,6 +120,7 @@ return {
         dependencies = {
             'nvim-tree/nvim-web-devicons', -- optional
         },
+        keys = {'<leader>nt'}
     },
 
     -- https://github.com/kylechui/nvim-surround
@@ -240,6 +245,12 @@ return {
         'numToStr/Comment.nvim',
         config = function()
             require('Comment').setup()
+        end
+    },
+    {
+        'hat0uma/csvview.nvim',
+        config = function()
+            require('csvview').setup()
         end
     }
 }
