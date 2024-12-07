@@ -111,3 +111,7 @@ vim.keymap.set('n', '<Leader>fc', ":Format<cr>", { noremap = true, silent = true
 vim.keymap.set('n', '<Leader>fl', ":LspZeroFormat<cr>", { noremap = true, silent = true })
 
 vim.keymap.set('v', '<Leader>es', ":w !bash<cr>", { noremap = true, silent = true })
+
+vim.keymap.set('n', '<Leader>cv', ":CsvViewToggle<cr>", { noremap = true, silent = true })
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
+
