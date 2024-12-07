@@ -9,3 +9,23 @@ local function xour()
 end
 
 vim.api.nvim_create_user_command('Xour', xour, { nargs = 0})
+
+-- Function to extract and open the path inside the parentheses
+function open_path_in_parentheses()
+  -- Get the line under the cursor
+  local line = vim.fn.getline(".")
+
+  -- Extract the path inside parentheses
+  local path = line:match("%(([^)]+)%)")
+
+  if path then
+    -- Open the file in a new buffer
+    vim.cmd("tabe " .. path)
+  else
+    print("No path found inside parentheses")
+  end
+end
+
+-- Keybinding to open the path inside parentheses
+vim.api.nvim_set_keymap('n', '<leader>gf', ':lua open_path_in_parentheses()<CR>', { noremap = true, silent = true })
+
