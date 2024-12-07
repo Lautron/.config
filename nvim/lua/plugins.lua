@@ -10,11 +10,11 @@ return {
             }
             onedark.load()
         end,
-        lazy=false
+        lazy = false
     },
     {
         "folke/trouble.nvim",
-        opts = {}, -- for default options, refer to the configuration section for custom setup.
+        opts = {},
         cmd = "Trouble",
         keys = {
             {
@@ -49,7 +49,6 @@ return {
             },
         },
     },
-
     {
         'nvim-treesitter/nvim-treesitter',
         build = function()
@@ -58,7 +57,24 @@ return {
         end,
         dependencies = {
             "MDeiml/tree-sitter-markdown",
-        }
+        },
+        config = function()
+            require 'nvim-treesitter.configs'.setup {
+                ensure_installed = {
+                    "lua",
+                    "python",
+                    "markdown",
+                    "markdown_inline",
+                },
+                sync_install = false,
+                auto_install = true,
+                highlight = {
+                    enable = true,
+                    additional_vim_regex_highlighting = false,
+                },
+            }
+        end,
+        event = "VeryLazy",
     },
     "theprimeagen/harpoon",
     {
@@ -66,119 +82,160 @@ return {
         config = function()
             require("refactoring").setup()
         end,
-        cmd = 'Refactor', -- Load when the Refactor command is called
-
+        cmd = 'Refactor',
     },
-    "mbbill/undotree",
-    "tpope/vim-fugitive",
-    "nvim-treesitter/nvim-treesitter-context",
+    {
+        "mbbill/undotree",
+        event = "VeryLazy",
+    },
+    {
+        "tpope/vim-fugitive",
+        event = "VeryLazy",
+        cmd = { "G", "Gdiff" },
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-context",
+        event = "VeryLazy",
+    },
     {
         'VonHeikemen/lsp-zero.nvim',
-        -- event = 'InsertEnter',  -- Load when entering insert mode
         branch = 'v2.x',
         dependencies = {
-            -- LSP Support
-            { 'neovim/nvim-lspconfig' }, -- Required
-            {                            -- Optional
-                'williamboman/mason.nvim',
-            },
-            { 'williamboman/mason-lspconfig.nvim' }, -- Optional
-
-            -- Autocompletion
+            { 'neovim/nvim-lspconfig' },
+            { 'williamboman/mason.nvim' },
+            { 'williamboman/mason-lspconfig.nvim' },
             { 'hrsh7th/nvim-cmp' },
             { 'hrsh7th/cmp-buffer' },
             { 'hrsh7th/cmp-path' },
             { 'saadparwaiz1/cmp_luasnip' },
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'hrsh7th/cmp-nvim-lua' },
-
-            -- Snippets
             { 'L3MON4D3/LuaSnip' },
+        },
+    },
+    {
+        "folke/zen-mode.nvim",
+        event = "VeryLazy",
+    },
+    {
+        "eandrju/cellular-automaton.nvim",
+        event = "VeryLazy",
+    },
+    {
+        'dhruvasagar/vim-table-mode',
+        event = "VeryLazy"
+    },
+    {
+        'CRAG666/code_runner.nvim',
+        config = function()
+            require('code_runner').setup({
+                mode = "tab",
+                filetype = {
+                    python = "venv && python3 -u",
+                    go = "go run $file",
+                    sql = "runsql < $file"
+                },
+                project = {
+                    ["/home/lautarob/Documents/Facultad/año3/IS1/proyecto/code/back"] = {
+                        name = "LaCosa",
+                        command = "venv; pytest -s"
+                    },
+                }
+            })
+
+            vim.keymap.set('n', '<leader>rc', ':RunCode<CR>', { noremap = true, silent = false })
+            vim.keymap.set('n', '<leader>rf', ':RunFile<CR>', { noremap = true, silent = false })
+            vim.keymap.set('n', '<leader>er', function()
+                vim.cmd("split")
+                vim.cmd("e ~/.config/nvim/after/plugin/code_runner.lua")
+                vim.cmd("winc T")
+            end, { noremap = true, silent = false })
+        end,
+        keys = {
+            '<leader>rc',
+            '<leader>rf',
+            '<leader>er',
         }
     },
-
-    "folke/zen-mode.nvim",
-    "eandrju/cellular-automaton.nvim",
-
-    'dhruvasagar/vim-table-mode',
-    'CRAG666/code_runner.nvim',
-    {
-        'nvim-telescope/telescope.nvim',
-        tag = '0.1.4',
-        dependencies = { { 'nvim-lua/plenary.nvim' } }
-    },
-
-    -- https://github.com/Wansmer/treesj
-    {
-        'Wansmer/treesj',
-        dependencies = { 'nvim-treesitter' },
-        keys = { '<leader>sj' }
-    },
-
-    -- https://github.com/nvim-tree/nvim-tree.lua
     {
         'nvim-tree/nvim-tree.lua',
         dependencies = {
-            'nvim-tree/nvim-web-devicons', -- optional
+            'nvim-tree/nvim-web-devicons',
         },
-        keys = { '<leader>nt' }
-    },
+        config = function()
+            vim.g.loaded_netrw = 1
+            vim.g.loaded_netrwPlugin = 1
+            vim.opt.termguicolors = true
 
-    -- https://github.com/kylechui/nvim-surround
+            require("nvim-tree").setup({
+                sort = {
+                    sorter = "modification_time",
+                },
+                actions = {
+                    open_file = {
+                        quit_on_open = true
+                    },
+                },
+            })
+
+            vim.keymap.set("n", "<leader>nt", ":NvimTreeToggle<cr>", { silent = true })
+        end,
+        keys = {
+            "<leader>nt"
+        }
+    },
     {
         "kylechui/nvim-surround",
         config = function()
-            require("nvim-surround").setup({
-                -- Configuration here, or leave empty to use defaults
-            })
-        end
+            require("nvim-surround").setup({})
+        end,
+        event = "VeryLazy",
     },
-
-    -- https://github.com/stevearc/aerial.nvim
     {
         'stevearc/aerial.nvim',
         config = function()
             require('aerial').setup({
-                -- optionally use on_attach to set keymaps when aerial has attached to a buffer
                 on_attach = function(bufnr)
                     vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
                     vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
                 end,
                 manage_folds = false,
             })
-        end
+        end,
+        keys = {
+            "<leader>at",
+            "<leader>an"
+            -- Add other one
+        }
     },
-    -- https://github.com/numToStr/Comment.nvim
     {
         'numToStr/Comment.nvim',
         config = function()
             require('Comment').setup()
-        end
+        end,
+        keys = {
+            { "gc", mode = "v" },
+            { "gb", mode = "v" },
+            "gcc",
+            "gbb",
+        }
     },
-
-    -- https://github.com/ggandor/leap.nvim
     {
         'ggandor/leap.nvim',
         config = function()
             require('leap').add_default_mappings()
-        end
+        end,
+        keys = {
+            "s"
+        }
     },
-
-    -- https://github.com/lewis6991/gitsigns.nvim
     {
         'lewis6991/gitsigns.nvim',
         config = function()
             require('gitsigns').setup()
-        end
+        end,
+        event = "VeryLazy",
     },
-
-    -- optional https://github.com/kevinhwang91/nvim-bqf
-    -- {
-    --     'https://github.com/milisims/foldhue.nvim',
-    --     config = function()
-    --         require('foldhue').enable()
-    --     end
-    -- },
     {
         "zbirenbaum/copilot.lua",
         cmd = "Copilot",
@@ -196,23 +253,57 @@ return {
             end
         },
     },
-
     {
         'Wansmer/treesj',
         dependencies = { 'nvim-treesitter/nvim-treesitter' },
         config = function()
             require('treesj').setup()
         end,
+        keys = {
+            "<leader>sj"
+        }
     },
     {
         "jackMort/ChatGPT.nvim",
-        event = "VeryLazy",
+        keys = {
+            "<leader>co",
+            "<leader>ce",
+            "<leader>cc",
+        },
         dependencies = {
             "MunifTanjim/nui.nvim",
             "nvim-lua/plenary.nvim",
             "folke/trouble.nvim",
             "nvim-telescope/telescope.nvim"
-        }
+        },
+        config = function()
+            require("chatgpt").setup({
+                api_key_cmd = "openai_get_key.sh",
+                openai_params = {
+                    model = "gpt-4o-mini",
+                    frequency_penalty = 0,
+                    presence_penalty = 0,
+                    max_tokens = 8000,
+                    temperature = 0,
+                    top_p = 1,
+                    n = 1,
+                },
+                openai_edit_params = {
+                    model = "gpt-4o-mini",
+                    frequency_penalty = 0,
+                    presence_penalty = 0,
+                    temperature = 0,
+                    top_p = 1,
+                    n = 1,
+                },
+                config_paths = { "/home/lautarob/.config/nvim/prompts/actions.json" }
+            })
+
+            vim.keymap.set('n', '<leader>co', ':ChatGPT<CR>', { noremap = true, silent = false })
+            vim.keymap.set('n', '<leader>ce', ':ChatGPTEditWithInstructions<CR>', { noremap = true, silent = false })
+            vim.keymap.set('n', '<leader>cr', ':ChatGPTRun ', { noremap = true, silent = false })
+            vim.keymap.set('n', '<leader>cc', ':ChatGPTCompleteCode ', { noremap = true, silent = false })
+        end,
     },
     {
         'serenevoid/kiwi.nvim',
@@ -231,25 +322,59 @@ return {
         },
         lazy = true
     },
-    "benfowler/telescope-luasnip.nvim",
-    { 'mhartington/formatter.nvim' },
     {
-        'numToStr/Comment.nvim',
+        'mhartington/formatter.nvim',
         config = function()
-            require('Comment').setup()
-        end
+            local util = require "formatter.util"
+
+            require('formatter').setup({
+                filetype = {
+                    sql = {
+                        function()
+                            return {
+                                exe = "sqlfluff",
+                                args = {
+                                    "fix",
+                                    "--disable-progress-bar",
+                                    "--nocolor",
+                                    "-",
+                                },
+                                stdin = true,
+                                ignore_exitcode = true,
+                            }
+                        end
+                    },
+                    json = {
+                        require("formatter.filetypes.json").jq,
+                    }
+                }
+            })
+        end,
+        keys = {
+            "<leader>fc"
+        }
     },
     {
-        'hat0uma/csvview.nvim',
+        "folke/zen-mode.nvim",
+        event = "VeryLazy"
+    },
+    {
+        "hat0uma/csvview.nvim",
         config = function()
             require('csvview').setup()
-        end
+        end,
+        keys = {
+            "<leader>cv"
+        }
     },
     {
         "olrtg/nvim-emmet",
         config = function()
             vim.keymap.set({ "n", "v" }, '<leader>xe', require('nvim-emmet').wrap_with_abbreviation)
         end,
+        keys = {
+            "<leader>xe"
+        }
     },
     {
         "luckasRanarison/tailwind-tools.nvim",
@@ -257,11 +382,70 @@ return {
         build = ":UpdateRemotePlugins",
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
-            "nvim-telescope/telescope.nvim", -- optional
-            "neovim/nvim-lspconfig", -- optional
+            "nvim-telescope/telescope.nvim",
+            "neovim/nvim-lspconfig",
         },
         opts = {},
-        ft = { "html", "css", "javascript", "typescript" }
+        ft = { "html", "css", "javascript", "typescript" },
+        event = "InsertEnter",
     },
-    {"git-time-metric/gtm-vim-plugin"}
+    {
+        "git-time-metric/gtm-vim-plugin",
+        event = "VeryLazy"
+    },
+    {
+        "nvim-telescope/telescope.nvim",
+        dependencies = {
+            "benfowler/telescope-luasnip.nvim"
+        },
+        config = function()
+            local builtin = require('telescope.builtin')
+            vim.keymap.set('n', '<leader>ff', builtin.live_grep, {})
+            vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
+            vim.keymap.set('n', '<leader>fH', builtin.help_tags, {})
+            vim.keymap.set('n', '<leader>fc', builtin.command_history, {})
+            vim.keymap.set('n', '<leader>ft', builtin.filetypes, {})
+            vim.keymap.set('n', '<leader>fk', builtin.keymaps, {})
+
+            require('telescope').setup {
+                defaults = {
+                    file_ignore_patterns = {
+                        "node_modules",
+                        "venv",
+                        "requirements.txt",
+                    }
+                }
+            }
+
+            require('telescope').load_extension('luasnip')
+
+
+            vim.keymap.set('n', '<leader>fs', function()
+                vim.cmd('Telescope luasnip')
+            end, {})
+        end,
+        keys = {
+            '<leader>ff',
+            '<leader>fg',
+            '<leader>fH',
+            '<leader>fc',
+            '<leader>ft',
+            '<leader>fk',
+        }
+    }
+
+    -- {
+    --     "mfussenegger/nvim-lint",
+    --     config = function()
+    --         require('lint').linters_by_ft = {
+    --             sql = { 'sqlfluff' },
+    --         }
+    --
+    --         vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    --             callback = function()
+    --                 require("lint").try_lint()
+    --             end,
+    --         })
+    --     end,
+    -- },
 }
