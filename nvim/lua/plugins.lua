@@ -1,5 +1,6 @@
 return {
     'nvim-lua/plenary.nvim',
+    lazy = true,
     {
         'navarasu/onedark.nvim',
         config = function()
@@ -8,7 +9,8 @@ return {
                 style = 'cool'
             }
             onedark.load()
-        end
+        end,
+        lazy=false
     },
     {
         "folke/trouble.nvim",
@@ -58,7 +60,6 @@ return {
             "MDeiml/tree-sitter-markdown",
         }
     },
-    "nvim-treesitter/playground",
     "theprimeagen/harpoon",
     {
         "theprimeagen/refactoring.nvim",
@@ -231,15 +232,6 @@ return {
         lazy = true
     },
     "benfowler/telescope-luasnip.nvim",
-    {
-        "nvim-tree/nvim-tree.lua",
-        version = "*",
-        lazy = false,
-        dependencies = {
-            "nvim-tree/nvim-web-devicons",
-        },
-    },
-    { "mfussenegger/nvim-lint" },
     { 'mhartington/formatter.nvim' },
     {
         'numToStr/Comment.nvim',
@@ -268,7 +260,8 @@ return {
             "nvim-telescope/telescope.nvim", -- optional
             "neovim/nvim-lspconfig", -- optional
         },
-        opts = {}                    -- your configuration
+        opts = {},
+        ft = { "html", "css", "javascript", "typescript" }
     },
     {"git-time-metric/gtm-vim-plugin"}
 }
