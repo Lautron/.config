@@ -65,7 +65,7 @@ return {
         config = function()
             require("refactoring").setup()
         end,
-        cmd = 'Refactor',  -- Load when the Refactor command is called
+        cmd = 'Refactor', -- Load when the Refactor command is called
 
     },
     "mbbill/undotree",
@@ -111,7 +111,7 @@ return {
     {
         'Wansmer/treesj',
         dependencies = { 'nvim-treesitter' },
-        keys = {'<leader>sj'}
+        keys = { '<leader>sj' }
     },
 
     -- https://github.com/nvim-tree/nvim-tree.lua
@@ -120,7 +120,7 @@ return {
         dependencies = {
             'nvim-tree/nvim-web-devicons', -- optional
         },
-        keys = {'<leader>nt'}
+        keys = { '<leader>nt' }
     },
 
     -- https://github.com/kylechui/nvim-surround
@@ -143,7 +143,7 @@ return {
                     vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
                     vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
                 end,
-                manage_folds = true,
+                manage_folds = false,
             })
         end
     },
@@ -172,12 +172,12 @@ return {
     },
 
     -- optional https://github.com/kevinhwang91/nvim-bqf
-    {
-        'https://github.com/milisims/foldhue.nvim',
-        config = function()
-            require('foldhue').enable()
-        end
-    },
+    -- {
+    --     'https://github.com/milisims/foldhue.nvim',
+    --     config = function()
+    --         require('foldhue').enable()
+    --     end
+    -- },
     {
         "zbirenbaum/copilot.lua",
         cmd = "Copilot",
@@ -252,5 +252,23 @@ return {
         config = function()
             require('csvview').setup()
         end
-    }
+    },
+    {
+        "olrtg/nvim-emmet",
+        config = function()
+            vim.keymap.set({ "n", "v" }, '<leader>xe', require('nvim-emmet').wrap_with_abbreviation)
+        end,
+    },
+    {
+        "luckasRanarison/tailwind-tools.nvim",
+        name = "tailwind-tools",
+        build = ":UpdateRemotePlugins",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-telescope/telescope.nvim", -- optional
+            "neovim/nvim-lspconfig", -- optional
+        },
+        opts = {}                    -- your configuration
+    },
+    {"git-time-metric/gtm-vim-plugin"}
 }
