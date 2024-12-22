@@ -1,29 +1,42 @@
-#!/usr/bin/env python
-import requests
+#!/usr/bin/env python3
+
+import httpx as requests
 import subprocess
 import sys
 
-URL = "https://api.bluelytics.com.ar/v2/latest"
+URL = "https://dolarapi.com/v1/dolares"
 
-json = requests.get(URL).json()
+def get_width(items) -> int:
+    item_len = [len(str(item)) for item in items]
+    return max(item_len)
 
-# Calculate the maximum width needed for alignment
-blue, oficial = "$" + str(json['blue']['value_buy']), "$" + str(json['oficial']['value_buy'])
-max_width = max(len(blue), len(oficial)) + 2  # Adding extra space for padding
+def get_message(data: dict) -> str:
+    max_label_width = get_width(data.keys()) + 2  # Adding extra space for padding
+    max_value_width = get_width(data.values()) + 2  # Adding extra space for padding
+    result = [f"{label.center(max_label_width)}: {('$' + str(value)).center(max_value_width)}" for label, value in data.items()]
+    return "\n".join(result)
 
-# Create a centered table
-argument = sys.argv[1:]
-if not argument:
-    msg = f"""
-      blue  : {blue.center(max_width)}
-    oficial : {oficial.center(max_width)}
-    """
-else:
-    price = json['blue']['value_buy']*0.99
-    msg = f"""
-        precio: {price}
-        pesos : {int(argument[0])*price}
-    """
+def main() -> None:
+    json = requests.get(URL).json()
+    print(json)
 
+    blue, oficial = json[0]['venta'], json[1]['venta']
 
-subprocess.Popen(f"notify-send '{msg}'", shell=True)
+    argument = sys.argv[1:]
+    if not argument:
+        msg = get_message({
+            "blue": blue,
+            "oficial": oficial,
+        })
+    else:
+        crypto_buy = json[5]['compra']*0.97
+        msg = get_message({
+            "blue": crypto_buy,
+            "pesos": int(argument[0])*crypto_buy
+        })
+
+    subprocess.Popen(f"notify-send '{msg}'", shell=True)
+
+if __name__ == "__main__":
+    main()
+

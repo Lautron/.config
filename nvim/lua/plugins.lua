@@ -76,7 +76,21 @@ return {
         end,
         event = "VeryLazy",
     },
-    "theprimeagen/harpoon",
+    {
+        "theprimeagen/harpoon",
+        config = function()
+            local mark = require("harpoon.mark")
+            local ui = require("harpoon.ui")
+
+            vim.keymap.set("n", "<leader>ha", mark.add_file)
+            vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu)
+
+            vim.keymap.set("n", "<C-h>", function() ui.nav_file(1) end)
+            vim.keymap.set("n", "<C-t>", function() ui.nav_file(2) end)
+            vim.keymap.set("n", "<C-n>", function() ui.nav_file(3) end)
+            vim.keymap.set("n", "<C-s>", function() ui.nav_file(4) end)
+        end
+    },
     {
         "theprimeagen/refactoring.nvim",
         config = function()
@@ -202,6 +216,10 @@ return {
                 manage_folds = false,
             })
         end,
+        cmd = {
+            "AerialToggle",
+            "AerialNavToggle",
+        },
         keys = {
             "<leader>at",
             "<leader>an"
@@ -269,6 +287,11 @@ return {
             "<leader>co",
             "<leader>ce",
             "<leader>cc",
+        },
+        cmd = {
+            "ChatGPT",
+            "ChatGPTEditWithInstructions",
+            "ChatGPTCompleteCode"
         },
         dependencies = {
             "MunifTanjim/nui.nvim",
@@ -365,6 +388,9 @@ return {
         end,
         keys = {
             "<leader>cv"
+        },
+        cmd = {
+            "CsvViewToggle"
         }
     },
     {
@@ -373,7 +399,8 @@ return {
             vim.keymap.set({ "n", "v" }, '<leader>xe', require('nvim-emmet').wrap_with_abbreviation)
         end,
         keys = {
-            "<leader>xe"
+            { "<leader>xe", mode = "n" },
+            { "<leader>xe", mode = "v" },
         }
     },
     {
@@ -391,7 +418,6 @@ return {
     },
     {
         "git-time-metric/gtm-vim-plugin",
-        event = "VeryLazy"
     },
     {
         "nvim-telescope/telescope.nvim",

@@ -12,5 +12,7 @@ get_project() {
 
 configure_workspace
 project=$(get_project)
-toggl ls -o $project | xclip -selection clipboard
+detail=$(toggl ls -o $project)
+total=$(toggl sum -o $project -st | grep "total" | awk '{print $2}')
+echo -e "$total\n$detail" | xclip -selection clipboard
 dunstify -t 15000 "Copied work summary to clipboard"
