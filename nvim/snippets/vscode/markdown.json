@@ -305,7 +305,7 @@
         "prefix": "frac",
         "description": "Fraction",
         "body": [
-            "\\\\frac{${1:${VISUAL}}}{$2}$0"
+            "\\\\frac{$1}{$2}$0"
         ],
         "luasnip": {
             "priority": 1,
@@ -556,8 +556,8 @@
         ],
         "luasnip": {
             "priority": 1,
-            "autotrigger": false,
-            "wordTrig": true
+            "autotrigger": true,
+            "wordTrig": false
         }
     },
     {

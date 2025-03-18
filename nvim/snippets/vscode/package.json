@@ -10,6 +10,12 @@
 			},
 			{
 				"language": [
+					"openscad"
+				],
+				"path": "./openscad.json"
+			},
+			{
+				"language": [
 					"javascript"
 				],
 				"path": "./javascript.json"
@@ -31,6 +37,12 @@
 					"go"
 				],
 				"path": "./go.json"
+			},
+			{
+				"language": [
+					"tex"
+				],
+				"path": "./latex.json"
 			}
 		]
 	}

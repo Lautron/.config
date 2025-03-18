@@ -216,15 +216,15 @@ return {
                 manage_folds = false,
             })
         end,
-        cmd = {
-            "AerialToggle",
-            "AerialNavToggle",
-        },
-        keys = {
-            "<leader>at",
-            "<leader>an"
-            -- Add other one
-        }
+        -- cmd = {
+        --     "AerialToggle",
+        --     "AerialNavToggle",
+        -- },
+        -- keys = {
+        --     "<leader>at",
+        --     "<leader>an"
+        -- }
+        lazy = false
     },
     {
         'numToStr/Comment.nvim',
@@ -286,7 +286,6 @@ return {
         keys = {
             "<leader>co",
             "<leader>ce",
-            "<leader>cc",
         },
         cmd = {
             "ChatGPT",
@@ -323,7 +322,8 @@ return {
             })
 
             vim.keymap.set('n', '<leader>co', ':ChatGPT<CR>', { noremap = true, silent = false })
-            vim.keymap.set('n', '<leader>ce', ':ChatGPTEditWithInstructions<CR>', { noremap = true, silent = false })
+            vim.keymap.set('n', '<leader>ce', ':ChatGPTEditWithInstructions<CR>',
+                { noremap = true, silent = false })
             vim.keymap.set('n', '<leader>cr', ':ChatGPTRun ', { noremap = true, silent = false })
             vim.keymap.set('n', '<leader>cc', ':ChatGPTCompleteCode ', { noremap = true, silent = false })
         end,
@@ -373,8 +373,11 @@ return {
                 }
             })
         end,
+        cmd = {
+            "Format"
+        },
         keys = {
-            "<leader>fc"
+            "<leader>fe"
         }
     },
     {
@@ -458,20 +461,57 @@ return {
             '<leader>ft',
             '<leader>fk',
         }
-    }
-
+    },
+    {
+        'stevearc/oil.nvim',
+        --- @module 'oil'
+        --- @type oil.SetupOpts
+        opts = {},
+        -- Optional dependencies
+        dependencies = {
+            { "echasnovski/mini.icons",      opts = {} },
+            { "nvim-tree/nvim-web-devicons", opts = {} },
+        },
+        -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+        lazy = false,
+    },
+    {
+        "LunarVim/bigfile.nvim",
+        opts = {
+            filesize = 2
+        },
+    },
+    {
+        "lervag/vimtex",
+        lazy = false, -- we don't want to lazy load VimTeX
+        -- tag = "v2.15", -- uncomment to pin to a specific release
+        init = function()
+            -- VimTeX configuration goes here, e.g.
+            vim.g.vimtex_view_method = "zathura"
+        end
+    },
+    { "let-def/texpresso.vim" },
     -- {
-    --     "mfussenegger/nvim-lint",
-    --     config = function()
-    --         require('lint').linters_by_ft = {
-    --             sql = { 'sqlfluff' },
-    --         }
-    --
-    --         vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-    --             callback = function()
-    --                 require("lint").try_lint()
-    --             end,
-    --         })
-    --     end,
+    --     "iurimateus/luasnip-latex-snippets.nvim",
+    --     -- vimtex isn't required if using treesitter
+    --     requires = { "L3MON4D3/LuaSnip", "lervag/vimtex" },
     -- },
+    {
+        "evesdropper/luasnip-latex-snippets.nvim",
+    },
 }
+
+-- {
+--     "mfussenegger/nvim-lint",
+--     config = function()
+--         require('lint').linters_by_ft = {
+--             sql = { 'sqlfluff' },
+--         }
+--
+--         vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+--             callback = function()
+--                 require("lint").try_lint()
+--             end,
+--         })
+--     end,
+-- },

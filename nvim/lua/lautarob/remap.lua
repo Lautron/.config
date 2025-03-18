@@ -107,7 +107,7 @@ vim.keymap.set('n', '<Leader>it', function() toggle_md_comment() end, { noremap 
 
 vim.keymap.set('n', '<Leader>cp', ":Copilot panel<cr>", { noremap = true, silent = true })
 vim.keymap.set('n', '<Leader>ca', function() require("copilot.panel").accept() end, { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>fc', ":Format<cr>", { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>fe', ":Format<cr>", { noremap = true, silent = true })
 vim.keymap.set('n', '<Leader>fl', ":LspZeroFormat<cr>", { noremap = true, silent = true })
 
 vim.keymap.set('v', '<Leader>es', ":w !bash<cr>", { noremap = true, silent = true })
