@@ -1,0 +1,65 @@
+[
+{
+    "prefix": "ii",
+    "description": "Item",
+    "body": [
+        "\\item $1"
+    ],
+    "luasnip": {
+        "priority": 1,
+        "autotrigger": false,
+        "wordTrig": false
+    }
+},
+{
+    "prefix": "sec",
+    "description": "Section",
+    "body": [
+        "\\section{$1}",
+        "$0"
+    ],
+    "luasnip": {
+        "priority": 1,
+        "autotrigger": false,
+        "wordTrig": false
+    }
+},
+{
+    "prefix": "**",
+    "description": "",
+    "body": [
+        "\\textbf{$1}$0"
+    ],
+    "luasnip": {
+        "priority": 1,
+        "autotrigger": true,
+        "wordTrig": false
+    }
+},
+{
+    "prefix": "template",
+    "description": "Section",
+    "body": [
+        "%! TeX root: main.tex",
+        "\\documentclass{article}",
+        "\\usepackage{amsmath}",
+        "\\usepackage{graphicx}",
+        "\\usepackage{hyperref}",
+        "",
+        "\\title{$1}",
+        "\\author{Lautaro Bachmann}",
+        "\\date{}",
+        "",
+        "\\begin{document}",
+        "\\maketitle",
+        "\\tableofcontents",
+        "$0",
+        "\\end{document}"
+    ],
+    "luasnip": {
+        "priority": 1,
+        "autotrigger": false,
+        "wordTrig": false
+    }
+}
+]
