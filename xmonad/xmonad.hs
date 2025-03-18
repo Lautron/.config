@@ -78,7 +78,7 @@ myTerminal :: String
 myTerminal = "alacritty"    -- Sets default terminal
 
 myBrowser :: String
-myBrowser = "thor"  -- Sets qutebrowser as browser
+myBrowser = "thorium-browser"
 
 myEmacs :: String
 myEmacs = "emacsclient -c -a 'emacs' "  -- Makes emacs keybindings easier to type
@@ -104,6 +104,7 @@ myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
 myStartupHook :: X ()
 myStartupHook = do
     spawnOnce "lxsession &"
+    spawnOnce "flameshot &"
     spawnOnce "dunst -conf ~/.config/dunst/dunstrc &"
     spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
     spawnOnce "picom -b --config ~/.config/dwm/picom.conf &"
@@ -112,7 +113,7 @@ myStartupHook = do
     spawnOnce "setxkbmap -option caps:none &"
     spawnOnce "sleep 20 && xmodmap ~/.Xmodmap &"
     spawnOnce "xset s 3600 3600 &"
-    --spawnOnce "reddit_notifs &"
+    spawnOnce "reddit_notifs &"
 
     spawnOnce "feh --randomize --bg-fill ~/.config/wallpapers &"  -- feh set random wallpaper
     setWMName "LG3D"
@@ -325,11 +326,13 @@ myManageHook = composeAll
      , className =? "Yad"             --> doCenterFloat
      , title =? "rate.sx"             --> centerCustomFloat 0.7 0.7
      , title =? "wttr.in"             --> centerCustomFloat 0.85 0.9
-     , title =? "vimclip"             --> vimclipFloat 0.05 0.5 0.2
+     , title =? "vimclip"             --> vimclipFloat 0.05 0.5 0.5
      , title =? "ttask"               --> centerCustomFloat 0.7 0.7
      , title =? "translate"           --> centerCustomFloat 0.7 0.7
      , title =? "ChatGPT"             --> centerCustomFloat 0.9 0.9
+     , title =? "dragon"             --> vimclipFloat 0.05 0.5 0.2
      , className =? "Stremio"         --> do (liftIO $ spawn "xset s off -dpms") >> doF W.focusDown
+     , className =? "UltiMaker-Cura"  --> do (liftIO $ spawn "udiskie") >> doF W.focusDown
      , isFullscreen -->  doFullFloat
      ] <+> namedScratchpadManageHook myScratchPads
      where
@@ -451,6 +454,7 @@ myKeys =
         , ("M-o", spawn myBrowser)
         --, ("M1-t", spawn (myBrowser ++ " :'open -w https://track.toggl.com/timer'"))
         , ("M1-t", spawn "ttask")
+        , ("M-a n", spawn "fish -c switch-sink.sh")
         ]
     -- The following lines are needed for named scratchpads.
           where nonNSP          = WSIs (return (\ws -> W.tag ws /= "NSP"))
