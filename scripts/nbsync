@@ -18,13 +18,13 @@ set path $argv[-1]
 set path (realpath $path)/
 # Set source and destination based on the reverse flag
 if test $reverse = true
-    set source "192.168.100.51:$path"
+    set source "192.168.1.7:$path"
     set destination "$path"
 else
     set source "$path"
-    set destination "192.168.100.51:$path"
+    set destination "192.168.1.7:$path"
 end
 # Run rsync
 echo "Sending from $source to $destination"
-rsync -iPa -v --delete --exclude={'__pycache__', 'node_modules', 'custom-distros/work', "*.mp4", "venv*", ".mypy-cache"} "$source" "$destination"
+rsync -iPa -v --ignore-existing --exclude={'__pycache__', 'node_modules', 'custom-distros/work', "*.mp4", "venv*", ".mypy_cache"} "$source" "$destination"
 
