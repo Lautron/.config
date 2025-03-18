@@ -205,7 +205,8 @@ map g. :cd ~/.config; fzf_folders
 map gd :cd ~/Downloads; set reverse true; set sortby time; set info time
 map gf :cd ~/Documents/Facultad; fzf_folders
 map gc :cd ~/Documents/code; fzf_folders
-map gs :cd ~/Documents/code/clients/henk/morphais-ng/morphais_ng/data/; fzf_folders
+map g3 :cd ~/Documents/impresion_3D; fzf_folders
+map gs :cd ~/Documents/code/clients/michiel/morphais-ng/morphais_ng/data/; fzf_folders
 map gb :cd ~/Documents/books; fzf_folders
 map gm :cd /run/media/lautarob
 
@@ -219,3 +220,8 @@ map / fzf_jump
 map br $vimv $fx
 
 map xt $highext $fx
+map cc $llmcontext $fx
+
+map en $nvim .
+map eg $nvim +G +only
+
