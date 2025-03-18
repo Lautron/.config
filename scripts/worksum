@@ -11,6 +11,12 @@ get_project() {
 }
 
 configure_workspace
+update_project_list() {
+  toggl projects ls -f name | sed '1d' > "$PROJECT_FILE"
+}
+
+update_project_list
+
 project=$(get_project)
 detail=$(toggl ls -o $project)
 total=$(toggl sum -o $project -st | grep "total" | awk '{print $2}')
