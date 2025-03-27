@@ -190,6 +190,9 @@ return {
                         quit_on_open = true
                     },
                 },
+                update_focused_file = {
+                    enable = true,
+                }
             })
 
             vim.keymap.set("n", "<leader>nt", ":NvimTreeToggle<cr>", { silent = true })
