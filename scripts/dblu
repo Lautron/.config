@@ -6,15 +6,20 @@ import sys
 
 URL = "https://dolarapi.com/v1/dolares"
 
+
 def get_width(items) -> int:
     item_len = [len(str(item)) for item in items]
     return max(item_len)
 
+
 def get_message(data: dict) -> str:
-    max_label_width = get_width(data.keys()) + 2  # Adding extra space for padding
-    max_value_width = get_width(data.values()) + 2  # Adding extra space for padding
-    result = [f"{label.center(max_label_width)}: {('$' + str(value)).center(max_value_width)}" for label, value in data.items()]
+    # Adding extra space for padding
+    max_label_width = get_width(data.keys()) + 2
+    # Adding extra space for padding
+    max_value_width = get_width(data.values()) + 2
+    result = [ f"{label.center(max_label_width)}: {('$' + str(value)).center(max_value_width)}" for label, value in data.items()]
     return "\n".join(result)
+
 
 def main() -> None:
     json = requests.get(URL).json()
@@ -29,7 +34,7 @@ def main() -> None:
             "oficial": oficial,
         })
     else:
-        crypto_buy = json[5]['compra']*0.97
+        crypto_buy = json[5]['compra']
         msg = get_message({
             "blue": crypto_buy,
             "pesos": int(argument[0])*crypto_buy
@@ -37,6 +42,6 @@ def main() -> None:
 
     subprocess.Popen(f"notify-send '{msg}'", shell=True)
 
+
 if __name__ == "__main__":
     main()
-
