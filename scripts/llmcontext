@@ -1,22 +1,22 @@
 #!/bin/bash
-# Check if at least two arguments are provided (output file and at least one input file)
-if [ "$#" -lt 1 ]; then
-    echo "Usage: $0 <input_file1> <input_file2> ..."
-    exit 1
-fi
-# Create a temporary variable to hold the output
-output=""
-# Loop through each input file
-for input_file in "$@"; do
-    if [ -f "$input_file" ]; then
-        # Append the file name and content in the specified format
-        output+="File: $input_file\n"
-        output+="\`\`\`\n$(cat "$input_file")\n\`\`\`\n\n"
+# Get the current working directory
+cwd=$(pwd)
+# Convert input arguments from absolute paths to relative paths
+relative_args=()
+for arg in "$@"; do
+    # Check if the argument is an absolute path
+    if [[ "$arg" = /* ]]; then
+        # Convert to relative path
+        relative_path=$(realpath --relative-to="$cwd" "$arg")
+        relative_args+=("$relative_path")
     else
-        echo "Warning: $input_file is not a valid file and will be skipped."
+        # If it's already a relative path, just add it
+        relative_args+=("$arg")
     fi
 done
-# Write the output to the clipboard using xclip
-echo -e "$output" | xclip -selection clipboard
-echo "Contents of files have been copied to the clipboard."
+# Join the relative arguments with a comma
+IFS=','
+joined_args="${relative_args[*]}"
+# Call repomix with the relative paths
+repomix --include "$joined_args" --remove-empty-lines --stdout | wl-copy
 
