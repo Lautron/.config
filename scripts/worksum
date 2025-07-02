@@ -18,7 +18,11 @@ update_project_list() {
 update_project_list
 
 project=$(get_project)
-detail=$(toggl ls -o $project)
-total=$(toggl sum -o $project -st | grep "total" | awk '{print $2}')
+
+today=$(date +"%Y-%m-%dT%H:%M:%S")
+one_month_ago=$(date -d "1 month ago" +"%Y-%m-%dT%H:%M:%S")
+
+detail=$(toggl ls -o $project -s "$one_month_ago")
+total=$(toggl sum -o $project -st -s "$one_month_ago" -p "$today" | grep "total" | awk '{print $2}')
 echo -e "$total\n$detail" | xclip -selection clipboard
 dunstify -t 15000 "Copied work summary to clipboard"
