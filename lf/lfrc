@@ -55,7 +55,7 @@ cmd chmod ${{
 }}
 
 cmd fzf_jump ${{
-  res="$(fd -d 3 | fzf --header='Jump to location')"
+  res="$(fd --exclude venv | fzf --header='Jump to location')"
   if [ -f "$res" ]; then
     cmd="select"
   elif [ -d "$res" ]; then
