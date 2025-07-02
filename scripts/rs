@@ -1,2 +1,2 @@
-redshift -P -O 3000 -b $1
-
+pkill hyprsunset
+hyprsunset -g $1 &
