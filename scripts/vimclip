@@ -19,16 +19,31 @@ if [ "Darwin" = $(uname -s) ]; then
         rm $TMP
     fi
 else
-    if ! [ -x "$(command -v xsel)" ]; then
-      echo 'Error: xsel is not available.' >&2
-      exit 1
-    fi
+    if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+        if ! [ -x "$(command -v wl-copy)" ]; then
+          echo 'Error: wl-copy is not available.' >&2
+          exit 1
+        fi
 
-    TMP=$(mktemp -p /tmp -t XXXXXXXX.vimclip)
-    nvim $TMP
-    if [ -s $TMP ]; then
-        xsel -i -b < $TMP
+        TMP=$(mktemp -p /tmp -t XXXXXXXX.vimclip)
+        nvim $TMP
+        if [ -s $TMP ]; then
+            wl-copy < $TMP
+        else
+            rm $TMP
+        fi
     else
-        rm $TMP
+        if ! [ -x "$(command -v xsel)" ]; then
+          echo 'Error: xsel is not available.' >&2
+          exit 1
+        fi
+
+        TMP=$(mktemp -p /tmp -t XXXXXXXX.vimclip)
+        nvim $TMP
+        if [ -s $TMP ]; then
+            xsel -i -b < $TMP
+        else
+            rm $TMP
+        fi
     fi
 fi
