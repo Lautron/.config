@@ -890,7 +890,7 @@
         "prefix": "logvar",
         "description": "log variable",
         "body": [
-            "logger.${2:debug}(f'{${1:var}=}')$0"
+            "logger.${2:info}(f'{${1:var}=}')$0"
         ],
         "luasnip": {
             "priority": 1,

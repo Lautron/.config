@@ -41,6 +41,20 @@
             "wordTrig": false
         }
     },
+        {
+        "prefix": "func",
+        "description": "Normal function",
+        "body": [
+            "func ${1:functionName}(${2:params}) ${3:returnType} {",
+            "\t${0:${VISUAL}}",
+            "}"
+        ],
+        "luasnip": {
+            "priority": 1,
+            "autotrigger": false,
+            "wordTrig": false
+        }
+    },
     {
         "prefix": "map",
         "description": "Map type",
