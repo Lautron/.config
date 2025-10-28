@@ -147,7 +147,8 @@ return {
                 filetype = {
                     python = "venv && python3 -u",
                     go = "go run $file",
-                    sql = "runsql < $file"
+                    sql = "runsql < $file",
+                    typescript = "bun run $file"
                 },
                 project = {
                     ["/home/lautarob/Documents/Facultad/año3/IS1/proyecto/code/back"] = {
@@ -258,23 +259,6 @@ return {
         event = "VeryLazy",
     },
     {
-        "zbirenbaum/copilot.lua",
-        cmd = "Copilot",
-        event = "InsertEnter",
-        config = function()
-            require("copilot").setup({
-                suggestion = { enabled = false },
-                panel = { enabled = false },
-            })
-        end,
-        dependencies = {
-            "zbirenbaum/copilot-cmp",
-            config = function()
-                require("copilot_cmp").setup()
-            end
-        },
-    },
-    {
         'Wansmer/treesj',
         dependencies = { 'nvim-treesitter/nvim-treesitter' },
         config = function()
@@ -283,53 +267,6 @@ return {
         keys = {
             "<leader>sj"
         }
-    },
-    {
-        "jackMort/ChatGPT.nvim",
-        keys = {
-            "<leader>co",
-            "<leader>ce",
-        },
-        cmd = {
-            "ChatGPT",
-            "ChatGPTEditWithInstructions",
-            "ChatGPTCompleteCode"
-        },
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            "nvim-lua/plenary.nvim",
-            "folke/trouble.nvim",
-            "nvim-telescope/telescope.nvim"
-        },
-        config = function()
-            require("chatgpt").setup({
-                api_key_cmd = "openai_get_key.sh",
-                openai_params = {
-                    model = "gpt-4o-mini",
-                    frequency_penalty = 0,
-                    presence_penalty = 0,
-                    max_tokens = 8000,
-                    temperature = 0,
-                    top_p = 1,
-                    n = 1,
-                },
-                openai_edit_params = {
-                    model = "gpt-4o-mini",
-                    frequency_penalty = 0,
-                    presence_penalty = 0,
-                    temperature = 0,
-                    top_p = 1,
-                    n = 1,
-                },
-                config_paths = { "/home/lautarob/.config/nvim/prompts/actions.json" }
-            })
-
-            vim.keymap.set('n', '<leader>co', ':ChatGPT<CR>', { noremap = true, silent = false })
-            vim.keymap.set('n', '<leader>ce', ':ChatGPTEditWithInstructions<CR>',
-                { noremap = true, silent = false })
-            vim.keymap.set('n', '<leader>cr', ':ChatGPTRun ', { noremap = true, silent = false })
-            vim.keymap.set('n', '<leader>cc', ':ChatGPTCompleteCode ', { noremap = true, silent = false })
-        end,
     },
     {
         'serenevoid/kiwi.nvim',
@@ -401,12 +338,12 @@ return {
     },
     {
         "olrtg/nvim-emmet",
-        config = function()
-            vim.keymap.set({ "n", "v" }, '<leader>xe', require('nvim-emmet').wrap_with_abbreviation)
-        end,
         keys = {
-            { "<leader>xe", mode = "n" },
-            { "<leader>xe", mode = "v" },
+            {
+                "<leader>xe",
+                mode = { "n", "v" },
+                function() require('nvim-emmet').wrap_with_abbreviation() end
+            }
         }
     },
     {
@@ -445,7 +382,12 @@ return {
                         "node_modules",
                         "venv",
                         "requirements.txt",
-                    }
+                    },
+                    path_display = { shorten = { len = 5, exclude = { 1, -1 } } },
+                    layout_config = {
+                        horizontal = { width = 0.9 },
+                        vertical = { width = 0.9 },
+                    },
                 }
             }
 
@@ -491,6 +433,7 @@ return {
         init = function()
             -- VimTeX configuration goes here, e.g.
             vim.g.vimtex_view_method = "zathura"
+            vim.g.vimtex_compiler_engine = 'xelatex'
         end
     },
     { "let-def/texpresso.vim" },
@@ -501,6 +444,41 @@ return {
     -- },
     {
         "evesdropper/luasnip-latex-snippets.nvim",
+    },
+    {
+        "olimorris/codecompanion.nvim",
+        opts = {
+            strategies = {
+                chat = { adapter = "openai" },
+                inline = {
+                    adapter = "openai",
+                    keymaps = {
+                        accept_change = {
+                            modes = { n = "<leader>ca" },
+                            description = "Accept the suggested change",
+                        },
+                        reject_change = {
+                            modes = { n = "<leader>cr" },
+                            opts = { nowait = true },
+                            description = "Reject the suggested change",
+                        },
+                    },
+                },
+                agent = { adapter = "openai" },
+            },
+        },
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        keys = {
+            {
+                "<leader>cc",
+                "<cmd>CodeCompanion<cr>",
+                desc = "CodeCompanion code completion",
+                mode = {'n', 'v'}
+            }
+        },
+        cmd = {"CodeCompanion"}
     },
 }
 
