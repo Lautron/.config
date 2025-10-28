@@ -1,0 +1,437 @@
+[
+      {
+    "prefix": "import",
+    "description": "Create TS Import",
+    "body": [
+      "import { $1 } from '$2';"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": true,
+      "wordTrig": false
+    }
+  },
+
+  {
+    "prefix": "interf",
+    "description": "Create TS Interface",
+    "body": [
+      "interface $1 {",
+      "\t$2",
+      "}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": true,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "tst",
+    "description": "Create TS Type Alias",
+    "body": [
+      "type $1 = $2;"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": true,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "od",
+    "description": "Object Destructuring (JS/TS)",
+    "body": [
+      "const { $1 } = $2;"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "ad",
+    "description": "Array Destructuring (JS/TS)",
+    "body": [
+      "const [ $1 ] = $2;"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "for",
+    "description": "Standard For Loop",
+    "body": [
+      "for (let ${1:i} = 0; $1 < ${2:array}.length; $1++) {",
+      "\t$3",
+      "}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": true
+    }
+  },
+  {
+    "prefix": "fo",
+    "description": "ForEach Loop",
+    "body": [
+      "forEach((${1:item}) => {",
+      "\t$2",
+      "});"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": true
+    }
+  },
+  {
+    "prefix": "fof",
+    "description": "For...Of Loop (Iterable)",
+    "body": [
+      "for (const ${1:item} of ${2:iterable}) {",
+      "\t$3",
+      "}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": true
+    }
+  },
+  {
+    "prefix": "fin",
+    "description": "For...In Loop (Object Keys)",
+    "body": [
+      "for (const ${1:key} in ${2:object}) {",
+      "\t$3",
+      "}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": true
+    }
+  },
+  {
+    "prefix": "wh",
+    "description": "While Loop",
+    "body": [
+      "while (${1:condition}) {",
+      "\t$2",
+      "}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": true
+    }
+  },
+  {
+    "prefix": "dw",
+    "description": "Do...While Loop",
+    "body": [
+      "do {",
+      "\t$1",
+      "} while (${2:condition});"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": true
+    }
+  },
+  {
+    "prefix": "en",
+    "description": "TypeScript Enum",
+    "body": [
+      "enum ${1:EnumName} {",
+      "\t${2:Member1} = ${3:value1},",
+      "\t${4:Member2} = ${5:value2},",
+      "}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "fn",
+    "description": "Named Function",
+    "body": [
+      "function ${1:functionName}(${2:params}): ${3:ReturnType} {",
+      "\t$4",
+      "}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": true,
+      "wordTrig": true
+    }
+  },
+  {
+    "prefix": "af",
+    "description": "Arrow Function",
+    "body": [
+      "const ${1:functionName} = (${2:params}): ${3:ReturnType} => {",
+      "\t$4",
+      "};"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": true,
+      "wordTrig": true
+    }
+  },
+  {
+    "prefix": "asfn",
+    "description": "Async Function",
+    "body": [
+      "async function ${1:functionName}(${2:params}): Promise<${3:ReturnType}> {",
+      "\t$4",
+      "}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": true
+    }
+  },
+  {
+    "prefix": "iife",
+    "description": "Immediately Invoked Function Expression (IIFE)",
+    "body": [
+      "(() => {",
+      "\t$1",
+      "})();"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": true
+    }
+  },
+  {
+    "prefix": "cl",
+    "description": "TypeScript Class",
+    "body": [
+      "class ${1:ClassName} {",
+      "\t${2:constructor}(${3:params}) {",
+      "\t\t$4",
+      "\t}",
+      "\t",
+      "\t${5:methodName}(${6:params}): ${7:ReturnType} {",
+      "\t\t$8",
+      "\t}",
+      "}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "con",
+    "description": "Class Constructor",
+    "body": [
+      "constructor(${1:params}) {",
+      "\t$2",
+      "}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": true
+    }
+  },
+  {
+    "prefix": "me",
+    "description": "Class Method",
+    "body": [
+      "${1:methodName}(${2:params}): ${3:ReturnType} {",
+      "\t$4",
+      "}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": true
+    }
+  },
+  {
+    "prefix": "ifa",
+    "description": "If Statement alone",
+    "body": [
+      "if (${1:condition}) {",
+      "\t$2",
+      "}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": true,
+      "wordTrig": true
+    }
+  },
+  {
+    "prefix": "elif",
+    "description": "else if",
+    "body": [
+      "else if (${1:condition}) {",
+      "\t$2",
+      "}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": true
+    }
+  },
+  {
+    "prefix": "else",
+    "description": "else",
+    "body": [
+      "else {",
+      "\t$1",
+      "}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": true
+    }
+  },
+  {
+    "prefix": "sw",
+    "description": "Switch Statement",
+    "body": [
+      "switch (${1:expression}) {",
+      "\tcase ${2:value1}:",
+      "\t\t$3",
+      "\t\tbreak;",
+      "\tcase ${4:value2}:",
+      "\t\t$5",
+      "\t\tbreak;",
+      "\tdefault:",
+      "\t\t$6",
+      "\t\tbreak;",
+      "}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": true,
+      "wordTrig": true
+    }
+  },
+  {
+    "prefix": "to",
+    "description": "Ternary operator",
+    "body": [
+      "${1:condition} ? ${2:trueValue} : ${3:falseValue}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "tc",
+    "description": "Try...Catch...Finally Block",
+    "body": [
+      "try {",
+      "\t$1",
+      "} catch (${2:error}) {",
+      "\t$3",
+      "} finally {",
+      "\t$4",
+      "}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": true,
+      "wordTrig": true
+    }
+  },
+  {
+    "prefix": "im",
+    "description": "Import Statement",
+    "body": [
+      "import { ${1:Module} } from '${2:path/to/module}';"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": true
+    }
+  },
+  {
+    "prefix": "ex",
+    "description": "Export Statement",
+    "body": [
+      "export const ${1:name}: ${2:Type} = ${3:value};"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": true
+    }
+  },
+  {
+    "prefix": "exf",
+    "description": "Export Function",
+    "body": [
+      "export function ${1:functionName}(${2:params}): ${3:ReturnType} {",
+      "\t$4",
+      "}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": true
+    }
+  },
+  {
+    "prefix": "exd",
+    "description": "Export Default",
+    "body": [
+      "export default ${1:exportedValue};"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": true
+    }
+  },
+  {
+    "prefix": "consv",
+    "description": "Const Variable with Type",
+    "body": [
+      "const ${1:variableName}: ${2:Type} = ${3:value};"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": true
+    }
+  },
+  {
+    "prefix": "letv",
+    "description": "Let Variable with Type",
+    "body": [
+      "let ${1:variableName}: ${2:Type} = ${3:value};"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": true
+    }
+  }
+]
+

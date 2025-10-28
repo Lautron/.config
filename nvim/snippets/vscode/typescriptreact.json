@@ -1,0 +1,101 @@
+[
+  {
+    "prefix": "us",
+    "description": "UseState",
+    "body": [
+      "const [${1:stateName}, set$1] = useState($2)"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": true
+    }
+  },
+  {
+    "prefix": "ue",
+    "description": "UseEffect",
+    "body": [
+        "useEffect(() => {",
+        "\t$1",
+        "}, [$2]);"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": false,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "fc",
+    "description": "fc",
+    "body": [
+      "const ${1:ComponentName}: React.FC = () => {",
+      "\t$2",
+      "};"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": true,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "fC",
+    "description": "Create Function Component with Props",
+    "body": [
+      "interface $2Props {",
+      "\t// define props here",
+      "}",
+      "",
+      "const ${2:ComponentName}: React.FC<$2Props> = ({}) => {",
+      "\t$3",
+      "};"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": true,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "interf",
+    "description": "Create TS Interface",
+    "body": [
+      "interface $1 {",
+      "\t$2",
+      "}"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": true,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "tst",
+    "description": "Create TS Type",
+    "body": [
+      "type $1 = $2;"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": true,
+      "wordTrig": false
+    }
+  },
+  {
+    "prefix": "od",
+    "description": "Object Destructuring",
+    "body": [
+      "const { $1 } = $2;"
+    ],
+    "luasnip": {
+      "priority": 1,
+      "autotrigger": true,
+      "wordTrig": false
+    }
+  }
+]
+
+
+
