@@ -90,9 +90,8 @@ require('mason-lspconfig').setup({
 
 cmp.setup({
     sources = {
-        {name = "copilot"},
-        {name = 'luasnip'},
         {name = 'nvim_lsp'},
+        {name = 'luasnip'},
         {name = 'buffer', keyword_length = 3},
     },
     window = {
