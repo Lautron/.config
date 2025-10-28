@@ -52,7 +52,7 @@ vim.keymap.set('n', '<Leader>ot', ":!alacritty &;disown<cr>:redraw!<cr>", {silen
 -- open Ranger file manager in a new Alacritty window running the Fish shell
 vim.keymap.set('n', '<Leader>or', ":!alacritty -e fish -C 'ranger' &;disown<cr>:redraw!<cr>", {silent = true, noremap = true})
 
-vim.keymap.set('n', '<Leader>cl', ":w <bar> :!pandoc.sh '%' &<CR>", { silent = true, noremap = true })
+vim.keymap.set('n', '<Leader>cl', ":w <bar> :!pandoc.sh '%'<CR>", { silent = true, noremap = true })
 vim.keymap.set('n', '<Leader>cd', ":w <bar> :!pandoc-draft.sh '%' &<CR>", { silent = true, noremap = true })
 vim.keymap.set('n', '<Leader>mm', ":!markmap '%' -o /tmp/markmap.html && qutebrowser /tmp/markmap.html<CR>", { silent = true, noremap = true })
 
@@ -114,4 +114,3 @@ vim.keymap.set('v', '<Leader>es', ":w !bash<cr>", { noremap = true, silent = tru
 
 vim.keymap.set('n', '<Leader>cv', ":CsvViewToggle<cr>", { noremap = true, silent = true })
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
-
