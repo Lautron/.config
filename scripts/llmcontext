@@ -18,5 +18,5 @@ done
 IFS=','
 joined_args="${relative_args[*]}"
 # Call repomix with the relative paths
-repomix --include "$joined_args" --remove-empty-lines --stdout | wl-copy
+repomix --include "$joined_args" --remove-empty-lines --stdout | xclip -selection clipboard
 
