@@ -476,6 +476,12 @@ return {
                 "<cmd>CodeCompanion<cr>",
                 desc = "CodeCompanion code completion",
                 mode = {'n', 'v'}
+            },
+            {
+                "<leader>ce",
+                "<cmd>CodeCompanion /",
+                desc = "CodeCompanion code command",
+                mode = {'n', 'v'}
             }
         },
         cmd = {"CodeCompanion"}
