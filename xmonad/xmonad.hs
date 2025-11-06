@@ -78,7 +78,7 @@ myTerminal :: String
 myTerminal = "alacritty"    -- Sets default terminal
 
 myBrowser :: String
-myBrowser = "thorium-browser"
+myBrowser = "thorium-browser-avx2"
 
 myEmacs :: String
 myEmacs = "emacsclient -c -a 'emacs' "  -- Makes emacs keybindings easier to type
@@ -115,7 +115,7 @@ myStartupHook = do
     spawnOnce "xset s 3600 3600 &"
     spawnOnce "reddit_notifs &"
 
-    spawnOnce "feh --randomize --bg-fill ~/.config/wallpapers &"  -- feh set random wallpaper
+    spawnOnce "feh --randomize --bg-fill ~/.config/wallpapers/2025 &"  -- feh set random wallpaper
     setWMName "LG3D"
 
 myColorizer :: Window -> Bool -> X (String, String)
@@ -148,14 +148,11 @@ spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
                    , gs_font         = myFont
                    }
 
-myAppGrid = [
-              ("IS1 2022", myBrowser ++ " 'https://famaf-consultas.aulavirtual.unc.edu.ar/course/view.php?id=995'")
-              ,("AdC 2022", myBrowser ++ " 'https://famaf-consultas.aulavirtual.unc.edu.ar/course/view.php?id=1023'")
-              ,("BBDD 2022", myBrowser ++ " 'https://famaf-consultas.aulavirtual.unc.edu.ar/course/view.php?id=998'")
-              ,("IS1", myBrowser ++ " 'https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=179'")
-              ,("AdC", myBrowser ++ " 'https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=176'")
-              ,("BBDD", myBrowser ++ " 'https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=187'")
-          ]
+myLightsGrid = [
+              ("Lights On", "lights on")
+              ,("Lights Off", "lights off")
+              ,("Lights Blue", "lights blue")
+          ]
 
 myScratchPads :: [NamedScratchpad]
 myScratchPads = [ NS "spotify" spawnSpotify findSpotify manageSpotify
@@ -356,7 +353,8 @@ myKeys =
         , ("M-S-/", spawn "~/.xmonad/xmonad_keys.sh")
 
     -- KB_GROUP Run Prompt
-        , ("M-p", spawn "dmenu_run -i") -- Dmenu
+        , ("M-p", spawn "rofi -show drun") -- Dmenu
+        , ("M-S-p", spawn "rofi -show run") -- Dmenu
 
     -- KB_GROUP Other Dmenu Prompts
     -- In Xmonad and many tiling window managers, M-p is the default keybinding to
@@ -382,7 +380,7 @@ myKeys =
         , ("C-M1-l", incScreenSpacing 4)         -- Increase screen spacing
 
     -- KB_GROUP Grid Select (CTR-g followed by a key)
-        , ("M-g", spawnSelected' myAppGrid)                 -- grid select favorite apps
+        , ("M-g", spawnSelected' myLightsGrid)                 -- grid select favorite apps
        -- , ("M-g t", goToSelected $ mygridConfig myColorizer)  -- goto selected window
        -- , ("M-g b", bringSelected $ mygridConfig myColorizer) -- bring selected window
 
