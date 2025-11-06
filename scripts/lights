@@ -1,0 +1,119 @@
+#!/home/lautarob/.config/scripts/venv/bin/python
+import asyncio
+import argparse
+import sys
+from pywizlight import wizlight, PilotBuilder
+from typing import List, Awaitable, Callable
+
+# --- Configuration (Keep the same) ---
+LIGHT_IPS = [
+    "192.168.100.8",  # wiz_b67606
+    "192.168.100.9",  # wiz_b6983a
+    "192.168.100.10",  # wiz_b93439
+    "192.168.100.11",  # wiz_b6811c
+]
+COLD_WHITE_KELVIN = 6000
+
+# --- Light Control Functions (UPDATED) ---
+
+
+async def run_action_on_all_lights(action_func: Callable[[wizlight], Awaitable]):
+    """
+    Initializes wizlight objects, runs the action, and explicitly closes sockets.
+    """
+    print(f"💡 Initializing control for {len(LIGHT_IPS)} light(s)...")
+
+    # 1. Create wizlight objects for each IP
+    bulbs = [wizlight(ip) for ip in LIGHT_IPS]
+
+    # 2. Run the action concurrently
+    print(f"\n--- Running Action: {action_func.__name__.upper()} ---")
+    tasks = [action_func(bulb) for bulb in bulbs]
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+
+    # 3. Explicitly close the sockets (THE FIX)
+    # The method name was changed from async_close_socket() to async_close()
+    close_tasks = [bulb.async_close() for bulb in bulbs]
+    await asyncio.gather(*close_tasks)
+
+    # 4. Summarize results
+    success_count = 0
+    failure_count = 0
+
+    print("\n--- Execution Summary ---")
+    for bulb_ip, result in zip(LIGHT_IPS, results):
+        if isinstance(result, Exception):
+            failure_count += 1
+            # Note: The action itself failed because the script crashed before the action completed.
+            print(f"❌ FAILED on {bulb_ip}: {type(result).__name__} - {result}")
+        else:
+            success_count += 1
+            print(f"✅ SUCCESS on {bulb_ip}")
+
+    print(f"\nFinal Tally: {success_count} succeeded, {failure_count} failed.")
+
+# --- Action Implementations (No changes needed here) ---
+
+
+async def turn_on(bulb: wizlight):
+    await bulb.turn_on(PilotBuilder())
+
+
+async def turn_off(bulb: wizlight):
+    await bulb.turn_off()
+
+
+async def set_blue(bulb: wizlight):
+    await bulb.turn_on(PilotBuilder(brightness=255, rgb=(0, 0, 255)))
+
+
+async def set_cold_white(bulb: wizlight):
+    await bulb.turn_on(PilotBuilder(cold_white=255))
+
+
+async def set_night(bulb: wizlight):
+    await bulb.turn_on(PilotBuilder(warm_white=1))
+
+# --- CLI and Main Execution (No changes needed here) ---
+
+
+def setup_cli():
+    parser = argparse.ArgumentParser(
+        description="Control a set of WiZ lights via command-line subcommands.",
+        formatter_class=argparse.RawTextHelpFormatter
+    )
+    subparsers = parser.add_subparsers(dest="command", required=True)
+    subparsers.add_parser(
+        "on", help="Turn all lights ON (to their previous state).")
+    subparsers.add_parser("off", help="Turn all lights OFF.")
+    subparsers.add_parser(
+        "blue", help="Turn all lights to BLUE (RGB: 0, 0, 255).")
+    subparsers.add_parser(
+        "white", help="Turn all lights to COLD WHITE (using 6000K).")
+    subparsers.add_parser(
+        "night", help="Activate night light")
+    return parser.parse_args()
+
+
+async def main():
+    args = setup_cli()
+    command_map = {
+        "on": turn_on,
+        "off": turn_off,
+        "blue": set_blue,
+        "white": set_cold_white,
+        "night": set_night,
+    }
+    action_func = command_map.get(args.command)
+
+    if action_func:
+        await run_action_on_all_lights(action_func)
+    else:
+        print(f"Unknown command: {args.command}")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("\nOperation cancelled by user.")
