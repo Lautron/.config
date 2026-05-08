@@ -4,7 +4,6 @@ toilet
 thorium-browser-bin
 ly
 zulip-desktop-bin
-anki-bin
 otf-font-awesome-5
 bibata-cursor-theme-bin
 otf-font-awesome-5
