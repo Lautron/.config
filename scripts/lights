@@ -7,10 +7,10 @@ from typing import List, Awaitable, Callable
 
 # --- Configuration (Keep the same) ---
 LIGHT_IPS = [
-    "192.168.100.8",  # wiz_b67606
-    "192.168.100.9",  # wiz_b6983a
-    "192.168.100.10",  # wiz_b93439
-    "192.168.100.11",  # wiz_b6811c
+    "192.168.20.50",
+    "192.168.20.51",
+    "192.168.20.52",
+    "192.168.20.53",
 ]
 COLD_WHITE_KELVIN = 6000
 
