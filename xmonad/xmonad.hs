@@ -152,6 +152,8 @@ myLightsGrid = [
               ("Lights On", "lights on")
               ,("Lights Off", "lights off")
               ,("Lights Blue", "lights blue")
+              ,("Lights Night", "lights night")
+              ,("Lights White", "lights white")
           ]
 
 myScratchPads :: [NamedScratchpad]
