@@ -14,12 +14,6 @@ export HISTFILE=~/.zsh_history
 # Vi key bindings
 bindkey -v
 
-# Environment variables
-export EDITOR="nvim"
-export VISUAL="nvim"
-export BROWSER="zen-browser"
-export PATH="/home/lautarob/.config/scripts:$PATH"
-
 # Completion colors
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu select
@@ -35,7 +29,7 @@ venv() {
 }
 
 # Aliases
-alias fug='nvim +Git +only'
+alias fug='nvim +G +only'
 alias ff="nvim +'Telescope find_files'"
 alias newmake='nvim makefile -c ":normal ictemp"'
 
@@ -58,6 +52,6 @@ alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 # Rickroll
 alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
 
+alias poe='uv run poe'
 # Starship prompt
-export PATH="$HOME/.local/bin:$PATH"
 eval "$(starship init zsh)"
