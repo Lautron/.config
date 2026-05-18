@@ -18,5 +18,7 @@
 !dunst/
 !lf/
 !mimi/
+!zsh/
+!gtk-3.0/
 
 scripts/xmind2latex
