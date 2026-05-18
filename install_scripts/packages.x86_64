@@ -78,3 +78,6 @@ tree-sitter
 luarocks
 npm
 python-pynvim
+zen-browser-bin
+opencode
+uv
