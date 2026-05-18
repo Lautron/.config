@@ -214,7 +214,7 @@ map st :set reverse true; set sortby time; set info time
 map sa :set reverse true; set sortby atime; set info atime
 map sc :set reverse true; set sortby ctime; set info ctime
 
-map S $fish
+map S $zsh
 map / fzf_jump
 
 map br $vimv $fx
@@ -224,4 +224,5 @@ map cc $llmcontext $fx
 
 map en $nvim .
 map eg $nvim +G +only
+map eo !opencode
 
