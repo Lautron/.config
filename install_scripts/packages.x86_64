@@ -81,4 +81,7 @@ zen-browser-bin
 opencode
 uv
 keyd
+oh-my-zsh-git
+zsh-syntax-highlighting
+zsh-autosuggestions
 starship

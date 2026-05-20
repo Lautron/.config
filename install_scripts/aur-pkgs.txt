@@ -13,3 +13,4 @@ slack-desktop
 dragon-drop
 python310
 repomix
+pacseek-bin
