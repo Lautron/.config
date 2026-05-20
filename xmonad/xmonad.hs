@@ -110,10 +110,7 @@ myStartupHook = do
     spawnOnce "picom -b --config ~/.config/dwm/picom.conf &"
     spawnOnce "redshift -P -O 7000 &"
     spawnOnce "config_tablet_buttons.sh &"
-    spawnOnce "setxkbmap -option caps:none &"
-    spawnOnce "sleep 20 && xmodmap ~/.Xmodmap &"
     spawnOnce "xset s 3600 3600 &"
-    spawnOnce "reddit_notifs &"
 
     spawnOnce "feh --randomize --bg-fill ~/.config/wallpapers/2025 &"  -- feh set random wallpaper
     setWMName "LG3D"
