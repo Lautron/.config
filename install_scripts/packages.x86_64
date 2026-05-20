@@ -63,7 +63,6 @@ noto-fonts
 noto-fonts-emoji
 noto-fonts-extra
 noto-fonts-cjk
-arc-gtk-theme
 neofetch
 xdotool
 unzip
@@ -82,3 +81,4 @@ zen-browser-bin
 opencode
 uv
 keyd
+starship
