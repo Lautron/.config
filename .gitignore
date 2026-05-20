@@ -21,5 +21,6 @@
 !zsh/
 !gtk-3.0/
 !keyd/
+!pacseek/
 
 scripts/xmind2latex
