@@ -59,7 +59,7 @@ return {
             "MDeiml/tree-sitter-markdown",
         },
         config = function()
-            require 'nvim-treesitter.configs'.setup {
+            require('nvim-treesitter').setup {
                 ensure_installed = {
                     "lua",
                     "python",
@@ -74,7 +74,7 @@ return {
                 },
             }
         end,
-        event = "VeryLazy",
+        lazy = false,
     },
     {
         "theprimeagen/harpoon",
