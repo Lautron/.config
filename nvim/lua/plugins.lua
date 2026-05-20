@@ -59,9 +59,8 @@ return {
             "MDeiml/tree-sitter-markdown",
         },
         config = function()
-            require 'nvim-treesitter.configs'.setup {
+            require('nvim-treesitter').setup {
                 ensure_installed = {
-                    "lua",
                     "python",
                     "markdown",
                     "markdown_inline",
@@ -74,7 +73,7 @@ return {
                 },
             }
         end,
-        event = "VeryLazy",
+        lazy = false,
     },
     {
         "theprimeagen/harpoon",
@@ -111,22 +110,17 @@ return {
         "nvim-treesitter/nvim-treesitter-context",
         event = "VeryLazy",
     },
-    {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v2.x',
-        dependencies = {
-            { 'neovim/nvim-lspconfig' },
-            { 'williamboman/mason.nvim' },
-            { 'williamboman/mason-lspconfig.nvim' },
-            { 'hrsh7th/nvim-cmp' },
-            { 'hrsh7th/cmp-buffer' },
-            { 'hrsh7th/cmp-path' },
-            { 'saadparwaiz1/cmp_luasnip' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/cmp-nvim-lua' },
-            { 'L3MON4D3/LuaSnip' },
-        },
-    },
+    -- LSP ecosystem
+    'neovim/nvim-lspconfig',
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
+    'saadparwaiz1/cmp_luasnip',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-nvim-lua',
+    'L3MON4D3/LuaSnip',
     {
         "folke/zen-mode.nvim",
         event = "VeryLazy",
@@ -345,19 +339,6 @@ return {
                 function() require('nvim-emmet').wrap_with_abbreviation() end
             }
         }
-    },
-    {
-        "luckasRanarison/tailwind-tools.nvim",
-        name = "tailwind-tools",
-        build = ":UpdateRemotePlugins",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-            "nvim-telescope/telescope.nvim",
-            "neovim/nvim-lspconfig",
-        },
-        opts = {},
-        ft = { "html", "css", "javascript", "typescript" },
-        event = "InsertEnter",
     },
     {
         "git-time-metric/gtm-vim-plugin",

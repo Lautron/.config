@@ -22,19 +22,40 @@ PASSWORD=$(echo "$QR_OUTPUT" | grep -oP 'P:\K[^;]+')
 SECURITY_TYPE=$(echo "$QR_OUTPUT" | grep -oP 'T:\K[^;]+')
 
 # Check if the required fields are extracted
-if [[ -z "$SSID" || -z "$PASSWORD" || -z "$SECURITY_TYPE" ]]; then
-    notify-send "Failed to parse the input string."
+if [[ -z "$SSID" || -z "$PASSWORD" ]]; then
+    notify-send "Failed to parse. SSID or password missing."
     exit 1
 fi
 
 # Connect to the Wi-Fi network
-nmcli connection delete "$SSID"
-if [[ "$SECURITY_TYPE" == "WPA" || "$SECURITY_TYPE" == "WPA2" ]]; then
-    nmcli device wifi connect "$SSID" password "$PASSWORD"
-    echo "nmcli device wifi connect $SSID password $PASSWORD"
-else
-    nmcli device wifi connect "$SSID"
+nmcli device wifi rescan
+sleep 3
+
+NETWORK_INFO=$(nmcli -t -f SSID,SECURITY dev wifi list | grep -i "^$SSID:")
+if [[ -z "$NETWORK_INFO" ]]; then
+    notify-send "Network '$SSID' not found in scan"
+    exit 1
 fi
+
+ACTUAL_SSID=$(echo "$NETWORK_INFO" | cut -d: -f1 | xargs)
+SECURITY_SCAN=$(echo "$NETWORK_INFO" | cut -d: -f2-)
+
+echo "SSID: '$ACTUAL_SSID', Security: '$SECURITY_SCAN'"
+
+nmcli connection delete "$ACTUAL_SSID" 2>/dev/null
+sleep 1
+
+if echo "$SECURITY_SCAN" | grep -q "WPA2"; then
+    nmcli connection add type wifi con-name "$ACTUAL_SSID" ifname wlan0 ssid "$ACTUAL_SSID" \
+        wifi-sec.key-mgmt wpa-psk wifi-sec.psk "$PASSWORD" wifi-sec.proto rsn
+elif echo "$SECURITY_SCAN" | grep -q "WPA1"; then
+    nmcli connection add type wifi con-name "$ACTUAL_SSID" ifname wlan0 ssid "$ACTUAL_SSID" \
+        wifi-sec.key-mgmt wpa-psk wifi-sec.psk "$PASSWORD" wifi-sec.proto wpa
+else
+    nmcli connection add type wifi con-name "$ACTUAL_SSID" ifname wlan0 ssid "$ACTUAL_SSID"
+fi
+
+nmcli connection up id "$ACTUAL_SSID"
 
 # Check if the connection was successful
 if [[ $? -eq 0 ]]; then
