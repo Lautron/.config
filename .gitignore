@@ -20,5 +20,6 @@
 !mimi/
 !zsh/
 !gtk-3.0/
+!keyd/
 
 scripts/xmind2latex
