@@ -14,3 +14,4 @@ dragon-drop
 python310
 repomix
 pacseek-bin
+gtm-bin
