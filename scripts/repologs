@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+tmpdir=$(mktemp -d)
+trap 'rm -rf "$tmpdir"' EXIT
+
+for input in "$@"; do
+    if [ ! -f "$input" ]; then
+        echo "Warning: '$input' not found, skipping" >&2
+        continue
+    fi
+    output="${input%.*}.txt"
+    grep -v "property_id=" "$input" > "$output"
+    cp "$output" "$tmpdir/"
+done
+
+repomix --no-gitignore --no-default-patterns "$tmpdir"
