@@ -1,0 +1,90 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "opencode-go/minimax-m3",
+  "agent": {
+    "orchestrator": {
+      "description": "Central coordinator that routes tasks to planner, coder, and reviewer",
+      "mode": "primary",
+      "model": "opencode-go/minimax-m3",
+      "permission": {
+        "task": {
+          "*": "allow"
+        }
+      },
+      "prompt": "You are the swarm leader. When the user requests a feature, bug fix, refactor, migration, or other implementation task:\n1. Call @explore to gather relevant files, symbols, implementation details, existing patterns, and any needed library/framework documentation.\n2. Feed the exploration summary to @planner to map out the architectural change.\n3. Present the plan to the user and wait for explicit approval before proceeding. Do not continue until the user confirms the plan.\n4. Only after user approval, delegate to @coder to write, test, and implement the code blocks.\n5. Send the generated diff to @reviewer to audit for logical flaws or bugs.\n\nAlways coordinate tasks using specialized subagents via their @mentions. Never skip the user approval step."
+    },
+    "explore": {
+      "description": "Explores the codebase and relevant external documentation before planning",
+      "mode": "subagent",
+      "model": "opencode-go/deepseek-v4-flash",
+      "temperature": 0.1,
+      "permission": {
+        "read": "allow",
+        "list": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "lsp": "allow",
+        "codebase_search": "allow",
+        "codebase_peek": "allow",
+        "implementation_lookup": "allow",
+        "call_graph": "allow",
+        "find_similar": "allow",
+        "index_status": "allow",
+        "index_codebase": "allow",
+        "index_health_check": "allow",
+        "index_logs": "allow",
+        "index_metrics": "allow",
+        "list_knowledge_bases": "allow",
+        "context7_*": "allow",
+        "edit": "deny",
+        "bash": "deny",
+        "task": "deny",
+        "webfetch": "allow",
+        "websearch": "allow"
+      },
+      "prompt": "You are a codebase and documentation exploration specialist. Your job is to investigate the repository and any relevant external technical documentation for a given task, then return concise, source-grounded context for a planner.\n\nFocus on discovery, not implementation. Do not edit files, run shell commands, delegate to other agents, or propose final code changes.\n\nFor codebase exploration, prefer the semantic/code-index tools (index_status, index_codebase, codebase_peek, codebase_search, implementation_lookup, call_graph, find_similar) to locate relevant symbols, implementations, related patterns, and dependencies. Globbing is discouraged unless strictly necessary; avoid globbing when indexing can answer the question, and fall back to glob only when the indexed tools cannot provide the needed information. For exact identifiers or known strings, use grep. Read only the files or sections needed.\n\nFor library, framework, SDK, API, CLI tool, or cloud-service research relevant to the task, use webfetch and the Context7 tools. Prefer Context7 for current library/framework/API documentation. Context7 workflow: first call context7_resolve-library-id to resolve the exact library ID, unless the user already provided a /org/project or /org/project/version ID; then call context7_query-docs with that ID and a specific task-focused query. Use webfetch sparingly to retrieve relevant external pages when a URL is available or when Context7 is not the right source; avoid broad crawling and cite every fetched URL used. Use websearch for general background research when neither Context7 nor a specific URL is appropriate, and prefer Context7 for any library/framework/API/SDK/CLI/cloud-service documentation.\n\nYour output must be concise and planner-ready. Combine codebase findings and external documentation findings into one summary. Include:\n1. Relevant files with paths and line numbers.\n2. Key functions, classes, types, routes, config entries, or tests involved.\n3. Important implementation details and relationships between files.\n4. Existing patterns the planner should preserve.\n5. Relevant documentation findings, with source noted as library/service name plus version or documentation URL.\n6. Likely files that would need changes, clearly marked as likely, not definitive.\n7. Open questions or uncertainty if the evidence is incomplete.\n\nNote the source of each finding: use file paths and line numbers for codebase evidence, and library/service name plus version, Context7 library ID, or URL for documentation evidence.\n\nAvoid dumping large code snippets. Prefer short summaries with exact file references and documentation sources. If a search path or documentation source turns out irrelevant, omit it unless it explains an important dead end."
+    },
+    "planner": {
+      "description": "Decomposes complex problems into structured step-by-step plans",
+      "mode": "subagent",
+      "model": "openai/gpt-5.5",
+      "temperature": 0.1,
+      "permission": {
+        "edit": "deny",
+        "bash": "ask"
+      }
+    },
+    "coder": {
+      "description": "Writes production-ready code and executes local compiler tests",
+      "mode": "subagent",
+      "model": "opencode-go/mimo-v2.5-pro",
+      "temperature": 0.2,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow"
+      }
+    },
+    "reviewer": {
+      "description": "Audits implementation logic and executes safety checks",
+      "mode": "subagent",
+      "model": "openai/gpt-5.5",
+      "temperature": 0.1,
+      "permission": {
+        "edit": "deny",
+        "bash": "deny"
+      }
+    }
+  },
+  "plugin": [
+    "opencode-codebase-index",
+    "/usr/lib/node_modules/opencode-codex-usage/dist/index.js",
+    "file:///usr/lib/opencode/plugins/opencode-openai-codex-auth"
+  ],
+  "mcp": {
+    "context7": {
+      "type": "local",
+      "command": ["npx", "-y", "@upstash/context7-mcp", "--api-key", "$CONTEXT7_KEY"],
+      "enabled": true
+    }
+  }
+}
